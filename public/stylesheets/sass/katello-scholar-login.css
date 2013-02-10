@@ -1,0 +1,50 @@
+/* line 1, ../../../app/assets/stylesheets/sass/katello-scholar-login.scss */
+body {
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #005c5c), color-stop(1, #19c3e6));
+}
+
+/* line 6, ../../../app/assets/stylesheets/sass/katello-scholar-login.scss */
+.form-signin {
+  position: relative;
+  background-image: -webkit-radial-gradient(center, circle closest-corner, white 0%, #c6d4ef 100%);
+  max-width: 400px;
+  max-height: 300px;
+  padding: 40px 80px 60px;
+  margin: 0 auto 20px;
+  background-color: #fff;
+  border: 7px solid #0a8492;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* line 23, ../../../app/assets/stylesheets/sass/katello-scholar-login.scss */
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+
+/* line 27, ../../../app/assets/stylesheets/sass/katello-scholar-login.scss */
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+  background-color: #C6D4EF;
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+}
+
+/* line 34, ../../../app/assets/stylesheets/sass/katello-scholar-login.scss */
+.form-signin input.btn.btn-large.btn-primary {
+  padding: 10px 90px;
+}
+
+/* line 37, ../../../app/assets/stylesheets/sass/katello-scholar-login.scss */
+img.katello_icon_big {
+  position: absolute;
+  top: 85px;
+  left: 340px;
+}

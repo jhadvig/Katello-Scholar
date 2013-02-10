@@ -1,0 +1,23 @@
+%html
+  %head
+    %meta(http-equiv="Content-Type" content="text/html; charset=UTF-8")
+    = favicon_link_tag 'favicon.png'
+    %title Katello-Scholar
+    / = javascript_include_tag :all
+    = javascript_include_tag "application"
+    = stylesheet_link_tag "application"
+    = csrf_meta_tag
+
+  %body
+     
+    =yield
+    %p.notice= notice
+    .container.alert.login
+      %a.close{"data-dismiss" => "alert"} &times;
+      = alert
+
+
+    %footer.modal-footer.navbar.navbar-fixed-bottom
+      %center
+        %span.muted.credit Katello-Scholar powered by
+        = link_to "http://www.katello.org/", "http://www.katello.org/"

@@ -1,0 +1,182 @@
+body{
+	background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #005C5C), color-stop(1, #19C3E6));
+	background-image: -moz-linear-gradient(top left, #005C5C 0%, #19C3E6 100%);
+	background-image: -o-linear-gradient(top left, #005C5C 0%, #19C3E6 100%);
+}
+
+
+.maincontainer{
+	margin-top: 10px;
+	width: 1152px;
+	background-color:white;
+	-webkit-border-radius: 10px;
+       -moz-border-radius: 10px;
+             border-radius: 10px;
+	.maincontent {
+		margin: 25px;
+	}
+}
+
+.table_info .button_to {
+	display: inline-block;
+}
+
+.table_info {
+	padding-bottom: 5px;
+	a.new_path {
+	  padding-left: 3px;
+	}
+}
+
+table.list{
+	width: 370px !important;
+	position: relative;
+	right: 20px;
+	top: -20px;
+
+	th.name {
+
+	}
+	th.date {
+
+	}
+
+	tr {
+		cursor: pointer;
+		td.name{
+			width: 180px;
+			max-width: 180px;
+			font-size: 12px;
+			font-weight: bold;
+			word-wrap:break-word;
+			line-height: 15px;
+		}
+
+		td.date {
+			width: 180px;
+			font-size: 10px;
+			line-height: 15px;
+		}
+		td.hover{
+			background-color: #C5CAD9 !important;
+		}
+
+	}
+
+}
+
+
+.well.scrolling-nav{
+	height: 500px;
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+.nav.nav-tabs.content_tabs > li {
+	margin-left: 60px;
+}
+
+.navbar-fixed-top {
+	border-bottom: 2px solid #d4d4d4;
+
+	a.brand {
+		padding: 9px 15px 6px !important;
+		img.navigation-logo {
+			margin-top: -7px;
+		}
+	}
+
+	.header {
+		margin-left: 45px !important;
+		li.active > a {
+			background-image: -webkit-linear-gradient(top, #111111, #4b4b4b);
+		}
+	}
+
+	ul li {
+		line-height: 38px;		
+	}
+
+	a.user-button{
+		padding: 8px 16px;
+		border: 1px solid black;
+	}
+	a.user-button:active{
+	}
+	.pull-right.settings{
+		margin-top: 10px;
+		margin-right: -8px;
+
+		ul.dropdown-menu {
+			background-color: #2f96b4;
+			li a {
+				color: white;
+			}
+
+		}
+	}
+	.pull-right.notification{
+		a {
+			margin-right: 15px;
+			margin-top: 15px;
+			border: 1px solid black;
+		}
+	}
+}
+
+table.courses{
+    table-layout: fixed;
+    width: 100%;
+    text-align:left;
+    thead{
+    	color:#005C5C;
+    }
+    tbody{
+
+    }
+	th.checkbox, td.checkbox {
+    	overflow: hidden;
+    	width:18px;
+    	padding-left: 6px;
+		padding-top: 4px;
+    }
+    th.action, td.action {
+    	width: 72px;
+    }
+    td {
+    	margin-left:3px;
+    	height: 30px;
+    }
+
+}
+.table-action-button {
+	button.btn-small.edit {
+		z-index: 1010;
+	}
+	button.dropdown-toogle {
+		border-radius: 5px;
+		margin-left: -4px !important;
+		z-index: 1005;
+	}
+	
+}
+
+.table-action-button {
+	ul.dropdown-menu {
+		z-index:1020;
+		.delete {
+			color:red;
+		}
+		.delete:hover{
+				
+			color:red;
+			font-weight:bold;
+		}
+	}
+}
+
+ul.dropdown-menu > li > a:hover {background-color:red;}
+
+
+
+

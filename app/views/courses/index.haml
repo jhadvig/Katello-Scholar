@@ -1,0 +1,76 @@
+
+%h2.section
+	= params[:controller].capitalize
+%ul.nav.nav-tabs
+.table_info
+	%span.muted.count
+		= 'Viewing 0 of 0 results (0 Total Courses)'
+		-#%button.btn.btn-info.template-new-path + 1
+		= link_to "+ New", new_course_path, :class=>"btn btn-info courses-new-path"
+
+
+%ul.nav.nav-tabs
+
+%form.form-search.pull-right
+	%input.input-medium.search-query{:type => "text", :placeholder=>"Course name"}
+	%button.btn{:type => "text"} Search
+
+
+.btn-group.settings
+	%a.btn.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}
+		Action
+		%span.caret
+	%ul.dropdown-menu
+		%li
+			%a{:href=>"#"} Edit
+		%li
+			%a{:href=>root_path} ...
+		%li
+			%a{:href=>root_path} ...
+
+%br
+%br
+
+.courses-table
+
+	%table.table-striped.table-bordered.table-hover.table-bordered.courses
+		%thead
+			%tr
+				%th.checkbox.check_all
+					%label.checkbox
+						%input{:type =>"checkbox", :value=>0}
+
+				%th.course_name Course Name
+				%th.seminars Seminars 
+				%th.labs Labs				
+				%th.students Students
+				%th.last_report Last Report
+				%th.action Action
+		%tbody
+
+			- 10.times do |i|
+
+				%tr
+					%td.checkbox
+						%label.checkbox
+							%input{:type =>"checkbox", :value=>0}
+					%td.course_name 
+						Course Code
+						%br/
+						Course Name
+					%td.operation_system Time
+					%td.environment Student
+					%td.lab Lab
+					%td.last_report Last Report
+					%td.action
+						.btn-group.table-action-button
+							%button.btn.btn-small.edit Edit
+							%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
+								%span.caret
+							%ul.dropdown-menu
+								%li 
+									%a{:href=>"#"} Clone
+								%li 
+									%a.delete{:href=>"#"} Delete
+
+

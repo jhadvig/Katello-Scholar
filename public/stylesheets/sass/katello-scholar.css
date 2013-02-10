@@ -1,0 +1,139 @@
+/* line 1, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+body {
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #005c5c), color-stop(1, #19c3e6));
+}
+
+/* line 5, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+.header {
+  margin-left: 20px !important;
+}
+
+/* line 13, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+.table_info .button_to {
+  display: inline-block;
+}
+
+/* line 17, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+.table_info {
+  padding-bottom: 5px;
+}
+/* line 19, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+.table_info a.new_path {
+  padding-left: 3px;
+}
+
+/* line 24, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+table.list {
+  width: 370px !important;
+  position: relative;
+  right: 20px;
+  top: -20px;
+}
+/* line 37, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+table.list tr {
+  cursor: pointer;
+}
+/* line 39, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+table.list tr td.name {
+  width: 180px;
+  max-width: 180px;
+  font-size: 12px;
+  font-weight: bold;
+  word-wrap: break-word;
+  line-height: 15px;
+}
+/* line 48, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+table.list tr td.date {
+  width: 180px;
+  font-size: 10px;
+  line-height: 15px;
+}
+/* line 53, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+table.list tr td.hover {
+  background-color: #c5cad9 !important;
+}
+
+/* line 62, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+.well.scrolling-nav {
+  height: 500px;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+/* line 68, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+.nav.nav-tabs.content_tabs > li {
+  margin-left: 60px;
+}
+
+/* line 73, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+.navbar-fixed-top a.user-button {
+  margin-left: 10px;
+  padding: 6px 16px;
+  border: 1px solid black;
+}
+/* line 81, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+.navbar-fixed-top .pull-right.settings ul.dropdown-menu {
+  background-color: #2f96b4;
+}
+/* line 83, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+.navbar-fixed-top .pull-right.settings ul.dropdown-menu li a {
+  color: white;
+}
+/* line 90, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+.navbar-fixed-top .pull-right.notification a {
+  margin-right: 15px;
+  margin-top: 7px;
+  border: 1px solid black;
+}
+
+/* line 98, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+table.courses {
+  table-layout: fixed;
+  width: 100%;
+  text-align: left;
+}
+/* line 102, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+table.courses thead {
+  color: #005C5C;
+}
+/* line 108, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+table.courses th.checkbox, table.courses td.checkbox {
+  overflow: hidden;
+  width: 18px;
+  padding-left: 6px;
+  padding-top: 4px;
+}
+/* line 114, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+table.courses th.action, table.courses td.action {
+  width: 72px;
+}
+/* line 117, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+table.courses td {
+  margin-left: 3px;
+}
+
+/* line 123, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+.table-action-button button.btn-small.edit {
+  z-index: 1010;
+}
+/* line 126, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+.table-action-button button.dropdown-toogle {
+  border-radius: 5px;
+  margin-left: -4px !important;
+  z-index: 1005;
+}
+
+/* line 137, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+.table-action-button ul.dropdown-menu .delete {
+  color: red;
+}
+/* line 140, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+.table-action-button ul.dropdown-menu .delete:hover {
+  color: red;
+  font-weight: bold;
+}
+
+/* line 148, ../../../app/assets/stylesheets/sass/katello-scholar.scss */
+ul.dropdown-menu > li > a:hover {
+  background-color: red;
+}
