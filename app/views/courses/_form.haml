@@ -12,4 +12,4 @@
 		= c.label :course_status
 		= c.select :status, options_for_select(Course::STATUS)
 	%div.control-group
-		= c.submit "Create", :class=>"btn btn-info"
+		= c.submit :class=>"btn btn-info"

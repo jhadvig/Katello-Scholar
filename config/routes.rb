@@ -1,5 +1,21 @@
 KatelloScholar::Application.routes.draw do
   devise_for :users
+
+  root :to => 'dashboard#index'
+
+  match 'dashboard' => 'dashboard#index', :as => :dashboard
+  resources :courses do 
+
+    resources :seminars
+  end
+  resources :templates
+  resources :systems
+  resources :labs
+
+  match 'course/de_active/:id' => 'courses#de_active', :via => :get
+  match 'course/clone/:id' => 'courses#clone', :via => :get, :as => "clone_course"
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -50,17 +66,7 @@ KatelloScholar::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # 
-  root :to => 'dashboard#index'
 
-  match 'dashboard' => 'dashboard#index', :as => :dashboard
-  resources :courses do 
-    resources :seminars
-  end
-  resources :templates
-  resources :systems
-  resources :labs
-
-  match 'course/clone/:id' => 'courses#clone', :via => :get, :as => "clone_course"
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

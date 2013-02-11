@@ -20,12 +20,11 @@ class CoursesController < SecureController
 
 	def create
 		@course = Course.new(params[:course])
-		@course.save
-
-		if @curr_course.save
-			flash[:success] = 'Course was successfully created.'
+		
+		if @course.save
+			flash[:success] = 'Course was successfully created'
 		else
-		    flash[:error] = 'ERROR: Course can\'t be created.'
+		    flash[:error] = 'ERROR: Course can\'t be created'
 		end
 
 		redirect_to courses_path
@@ -41,9 +40,8 @@ class CoursesController < SecureController
 
 	def update
 		@course = Course.find(params[:id])
-		@course.update_attributes(params[:course])
 
-		if @curr_course.save
+		if @course.update_attributes(params[:course])
 			flash[:success] = 'Course was successfully updated'
 		else
 		    flash[:error] = 'ERROR: Course can\'t be updated'
@@ -54,9 +52,8 @@ class CoursesController < SecureController
 
 	def destroy
 		@course = Course.find(params[:id])
-		@course.destroy
-
-		if @curr_course.save
+		
+		if @course.destroy
 			flash[:success] = 'Course was successfully deleted.'
 		else
 		    flash[:error] = 'ERROR: Course can\'t be deleted.'
@@ -67,13 +64,22 @@ class CoursesController < SecureController
 
 	def clone 
 		@curr_course = Course.find(params[:id]).dup
-		#@cloned_course = Course.new(@curr_course.attributes)
+
 		if @curr_course.save
 			flash[:success] = 'Course was successfully cloned.'
 		else
 		    flash[:error] = 'ERROR: Course can\'t be cloned.'
 		end
 		redirect_to courses_path
+	end
+
+	def de_active
+		@course = Course.find(params[:id])
+		
+		@course.status = !@course.status
+		@course.save
+
+		redirect_to :back
 	end
 
 end
