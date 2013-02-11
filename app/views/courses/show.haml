@@ -1,0 +1,17 @@
+
+%h2.section
+	= params[:controller].singularize.capitalize
+	info
+%ul.nav.nav-tabs
+
+- @course.attributes.each do |k,v|
+	%div
+		%span 
+			%strong #{k.capitalize} :
+			#{v}
+%br
+
+%ul.nav.nav-tabs
+
+%h3.section
+	Sourses seminars

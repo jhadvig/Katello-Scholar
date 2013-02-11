@@ -22,7 +22,17 @@ class CoursesController < SecureController
 		@course = Course.new(params[:course])
 		@course.save
 
+		if @curr_course.save
+			flash[:success] = 'Course was successfully created.'
+		else
+		    flash[:error] = 'ERROR: Course can\'t be created.'
+		end
+
 		redirect_to courses_path
+	end
+
+	def show
+		@course = Course.find(params[:id])
 	end
 
 	def edit 
@@ -33,12 +43,25 @@ class CoursesController < SecureController
 		@course = Course.find(params[:id])
 		@course.update_attributes(params[:course])
 
+		if @curr_course.save
+			flash[:success] = 'Course was successfully updated'
+		else
+		    flash[:error] = 'ERROR: Course can\'t be updated'
+		end
+
 		redirect_to courses_path
 	end
 
 	def destroy
 		@course = Course.find(params[:id])
 		@course.destroy
+
+		if @curr_course.save
+			flash[:success] = 'Course was successfully deleted.'
+		else
+		    flash[:error] = 'ERROR: Course can\'t be deleted.'
+		end
+
 		redirect_to courses_path
 	end
 
@@ -46,9 +69,9 @@ class CoursesController < SecureController
 		@curr_course = Course.find(params[:id]).dup
 		#@cloned_course = Course.new(@curr_course.attributes)
 		if @curr_course.save
-			flash[:notice] = 'Item was successfully cloned.'
+			flash[:success] = 'Course was successfully cloned.'
 		else
-		    flash[:notice] = 'ERROR: Item can\'t be cloned.'
+		    flash[:error] = 'ERROR: Course can\'t be cloned.'
 		end
 		redirect_to courses_path
 	end

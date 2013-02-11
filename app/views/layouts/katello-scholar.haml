@@ -43,9 +43,9 @@
               %span.caret
             %ul.dropdown-menu
               %li
-                %a{:href=>"#"} Settings
+                =link_to 'Settings'
               %li
-                %a{:href=>root_path} Log Out
+                =link_to 'Log Out', destroy_user_session_path
 
           .btn-group.pull-right.notification
             %a.badge.badge-info 8
