@@ -1,3 +1,3 @@
 Katello-Scholar is project targeted on virtualization and repository managment in university environment.
 
-Katello-Scholar uses REST API from project Katello. "http://www.katello.org/"
+Katello-Scholar uses REST API from project Katello. http://www.katello.org/

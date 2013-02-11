@@ -4,15 +4,14 @@
 %ul.nav.nav-tabs
 .table_info
 	%span.muted.count
-		= 'Viewing 0 of 0 results (0 Total Courses)'
-		-#%button.btn.btn-info.template-new-path + 1
+		= "Viewing #{@courses.count} of #{@courses.count} results (#{@courses.count} Total Courses)"
 		= link_to "+ New", new_course_path, :class=>"btn btn-info courses-new-path"
 
 
 %ul.nav.nav-tabs
 
 %form.form-search.pull-right
-	%input.input-medium.search-query{:type => "text", :placeholder=>"Course name"}
+	%input.input-medium.search-query{:type => "text", :placeholder=>"Course code or name"}
 	%button.btn{:type => "text"} Search
 
 
@@ -48,29 +47,26 @@
 				%th.action Action
 		%tbody
 
-			- 10.times do |i|
+			- @courses.each do |course|
 
 				%tr
 					%td.checkbox
 						%label.checkbox
 							%input{:type =>"checkbox", :value=>0}
 					%td.course_name 
-						Course Code
-						%br/
-						Course Name
-					%td.operation_system Time
-					%td.environment Student
-					%td.lab Lab
-					%td.last_report Last Report
+						#{course.code} : #{course.name}
+					%td.seminars #{course.seminars_count} 
+					%td.environment 
+					%td.lab 
+					%td.last_report 
 					%td.action
 						.btn-group.table-action-button
-							%button.btn.btn-small.edit Edit
+							=link_to "Edit", edit_course_path(course), :class=>"btn btn-small edit"
 							%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
 								%span.caret
 							%ul.dropdown-menu
 								%li 
-									%a{:href=>"#"} Clone
+									= link_to "Clone", clone_course_path(course)
 								%li 
-									%a.delete{:href=>"#"} Delete
-
+									= link_to "Delete", course, :confirm => "Destroy course #{course.code}: #{course.name}?", :method => :delete, :class=>"delete"
 

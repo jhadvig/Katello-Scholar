@@ -16,7 +16,7 @@
       .navbar-inner
         .container-fluid.header-container
           = link_to root_path,:class=>"brand" do
-            = image_tag "katello-scholar-logo3.png", :class=>"navigation-logo"
+            = image_tag "katello-scholar-logo4.png", :class=>"navigation-logo"
             = image_tag "katello-scholar-title.png", :class=>"navigation-title"
 
           %ul.nav.header
@@ -25,8 +25,8 @@
               = link_to "Dashboard", dashboard_path
             %li{:class=> ("active" if params[:controller] == 'courses')}
               = link_to "Courses", courses_path
-            %li{:class=> ("active" if params[:controller] == 'seminars')}
-              = link_to "Seminars", seminars_path
+            / %li{:class=> ("active" if params[:controller] == 'seminars')}
+            /   = link_to "Seminars", seminars_path
             %li{:class=> ("active" if params[:controller] == 'templates')}
               = link_to "Templates", templates_path
             %li{:class=> ("active" if params[:controller] == 'labs')}

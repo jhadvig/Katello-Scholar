@@ -130,22 +130,34 @@ table.courses{
     text-align:left;
     thead{
     	color:#005C5C;
-    }
-    tbody{
+    	th {
+    		padding-left: 5px;
+    	}
+    	th.action{
+	    	width: 72px;
+	    }
+    	th.checkbox {
+	    	overflow: hidden;
+	    	width:18px;
+	    	padding-left: 6px;
+			padding-top: 4px;
+	    }
+	    
 
     }
-	th.checkbox, td.checkbox {
-    	overflow: hidden;
-    	width:18px;
-    	padding-left: 6px;
-		padding-top: 4px;
-    }
-    th.action, td.action {
-    	width: 72px;
-    }
-    td {
+    tbody{
+    	td {
     	margin-left:3px;
     	height: 30px;
+    	padding-left: 5px;
+	    }
+	    td.checkbox {
+	    	overflow: hidden;
+	    	width:18px;
+	    	padding-left: 6px;
+			padding-top: 4px;
+	    }
+
     }
 
 }
@@ -174,8 +186,6 @@ table.courses{
 		}
 	}
 }
-
-ul.dropdown-menu > li > a:hover {background-color:red;}
 
 
 
