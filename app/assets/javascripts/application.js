@@ -28,6 +28,14 @@ function KS_Init() {
 		$(this).find('td').toggleClass('hover')
 	});
 
+	$('a.btn.disabled').click(function(e) {
+        e.preventDefault();
+    });
+
+    $('input[title]').tooltip({
+    	placement:'right',
+    	trigger:'hover focus'});
+
 	$('.dropdown-toggle').dropdown();
 
 	$('th input:checkbox').click(function(e) {
