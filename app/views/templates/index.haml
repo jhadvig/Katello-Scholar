@@ -1,0 +1,15 @@
+.templates-table
+	%table.table-striped.table-hover.templates
+		%thead
+			%tr
+				%th Template Name
+				%th Info
+				%th Created
+
+		%tbody
+			- @course.templates.each do |template|
+				%tr
+					%td.template_name #{template.name}
+					%td.info #{template.day}
+					%td.created_at #{template.starts_at}
+

@@ -4,8 +4,6 @@ class SeminarsController < SecureController
 		@course = Course.find(params[:course_id])
 		@seminars = @course.seminars
 
-		puts @seminars
-
 		respond_to do |format|
 			format.html  # index.html.erb
 			format.json { render :json => @seminars}
@@ -29,7 +27,7 @@ class SeminarsController < SecureController
 		else
 		    flash[:error] = 'ERROR: Seminar can\'t be created'
 		end
-		redirect_to course_seminars_path
+		redirect_to course_path(@course)
 	end
 
 	def edit

@@ -1,35 +1,100 @@
-
 %h2.section
-	%span
-		= params[:controller].singularize.capitalize
-		info
+	#{@course.code} : #{@course.name}
 
-		.btn-group.table-action-button.pull-right
-			=link_to "Edit", edit_course_path(@course), :class=>"btn btn-small edit"
-			%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
-				%span.caret
-			%ul.dropdown-menu
-				%li 
-					= link_to "Clone", clone_course_path(@course)
-				%li 
-					= link_to "#{Course::STATUS.key(!@course.status)}", :action => :de_active
-				%li 
-					= link_to "Delete", @course, :confirm => "Destroy course #{@course.code}: #{@course.name}?", :method => :delete, :class=>"delete"
+%br
+%br
 
 %ul.nav.nav-tabs
+	%li.active
+		%a{"data-toggle" => "tab", :href => "#course_info"} Course Info
+	%li
+		%a{"data-toggle" => "tab", :href => "#seminar_groups"} Seminar Groups
+	%li
+		%a{"data-toggle" => "tab", :href => "#course_templates"} Courses Templates
 
-- @course.attributes.each do |k,v|
-	%div
-		%span 
-			-if k == "status"
-				%strong #{k.capitalize} :
-				#{Course::STATUS.key(v)}
-			-else
-				%strong #{k.capitalize} :
-				#{v}
+.tab-content
+	.tab-pane.active#course_info
+
+		%h4.section
+			Course Info:
+
+		-@course.attributes.each do |k,v|
+			%div
+				%span 
+					-if k == "status"
+						%strong #{k.capitalize} :
+						#{Course::STATUS.key(v)}
+					-else
+						%strong #{k.capitalize} :
+						#{v}
+		%br
+		%br
+
+		=link_to "Edit", edit_course_path(@course), :class=>"btn btn-small btn-info edit"
 
 
-%ul.nav.nav-tabs
+	.tab-pane#seminar_groups
+		.table_info
+			%span.muted.count
 
-%h3.section
-	Sourses seminars
+				= "Viewing #{@course.seminars.count} of #{@course.seminars.count} results (#{@course.seminars.count} Total Seminars)"
+				= link_to "+ New Seminar", new_course_seminar_path(@course), :class=>"btn btn-info seminars-new-path"
+
+				- if flash[:success]   
+					.alert.alert-success
+						= flash[:success] 
+						%a.close{"data-dismiss" => "alert"} &times;
+				- if flash[:error]   
+					.alert.alert-error
+						= flash[:error] 
+						%a.close{"data-dismiss" => "alert"} &times;
+			%br
+			%br
+
+			%ul.nav.nav-tabs
+
+			.seminars-table
+				%table.table-striped.table-hover.seminars
+					%thead
+						%tr
+							%th Seminar number
+							%th Day
+							%th Starts at
+							%th Ends at
+							%th Info
+					%tbody
+						- @course.seminars.each do |seminar|
+							%tr
+								%td.seminar_number 
+									= link_to "#{seminar.seminar_number}", edit_seminar_path(seminar)
+								%td.day #{seminar.day}
+								%td.starts_at #{seminar.starts_at}
+								%td.ends_at #{seminar.ends_at}
+								%td.info #{seminar.info}
+
+	.tab-pane#course_templates
+		%span.muted.count
+			= "Viewing #{@course.templates.count} of #{@course.templates.count} results (#{@course.templates.count} Total Templates)"
+			= link_to "+ New Template", new_course_template_path(@course), :class=>"btn btn-info seminars-new-path"
+		%br
+		%br
+		%ul.nav.nav-tabs
+
+		.templates-table
+			%table.table-striped.table-hover.templates
+				%thead
+					%tr
+						%th Template Name
+						%th Info
+						%th Created
+
+				%tbody
+					- @course.templates.each do |template|
+						%tr
+							%td.template_name #{template.name}
+							%td.info #{template.info}
+							%td.created_at #{template.created_at}
+
+
+
+

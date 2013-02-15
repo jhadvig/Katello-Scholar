@@ -38,11 +38,8 @@
 		.table_info
 			%span.muted.count
 
-				= "Viewing #{@seminars.count} of #{@seminars.count} results (#{@seminars.count} Total Seminars)"
-				- unless @seminars.count == @course.seminars_count
-					= link_to "+ Add Seminar", new_course_seminar_path, :class=>"btn btn-info seminars-new-path"
-				-else
-					= link_to "+ Add Seminar", new_course_seminar_path, :class=>"btn btn-info seminars-new-path disabled"
+				= "Viewing #{@course.seminars.count} of #{@course.seminars.count} results (#{@course.seminars.count} Total Seminars)"
+				= link_to "+ New Seminar", new_course_seminar_path, :class=>"btn btn-info seminars-new-path"
 
 				- if flash[:success]   
 					.alert.alert-success
@@ -52,11 +49,6 @@
 					.alert.alert-error
 						= flash[:error] 
 						%a.close{"data-dismiss" => "alert"} &times;
-
-			%span.muted.count.pull-right
-				= "Total Course"
-				= link_to "Templates: 8", new_course_seminar_path, :class=>"seminars-index-path"
-				= link_to "+ New Template", new_course_seminar_path, :class=>"btn btn-info seminars-new-path"
 			%br
 			%br
 
@@ -82,5 +74,11 @@
 								%td.info #{seminar.info}
 
 	.tab-pane#course_templates
+		%span.muted.count
+			-#= "Total Course"
+			= "Viewing #{@course.templates.count} of #{@course.templates.count} results (#{@course.templates.count} Total Templates)"
+			= link_to "+ New Template", new_course_template_path, :class=>"btn btn-info seminars-new-path"
+		%br
+		%br
 
 

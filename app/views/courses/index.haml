@@ -61,11 +61,11 @@
 						%label.checkbox
 							%input{:type =>"checkbox", :value=>0}
 					%td.course_name 
-						=link_to "#{course.code} : #{course.name}", course_seminars_path(course)
+						=link_to "#{course.code} : #{course.name}", course_path(course)
 					%td.seminars
-						=link_to "#{course.seminars_count}", course_seminars_path(course) 
-					%td.environment 
-					%td.lab 
+						=link_to "#{course.seminars.count}", course_path(course)
+					%td.labs
+					%td.students
 					%td.last_report 
 					%td.action
 						.btn-group.table-action-button

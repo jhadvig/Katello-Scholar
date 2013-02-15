@@ -5,6 +5,7 @@ class Course < ActiveRecord::Base
   attr_accessible :code, :name, :status, :seminars_count
 
   has_many :seminars, :dependent => :destroy
+  has_many :templates
 
   validates :code, :presence => true, :length => { :minimum => 3, :maximum => 10} # :uniqueness => { :scope => :year, :message => "should happen once per year" }
   validates :name, :presence => true, :length => { :minimum => 5, :maximum => 50}
