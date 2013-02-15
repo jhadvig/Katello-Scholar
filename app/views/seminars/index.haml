@@ -1,0 +1,61 @@
+
+%h2.section
+	= params[:controller].capitalize
+%h3.section
+	#{@course.code} : #{@course.name}
+
+%ul.nav.nav-tabs
+
+- @course.attributes.each do |k,v|
+	%div
+		%span 
+			-if k == "status"
+				%strong #{k.capitalize} :
+				#{Course::STATUS.key(v)}
+			-else
+				%strong #{k.capitalize} :
+				#{v}
+%ul.nav.nav-tabs
+.table_info
+	%span.muted.count
+
+		= "Viewing #{@seminars.count} of #{@seminars.count} results (#{@seminars.count} Total Seminars)"
+		- unless @seminars.count == @course.seminars_count
+			= link_to "+ New Seminar", new_course_seminar_path, :class=>"btn btn-info seminars-new-path"
+		-else
+			= link_to "+ New Seminar", new_course_seminar_path, :class=>"btn btn-info seminars-new-path disabled"
+
+		- if flash[:success]   
+			.alert.alert-success
+				= flash[:success] 
+				%a.close{"data-dismiss" => "alert"} &times;
+		- if flash[:error]   
+			.alert.alert-error
+				= flash[:error] 
+				%a.close{"data-dismiss" => "alert"} &times;
+
+	%span.muted.count.pull-right
+		= "Total Course"
+		= link_to "Templates: 8", new_course_seminar_path, :class=>"seminars-index-path"
+		= link_to "+ New Template", new_course_seminar_path, :class=>"btn btn-info seminars-new-path"
+
+%ul.nav.nav-tabs
+
+.seminars-table
+	%table.table-striped.table-hover.seminars
+		%thead
+			%tr
+				%th Seminar number
+				%th Day
+				%th Starts at
+				%th Ends at
+				%th Info
+		%tbody
+			- @seminars.each do |seminar|
+				%tr
+					%td.seminar_number 
+						= link_to "#{seminar.seminar_number}", edit_seminar_path(seminar)
+					%td.day #{seminar.day}
+					%td.starts_at #{seminar.starts_at}
+					%td.ends_at #{seminar.ends_at}
+					%td.info #{seminar.info}

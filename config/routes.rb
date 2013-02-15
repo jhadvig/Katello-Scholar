@@ -2,18 +2,24 @@ KatelloScholar::Application.routes.draw do
   devise_for :users
 
   root :to => 'dashboard#index'
-
   match 'dashboard' => 'dashboard#index', :as => :dashboard
-  resources :courses do 
 
+  resources :courses do 
+    get 'de_active', :on => :member
+    get 'clone', :on => :member
     resources :seminars
   end
+
+  resources :seminars do
+  end
+
+
   resources :templates
   resources :systems
   resources :labs
 
-  match 'course/de_active/:id' => 'courses#de_active', :via => :get
-  match 'course/clone/:id' => 'courses#clone', :via => :get, :as => "clone_course"
+  #match 'course/de_active/:id' => 'courses#de_active', :via => :get
+  #match 'course/clone/:id' => 'courses#clone', :via => :get, :as => "clone_course"
 
 
   # The priority is based upon order of creation:

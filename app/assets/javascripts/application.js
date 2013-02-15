@@ -34,7 +34,5 @@ function KS_Init() {
 		var table = $(e.target).parents('table:first');
 		$('td input:checkbox', table).attr('checked', e.target.checked);
 	});
-	
-
 
 }
