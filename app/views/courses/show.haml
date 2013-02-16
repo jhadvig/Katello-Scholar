@@ -1,27 +1,32 @@
 %h2.section
 	#{@course.code} : #{@course.name}
 
+- if flash[:success]   
+	.alert.alert-success
+		= flash[:success] 
+		%a.close{"data-dismiss" => "alert"} &times;
+- if flash[:error]   
+	.alert.alert-error
+		= flash[:error] 
+		%a.close{"data-dismiss" => "alert"} &times;
+
 %br
 %br
 
 %ul.nav.nav-tabs
 	%li.active
-		%a{"data-toggle" => "tab", :href => "#course_info"} Course Info
-	%li
 		%a{"data-toggle" => "tab", :href => "#seminar_groups"} Course Seminars
 	%li
 		%a{"data-toggle" => "tab", :href => "#course_templates"} Course Templates
+	%li
+		%a{"data-toggle" => "tab", :href => "#course_info"} Course Info
 
 .tab-content
-	.tab-pane.active#course_info
-		= render :partial => "course_info"
-
-	.tab-pane#seminar_groups
+	.tab-pane.active#seminar_groups
 		= render :partial => "course_seminars"
 
 	.tab-pane#course_templates
 		= render :partial => "course_templates"
 
-
-
-
+	.tab-pane#course_info
+		= render :partial => "course_info"
