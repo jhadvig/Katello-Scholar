@@ -1,0 +1,36 @@
+
+%span.muted.count
+
+	= "Viewing #{@course.seminars.count} of #{@course.seminars.count} results (#{@course.seminars.count} Total Seminars)"
+	= link_to "+ New Seminar", new_course_seminar_path(@course), :class=>"btn btn-info seminars-new-path"
+
+%br
+%br
+
+.seminars-table
+	%table.table-striped.table-bordered.table-hover.seminars
+		%thead
+			%tr
+				%th Seminar number
+				%th Day
+				%th Starts at
+				%th Ends at
+				%th Info
+				%th.action Action
+		%tbody
+			- @course.seminars.order("seminar_number ASC").each do |seminar|
+				%tr
+					%td.seminar_number 
+						= link_to "#{seminar.seminar_number}", edit_seminar_path(seminar)
+					%td.day #{seminar.day}
+					%td.starts_at #{seminar.starts_at}
+					%td.ends_at #{seminar.ends_at}
+					%td.info #{seminar.info}
+					%td.action
+						.btn-group.table-action-button
+							=link_to "Edit", edit_seminar_path(seminar), :class=>"btn btn-small edit"
+							%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
+								%span.caret
+							%ul.dropdown-menu
+								%li 
+									= link_to "Delete", seminar, :confirm => "Destroy seminar \n #{seminar.seminar_number} ?", :method => :delete, :class=>"delete"

@@ -1,0 +1,18 @@
+%h2.section
+	= params[:action].capitalize
+	= params[:controller].singularize
+%ul.nav.nav-tabs
+
+
+= form_for([@course,@course.templates.build]) do |c|
+	.name.control-group
+		= c.label :name
+		= c.text_field :name, :placeholder => "Template Name" 
+	.info.control-group
+		= c.label :info
+		= c.text_area :info, :size => "25x5", :placeholder => "Info about template ..."
+	%div.control-group
+		= c.submit :class=>"btn btn-info"
+
+
+= link_to 'Back', course_templates_path

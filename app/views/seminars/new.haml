@@ -1,0 +1,20 @@
+%h2.section
+	= params[:action].capitalize
+	= params[:controller].singularize
+%ul.nav.nav-tabs
+
+= form_for([@course,@course.seminars.build])  do |c|
+	.seminar_number.control-group
+		= c.label :seminar_number
+		= c.number_field :seminar_number, :placeholder => "Number" 
+	.day.control-group
+		= c.label :day
+		= c.select :day, options_for_select(Weekday::DAYS)
+	.info.control-group
+		= c.label :info
+		= c.text_field :info, :placeholder => "Seminar informations	"
+	%div.control-group
+		= c.submit :class=>"btn btn-info"
+
+= link_to 'Back', course_seminars_path
+

@@ -65,6 +65,7 @@ class CoursesController < SecureController
 	def clone 
 		@curr_course = Course.find(params[:id]).dup
 
+
 		if @curr_course.save
 			flash[:success] = 'Course was successfully cloned.'
 		else

@@ -25,14 +25,10 @@
               = link_to "Dashboard", dashboard_path
             %li{:class=> ("active" if params[:controller] == 'courses')}
               = link_to "Courses", courses_path
-            / %li{:class=> ("active" if params[:controller] == 'seminars')}
-            /   = link_to "Seminars", seminars_path
             %li{:class=> ("active" if params[:controller] == 'templates')}
               = link_to "Templates", templates_path
-            %li{:class=> ("active" if params[:controller] == 'labs')}
-              = link_to "Labs", labs_path  
-            %li{:class=> ("active" if params[:controller] == 'systems')}
-              = link_to "Systems", systems_path
+
+
             
 
 

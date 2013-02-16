@@ -1,35 +1,32 @@
-
 %h2.section
-	%span
-		= params[:controller].singularize.capitalize
-		info
+	#{@course.code} : #{@course.name}
 
-		.btn-group.table-action-button.pull-right
-			=link_to "Edit", edit_course_path(@course), :class=>"btn btn-small edit"
-			%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
-				%span.caret
-			%ul.dropdown-menu
-				%li 
-					= link_to "Clone", clone_course_path(@course)
-				%li 
-					= link_to "#{Course::STATUS.key(!@course.status)}", :action => :de_active
-				%li 
-					= link_to "Delete", @course, :confirm => "Destroy course #{@course.code}: #{@course.name}?", :method => :delete, :class=>"delete"
+- if flash[:success]   
+	.alert.alert-success
+		= flash[:success] 
+		%a.close{"data-dismiss" => "alert"} &times;
+- if flash[:error]   
+	.alert.alert-error
+		= flash[:error] 
+		%a.close{"data-dismiss" => "alert"} &times;
+
+%br
+%br
 
 %ul.nav.nav-tabs
+	%li
+		%a{"data-toggle" => "tab", :href => "#seminar_groups"} Course Seminars
+	%li
+		%a{"data-toggle" => "tab", :href => "#course_templates"} Course Templates
+	%li
+		%a{"data-toggle" => "tab", :href => "#course_info"} Course Info
 
-- @course.attributes.each do |k,v|
-	%div
-		%span 
-			-if k == "status"
-				%strong #{k.capitalize} :
-				#{Course::STATUS.key(v)}
-			-else
-				%strong #{k.capitalize} :
-				#{v}
+.tab-content
+	.tab-pane#seminar_groups
+		= render :partial => "course_seminars"
 
+	.tab-pane#course_templates
+		= render :partial => "course_templates"
 
-%ul.nav.nav-tabs
-
-%h3.section
-	Sourses seminars
+	.tab-pane#course_info
+		= render :partial => "course_info"
