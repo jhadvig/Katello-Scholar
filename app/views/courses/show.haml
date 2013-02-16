@@ -14,7 +14,7 @@
 %br
 
 %ul.nav.nav-tabs
-	%li.active
+	%li
 		%a{"data-toggle" => "tab", :href => "#seminar_groups"} Course Seminars
 	%li
 		%a{"data-toggle" => "tab", :href => "#course_templates"} Course Templates
@@ -22,7 +22,7 @@
 		%a{"data-toggle" => "tab", :href => "#course_info"} Course Info
 
 .tab-content
-	.tab-pane.active#seminar_groups
+	.tab-pane#seminar_groups
 		= render :partial => "course_seminars"
 
 	.tab-pane#course_templates
