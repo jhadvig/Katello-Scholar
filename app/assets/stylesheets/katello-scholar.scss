@@ -130,6 +130,10 @@ table.list{
 	}
 }
 
+.tab-content{
+	overflow: visible;
+}
+
 table.courses,
 table.seminars,
 table.templates {
@@ -169,6 +173,7 @@ table.templates {
     }
 
 }
+
 .table-action-button {
 	button.btn-small.edit {
 		z-index: 1010;
@@ -183,7 +188,8 @@ table.templates {
 
 .table-action-button {
 	ul.dropdown-menu {
-		z-index:1020;
+		z-index:1050;
+		margin-left: -72px;
 		.delete {
 			color:red;
 		}

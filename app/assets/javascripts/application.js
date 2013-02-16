@@ -39,6 +39,7 @@ function KS_Init() {
         $(this).parent().attr("class","active"); // Activate this
         $($(this).attr('href')).fadeIn();
         $($(this).attr('href')).children().fadeIn(); // Show content for current tab
+        $('.table-action-button').show(); // Show buttons in tables
         console.log($(this).attr('href'));
         }
     });

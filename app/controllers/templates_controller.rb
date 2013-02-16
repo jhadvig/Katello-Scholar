@@ -1,9 +1,8 @@
 class TemplatesController < SecureController
 
 	def index
-		# @course = Course.find(params[:course_id])
-		# @templates = @course.templates
-		@template = Template.all
+
+		@templates = Template.all(:order => "course_id ASC")
 
 		respond_to do |format|
 			format.html  # index.html.erb
