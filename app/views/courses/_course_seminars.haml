@@ -1,0 +1,37 @@
+.table_info
+	%span.muted.count
+
+		= "Viewing #{@course.seminars.count} of #{@course.seminars.count} results (#{@course.seminars.count} Total Seminars)"
+		= link_to "+ New Seminar", new_course_seminar_path(@course), :class=>"btn btn-info seminars-new-path"
+
+		- if flash[:success]   
+			.alert.alert-success
+				= flash[:success] 
+				%a.close{"data-dismiss" => "alert"} &times;
+		- if flash[:error]   
+			.alert.alert-error
+				= flash[:error] 
+				%a.close{"data-dismiss" => "alert"} &times;
+	%br
+	%br
+
+	%ul.nav.nav-tabs
+
+	.seminars-table
+		%table.table-striped.table-hover.seminars
+			%thead
+				%tr
+					%th Seminar number
+					%th Day
+					%th Starts at
+					%th Ends at
+					%th Info
+			%tbody
+				- @course.seminars.order("seminar_number ASC").each do |seminar|
+					%tr
+						%td.seminar_number 
+							= link_to "#{seminar.seminar_number}", edit_seminar_path(seminar)
+						%td.day #{seminar.day}
+						%td.starts_at #{seminar.starts_at}
+						%td.ends_at #{seminar.ends_at}
+						%td.info #{seminar.info}

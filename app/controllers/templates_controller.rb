@@ -1,8 +1,9 @@
 class TemplatesController < SecureController
 
 	def index
-		@course = Course.find(params[:course_id])
-		@templates = @course.templates
+		# @course = Course.find(params[:course_id])
+		# @templates = @course.templates
+		@template = Template.all
 
 		respond_to do |format|
 			format.html  # index.html.erb

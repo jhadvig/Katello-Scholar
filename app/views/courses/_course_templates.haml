@@ -1,0 +1,21 @@
+%span.muted.count
+	= "Viewing #{@course.templates.count} of #{@course.templates.count} results (#{@course.templates.count} Total Templates)"
+	= link_to "+ New Template", new_course_template_path(@course), :class=>"btn btn-info seminars-new-path"
+%br
+%br
+%ul.nav.nav-tabs
+
+.templates-table
+	%table.table-striped.table-hover.templates
+		%thead
+			%tr
+				%th Template Name
+				%th Info
+				%th Created
+
+		%tbody
+			- @course.templates.each do |template|
+				%tr
+					%td.template_name #{template.name}
+					%td.info #{template.info}
+					%td.created_at #{template.created_at}

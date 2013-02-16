@@ -1,0 +1,16 @@
+%h4.section
+	Course Info:
+
+-@course.attributes.each do |k,v|
+	%div
+		%span 
+			-if k == "status"
+				%strong #{k.capitalize} :
+				#{Course::STATUS.key(v)}
+			-else
+				%strong #{k.capitalize} :
+				#{v}
+%br
+%br
+
+=link_to "Edit", edit_course_path(@course), :class=>"btn btn-small btn-info edit"
