@@ -24,9 +24,36 @@ $(window).ready(function(){
 
 function KS_Init() {
 
+
+    $(".nav-tabs li:first").addClass("active"); // Activate first tab
+    $(".tab-content div:first").addClass("active"); // Show first tab content
+    
+    $('.nav-tabs a').click(function(e) {
+        e.preventDefault();
+        if ($(this).closest("li").attr("class") == "active"){ //detection for current tab
+        	return       
+        }
+        else{             
+        $(".tab-content div").hide(); //Hide all content
+        $(".nav-tabs li").attr("class",""); //Reset id's
+        $(this).parent().attr("class","active"); // Activate this
+        $($(this).attr('href')).fadeIn();
+        $($(this).attr('href')).children().fadeIn(); // Show content for current tab
+        console.log($(this).attr('href'));
+        }
+    });
+
 	$('table.table-striped tbody tr').hover(function(){
 		$(this).find('td').toggleClass('hover')
 	});
+
+	$('a.btn.disabled').click(function(e) {
+        e.preventDefault();
+    });
+
+    $('input[title]').tooltip({
+    	placement:'right',
+    	trigger:'hover focus'});
 
 	$('.dropdown-toggle').dropdown();
 
@@ -34,7 +61,5 @@ function KS_Init() {
 		var table = $(e.target).parents('table:first');
 		$('td input:checkbox', table).attr('checked', e.target.checked);
 	});
-	
-
 
 }

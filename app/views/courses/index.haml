@@ -39,14 +39,14 @@
 
 .courses-table
 
-	%table.table-striped.table-bordered.table-hover.table-bordered.courses
+	%table.table-striped.table-bordered.table-hover.courses
 		%thead
 			%tr
 				%th.checkbox.check_all
 					%label.checkbox
 						%input{:type =>"checkbox", :value=>0}
 
-				%th.course_name Course Name
+				%th.course_name Course
 				%th.seminars Seminars 
 				%th.labs Labs				
 				%th.students Students
@@ -62,9 +62,10 @@
 							%input{:type =>"checkbox", :value=>0}
 					%td.course_name 
 						=link_to "#{course.code} : #{course.name}", course_path(course)
-					%td.seminars #{course.seminars_count} 
-					%td.environment 
-					%td.lab 
+					%td.seminars
+						=link_to "#{course.seminars.count}", course_path(course)
+					%td.labs
+					%td.students
 					%td.last_report 
 					%td.action
 						.btn-group.table-action-button
@@ -75,5 +76,4 @@
 								%li 
 									= link_to "Clone", clone_course_path(course)
 								%li 
-									= link_to "Delete", course, :confirm => "Destroy course #{course.code}: #{course.name}?", :method => :delete, :class=>"delete"
-
+									= link_to "Delete", course, :confirm => "Destroy course \n #{course.code}: #{course.name} ?", :method => :delete, :class=>"delete"
