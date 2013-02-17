@@ -1,7 +1,6 @@
 body{
-	background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #005C5C), color-stop(1, #19C3E6));
-	background-image: -moz-linear-gradient(top left, #005C5C 0%, #19C3E6 100%);
-	background-image: -o-linear-gradient(top left, #005C5C 0%, #19C3E6 100%);
+
+	background-image:url('background.jpg');
 }
 
 
@@ -136,7 +135,8 @@ table.list{
 
 table.courses,
 table.seminars,
-table.templates {
+table.templates,
+table.lessons {
     table-layout: fixed;
     width: 100%;
     text-align:left;
@@ -175,11 +175,15 @@ table.templates {
 }
 
 .table-action-button {
-	button.btn-small.edit {
+	a.btn-small.edit {
 		z-index: 1010;
 	}
 	button.dropdown-toogle {
-		border-radius: 5px;
+		-webkit-border-radius: 0 5px 5px 0;
+		-moz-border-radius: 0 3px 3px 0;
+		-ms-border-radius: 0 3px 3px 0;
+		-o-border-radius: 0 3px 3px 0;
+		border-radius: 0 3px 3px 0;
 		margin-left: -4px !important;
 		z-index: 1005;
 	}
@@ -189,7 +193,7 @@ table.templates {
 .table-action-button {
 	ul.dropdown-menu {
 		z-index:1050;
-		margin-left: -72px;
+		margin-left: -50px;
 		.delete {
 			color:red;
 		}

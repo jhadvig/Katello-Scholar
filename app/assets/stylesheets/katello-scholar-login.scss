@@ -1,7 +1,5 @@
 body{
-  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #005C5C), color-stop(1, #19C3E6));
-  background-image: -moz-linear-gradient(top left, #005C5C 0%, #19C3E6 100%);
-  background-image: -o-linear-gradient(top left, #005C5C 0%, #19C3E6 100%);
+  background-image:url('background.jpg');
 }
 
 .form-container {

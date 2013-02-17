@@ -1,0 +1,39 @@
+%h2.section
+	= "#{@seminar.course.code}/ #{@seminar.seminar_number} #{params[:controller].capitalize}"
+%ul.nav.nav-tabs
+
+%span.muted.count
+	= "Viewing #{@lessons.count} of #{@lessons.count} results (#{@lessons.count} Total Templates)"
+	-#= link_to "+ New Template", new_course_template_path(@course), :class=>"btn btn-info template-new-path"
+%br
+%br
+%ul.nav.nav-tabs
+
+.seminar-lesson-table
+	%table.table-striped.table-bordered.table-hover.lessons
+		%thead
+			%tr
+				%th #
+				%th Status
+				%th Starts at
+				%th Ends at
+				%th Info
+				%th.action Action
+		%tbody
+			- @lessons.order("number ASC").each do |lesson|
+				%tr
+					%td.seminar_number 
+						#{lesson.number}
+						-#= link_to "#{@course.code}/ #{seminar.seminar_number}", seminar_lessons_path(seminar)
+					%td.day #{lesson.status}
+					%td.starts_at #{lesson.starts_at}
+					%td.ends_at #{lesson.ends_at}
+					%td.info #{lesson.info}
+					%td.action
+						.btn-group.table-action-button
+							=link_to "Edit", :class=>"btn btn-small edit"
+							%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
+								%span.caret
+							%ul.dropdown-menu
+								%li 
+									= link_to "Delete", lesson, :confirm => "Destroy lesson \n #{lesson.number} ?", :method => :delete, :class=>"delete"
