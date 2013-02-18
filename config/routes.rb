@@ -12,9 +12,15 @@ KatelloScholar::Application.routes.draw do
   end
 
   resources :seminars do
+    resources :lessons
   end
 
   resources :templates do 
+    resources :lessons
+  end
+
+  resources :lessons do
+    get 'clone', :on => :member
   end
 
   #match 'course/de_active/:id' => 'courses#de_active', :via => :get

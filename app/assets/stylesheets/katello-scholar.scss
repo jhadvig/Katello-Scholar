@@ -1,12 +1,12 @@
 body{
-	background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #005C5C), color-stop(1, #19C3E6));
-	background-image: -moz-linear-gradient(top left, #005C5C 0%, #19C3E6 100%);
-	background-image: -o-linear-gradient(top left, #005C5C 0%, #19C3E6 100%);
+
+	background-image:url('background.jpg');
 }
 
 
 .maincontainer{
 	margin-top: 10px;
+	margin-bottom: 100px;
 	width: 1152px;
 	background-color:white;
 	-webkit-border-radius: 10px;
@@ -32,6 +32,10 @@ body{
 	.alert {
     	margin-top: 10px;
     }
+}
+
+.search-query {
+	width: 70px
 }
 
 table.list{
@@ -136,7 +140,8 @@ table.list{
 
 table.courses,
 table.seminars,
-table.templates {
+table.templates,
+table.lessons {
     table-layout: fixed;
     width: 100%;
     text-align:left;
@@ -169,17 +174,25 @@ table.templates {
 	    	padding-left: 6px;
 			padding-top: 4px;
 	    }
-
     }
+}
 
+table.lessons {
+	th.number {
+		width:80px;
+	}
 }
 
 .table-action-button {
-	button.btn-small.edit {
+	a.btn-small.edit {
 		z-index: 1010;
 	}
 	button.dropdown-toogle {
-		border-radius: 5px;
+		-webkit-border-radius: 0 5px 5px 0;
+		-moz-border-radius: 0 3px 3px 0;
+		-ms-border-radius: 0 3px 3px 0;
+		-o-border-radius: 0 3px 3px 0;
+		border-radius: 0 3px 3px 0;
 		margin-left: -4px !important;
 		z-index: 1005;
 	}
@@ -189,7 +202,7 @@ table.templates {
 .table-action-button {
 	ul.dropdown-menu {
 		z-index:1050;
-		margin-left: -72px;
+		margin-left: -50px;
 		.delete {
 			color:red;
 		}
@@ -201,5 +214,9 @@ table.templates {
 	}
 }
 
+
+.form-actions {
+	background-color: white;
+}
 
 

@@ -11,20 +11,22 @@
 	%table.table-striped.table-bordered.table-hover.seminars
 		%thead
 			%tr
-				%th Seminar number
-				%th Day
-				%th Starts at
-				%th Ends at
-				%th Info
+				%th.name Seminar Group
+				%th.day Day
+				%th.start Starts at
+				%th.end Ends at
+				%th.lab Lab
+				%th.info Info
 				%th.action Action
 		%tbody
 			- @course.seminars.order("seminar_number ASC").each do |seminar|
 				%tr
 					%td.seminar_number 
-						= link_to "#{@course.code}/ #{seminar.seminar_number}", edit_seminar_path(seminar)
-					%td.day #{seminar.day}
+						= link_to course_seminar(seminar), seminar_lessons_path(seminar)
+					%td.day #{Weekday::DAYS.key(seminar.day)}
 					%td.starts_at #{seminar.starts_at}
 					%td.ends_at #{seminar.ends_at}
+					%td.lab 
 					%td.info #{seminar.info}
 					%td.action
 						.btn-group.table-action-button

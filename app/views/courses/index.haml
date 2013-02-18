@@ -18,8 +18,9 @@
 %ul.nav.nav-tabs
 
 %form.form-search.pull-right
-	%input.input-medium.search-query{:type => "text", :placeholder=>"Course code or name"}
+	%input.input-medium.search-query{:type => "text", :placeholder=>""} 
 	%button.btn{:type => "text"} Search
+
 
 
 .btn-group.settings
@@ -30,9 +31,9 @@
 		%li
 			%a{:href=>"#"} Edit
 		%li
-			%a{:href=>root_path} ...
+			%a{:href=>root_path} Deactive All
 		%li
-			%a{:href=>root_path} ...
+			%a{:href=>root_path} Delete
 
 %br
 %br
@@ -47,8 +48,9 @@
 						%input{:type =>"checkbox", :value=>0}
 
 				%th.course_name Course
-				%th.seminars Seminars 
-				%th.labs Labs				
+				%th.seminars Seminar Groups
+				%th.labs Labs			
+				%th.status	
 				%th.students Students
 				%th.last_report Last Report
 				%th.action Action
@@ -66,6 +68,7 @@
 						=link_to "#{course.seminars.count}", course_path(course)
 					%td.labs
 					%td.students
+					%td.status #{Lesson::STATUS.key(course.status)}
 					%td.last_report 
 					%td.action
 						.btn-group.table-action-button

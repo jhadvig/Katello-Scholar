@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery-1.8.3
 //= require bootstrap
+//= require bootstrap-timepicker
 //= require_tree .
 
 
@@ -23,6 +24,18 @@ $(window).ready(function(){
 });
 
 function KS_Init() {
+
+	$('.timepicker').timepicker({
+		showMeridian: false,
+		minuteStep: 10
+	});
+
+	$('.search-query').focus(function() {
+	     $('.search-query').animate({width: '200px'}).attr("placeholder","Course code or name");
+	});
+	$('.search-query').blur(function() {
+	     $('.search-query').animate({width: '70px'}).attr("placeholder","");
+	});
 
 
     $(".nav-tabs li:first").addClass("active"); // Activate first tab
@@ -40,6 +53,7 @@ function KS_Init() {
         $($(this).attr('href')).fadeIn();
         $($(this).attr('href')).children().fadeIn(); // Show content for current tab
         $('.table-action-button').show(); // Show buttons in tables
+        $('form > div').show(); // Show forms
         console.log($(this).attr('href'));
         }
     });
