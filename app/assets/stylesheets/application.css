@@ -13,5 +13,6 @@
  *= require bootstrap
  *= require katello-scholar
  *= require katello-scholar-login
+ *= require bootstrap-timepicker
  */
 
