@@ -12,14 +12,15 @@
   %body
      
     =yield
-    - if flash[:notice]   
-      .alert.alert-success
-        = flash[:notice] 
-        %a.close{"data-dismiss" => "alert"} &times;
-    - if flash[:alert]   
-      .alert.alert-error
-        = flash[:alert] 
-        %a.close{"data-dismiss" => "alert"} &times;
+    .container.flash
+      - if flash[:notice]   
+        .alert.alert-success
+          = flash[:notice] 
+          %a.close{"data-dismiss" => "alert"} &times;
+      - if flash[:alert]   
+        .alert.alert-error
+          = flash[:alert] 
+          %a.close{"data-dismiss" => "alert"} &times;
 
 
 

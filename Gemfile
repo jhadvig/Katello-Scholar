@@ -31,8 +31,11 @@ end
 
 gem 'jquery-rails'
 
+gem 'less-rails'
+
 gem 'gon'
 gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-timepicker-rails'
 gem "rake-progressbar", "~> 0.0.5"
 
 gem "cancan"

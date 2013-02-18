@@ -1,2 +1,31 @@
-%h1 Lesson#new
-%p Find me in app/views/lesson/new.html.haml
+%h2.section
+	= params[:action].capitalize
+	= params[:controller].singularize
+%h4.section
+	= link_to course_seminar(@seminar), course_path(@seminar.course)
+%ul.nav.nav-tabs
+
+= form_for([@seminar,@seminar.lessons.build])  do |c|
+	.number.control-group
+		= c.label :number
+		= c.hidden_field :number, :value => "#{@seminar.lessons.count+1}"
+		= c.text_field :number, :value => "#{@seminar.lessons.count+1}", :disabled => 'disabled'
+	.template.control-group
+		= c.label :template_id
+		= c.select :template_id, options_from_collection_for_select(@seminar.course.templates,"id","name"), :include_blank => true
+	.status.control-group
+		= c.label :lesson_status
+		= c.select :status, options_for_select(Course::STATUS)
+	.start.control-group
+		= c.label :starts_at
+		= c.text_field :starts_at, :class=>"timepicker"
+	.end.control-group
+		= c.label :ends_at
+		= c.text_field :ends_at, :class=>"timepicker"
+	.info.control-group
+		= c.label :info
+		= c.text_area :info, :size => "30x5", :placeholder => "Info about template ..."
+	%div.control-group
+		= c.submit :class=>"btn btn-info"
+
+= render :partial=>"shared/back"

@@ -44,3 +44,5 @@
 							%ul.dropdown-menu
 								%li 
 									= link_to "Delete", template, :confirm => "Destroy template \n #{template.name} ?", :method => :delete, :class=>"delete"
+
+= render :partial=>"shared/back"
