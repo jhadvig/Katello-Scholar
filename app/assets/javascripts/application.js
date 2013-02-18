@@ -25,7 +25,10 @@ $(window).ready(function(){
 
 function KS_Init() {
 
-	$('.timepicker').timepicker()
+	$('.timepicker').timepicker({
+		showMeridian: false,
+		minuteStep: 10
+	});
 
 	$('.search-query').focus(function() {
 	     $('.search-query').animate({width: '200px'}).attr("placeholder","Course code or name");

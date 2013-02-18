@@ -17,11 +17,16 @@ class LessonsController < SecureController
 
 	def create
 		@seminar = Seminar.find(params[:seminar_id])
-		if @lesson = @seminar.lessons.create(params[:lesson])
+		@lesson = @seminar.lessons.create(params[:lesson])
+
+		@lesson.find_lesson_dates(@seminar.lessons.count-1)
+
+		if @lesson.save
 			flash[:success] = 'Lesson was successfully created'
 		else
 		    flash[:error] = 'ERROR: Lesson can\'t be created'
 		end
+		
 		redirect_to seminar_lessons_path(@seminar)
 	end
 
@@ -57,6 +62,9 @@ class LessonsController < SecureController
 		@seminar = @lesson.seminar
 		@cloned_lesson = @lesson.dup
 		@cloned_lesson.number = @lesson.seminar.lessons.count+1
+
+		@cloned_lesson.find_lesson_dates(@seminar.lessons.count)
+
 		if @cloned_lesson.save
 			flash[:success] = 'Lesson was successfully cloned.'
 		else
