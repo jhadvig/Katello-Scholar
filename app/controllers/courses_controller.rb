@@ -1,5 +1,25 @@
 class CoursesController < SecureController
-	
+
+	before_filter :read_auth, :only => [:index,:show]
+	before_filter :manage_auth, :except => [:index,:show]
+
+
+
+	def read_auth
+		unless can?(:read, Course)
+			flash[:error] = 'You don\'t have the permission to do this action'
+		  	redirect_to :back
+		end
+	end
+
+	def manage_auth
+		unless can?(:manage, Course)
+			flash[:error] = 'You don\'t have the permission to do this action'
+		  	redirect_to :back
+		end
+	end
+
+
 	def index
 		@courses = Course.all
 
@@ -7,6 +27,7 @@ class CoursesController < SecureController
 			format.html  # index.html.erb
 			format.json { render :json => @posts}
 		end
+
 	end
 
 	def new

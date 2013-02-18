@@ -2,7 +2,8 @@
 %span.muted.count
 
 	= "Viewing #{@course.seminars.count} of #{@course.seminars.count} results (#{@course.seminars.count} Total Seminars)"
-	= link_to "+ New Seminar", new_course_seminar_path(@course), :class=>"btn btn-info seminars-new-path"
+	- if can? :manage, Seminar
+		= link_to "+ New Seminar", new_course_seminar_path(@course), :class=>"btn btn-info seminars-new-path"
 
 %br
 %br
@@ -17,7 +18,8 @@
 				%th.end Ends at
 				%th.lab Lab
 				%th.info Info
-				%th.action Action
+				- if can? :manage, Seminar
+					%th.action Action
 		%tbody
 			- @course.seminars.order("seminar_number ASC").each do |seminar|
 				%tr
@@ -28,11 +30,12 @@
 					%td.ends_at #{seminar.ends_at}
 					%td.lab 
 					%td.info #{seminar.info}
-					%td.action
-						.btn-group.table-action-button
-							=link_to "Edit", edit_seminar_path(seminar), :class=>"btn btn-small edit"
-							%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
-								%span.caret
-							%ul.dropdown-menu
-								%li 
-									= link_to "Delete", seminar, :confirm => "Destroy seminar \n #{seminar.seminar_number} ?", :method => :delete, :class=>"delete"
+					- if can? :manage, Seminar
+						%td.action
+							.btn-group.table-action-button
+								=link_to "Edit", edit_seminar_path(seminar), :class=>"btn btn-small edit"
+								%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
+									%span.caret
+								%ul.dropdown-menu
+									%li 
+										= link_to "Delete", seminar, :confirm => "Destroy seminar \n #{seminar.seminar_number} ?", :method => :delete, :class=>"delete"

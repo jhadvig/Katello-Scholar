@@ -4,7 +4,8 @@
 
 %span.muted.count
 	= "Viewing #{@lessons.count} of #{@lessons.count} results (#{@lessons.count} Total Templates)"
-	= link_to "+ Add Lesson", new_seminar_lesson_path(@seminar), :class=>"btn btn-info lesson-new-path"
+	- if can? :manage, Lesson
+		= link_to "+ Add Lesson", new_seminar_lesson_path(@seminar), :class=>"btn btn-info lesson-new-path"
 %br
 %br
 %ul.nav.nav-tabs
@@ -19,7 +20,8 @@
 				%th.end Ends at
 				%th.status Status
 				%th.info Info
-				%th.action Action
+				- if can? :manage, Lesson
+					%th.action Action
 		%tbody
 			- @lessons.order("number ASC").each do |lesson|
 				%tr
@@ -31,17 +33,18 @@
 					%td.ends_at #{lesson.ends_at}
 					%td.status #{Lesson::STATUS.key(lesson.status)}
 					%td.info #{lesson.info}
-					%td.action
-						.btn-group.table-action-button
-							=link_to "Edit", edit_lesson_path(lesson),:class=>"btn btn-small edit"
-							%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
-								%span.caret
-							%ul.dropdown-menu
-								%li
-									= link_to "Show", lesson_path(lesson), :class=>"lesson-show-path"
-								%li
-									= link_to "Clone", clone_lesson_path(lesson), :class=>"lesson-clone-path"
-								%li 
-									= link_to "Delete", lesson, :confirm => "Destroy lesson \n #{lesson.number} ?", :method => :delete, :class=>"delete"
+					- if can? :manage, Lesson
+						%td.action
+							.btn-group.table-action-button
+								=link_to "Edit", edit_lesson_path(lesson),:class=>"btn btn-small edit"
+								%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
+									%span.caret
+								%ul.dropdown-menu
+									%li
+										= link_to "Show", lesson_path(lesson), :class=>"lesson-show-path"
+									%li
+										= link_to "Clone", clone_lesson_path(lesson), :class=>"lesson-clone-path"
+									%li 
+										= link_to "Delete", lesson, :confirm => "Destroy lesson \n #{lesson.number} ?", :method => :delete, :class=>"delete"
 
 = render :partial=>"shared/back"

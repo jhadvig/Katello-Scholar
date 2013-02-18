@@ -5,7 +5,9 @@
 .table_info
 	%span.muted.count
 		= "Viewing #{@courses.count} of #{@courses.count} results (#{@courses.count} Total Courses)"
-		= link_to "+ New", new_course_path, :class=>"btn btn-info courses-new-path"
+		- if can? :manage, Course
+			= link_to "+ New Course", new_course_path, :class=>"btn btn-info courses-new-path"
+
 		- if flash[:success]   
 			.alert.alert-success
 				= flash[:success] 
@@ -22,18 +24,18 @@
 	%button.btn{:type => "text"} Search
 
 
-
-.btn-group.settings
-	%a.btn.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}
-		Action
-		%span.caret
-	%ul.dropdown-menu
-		%li
-			%a{:href=>"#"} Edit
-		%li
-			%a{:href=>root_path} Deactive All
-		%li
-			%a{:href=>root_path} Delete
+- if can? :manage, Course
+	.btn-group.settings
+		%a.btn.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}
+			Action
+			%span.caret
+		%ul.dropdown-menu
+			%li
+				%a{:href=>"#"} Edit
+			%li
+				%a{:href=>root_path} Deactive All
+			%li
+				%a{:href=>root_path} Delete
 
 %br
 %br
@@ -43,25 +45,28 @@
 	%table.table-striped.table-bordered.table-hover.courses
 		%thead
 			%tr
-				%th.checkbox.check_all
-					%label.checkbox
-						%input{:type =>"checkbox", :value=>0}
+				- if can? :manage, Course
+					%th.checkbox.check_all
+						%label.checkbox
+							%input{:type =>"checkbox", :value=>0}
 
 				%th.course_name Course
 				%th.seminars Seminar Groups
 				%th.labs Labs			
-				%th.status	
 				%th.students Students
+				%th.status	Status
 				%th.last_report Last Report
-				%th.action Action
+				- if can? :manage, Course
+					%th.action Action
 		%tbody
 
 			- @courses.each do |course|
 
 				%tr
-					%td.checkbox
-						%label.checkbox
-							%input{:type =>"checkbox", :value=>0}
+					- if can? :manage, Course
+						%td.checkbox
+							%label.checkbox
+								%input{:type =>"checkbox", :value=>0}
 					%td.course_name 
 						=link_to "#{course.code} : #{course.name}", course_path(course)
 					%td.seminars
@@ -70,13 +75,14 @@
 					%td.students
 					%td.status #{Lesson::STATUS.key(course.status)}
 					%td.last_report 
-					%td.action
-						.btn-group.table-action-button
-							=link_to "Edit", edit_course_path(course), :class=>"btn btn-small edit"
-							%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
-								%span.caret
-							%ul.dropdown-menu
-								%li 
-									= link_to "Clone", clone_course_path(course)
-								%li 
-									= link_to "Delete", course, :confirm => "Destroy course \n #{course.code}: #{course.name} ?", :method => :delete, :class=>"delete"
+					- if can? :manage, Course
+						%td.action
+							.btn-group.table-action-button
+								=link_to "Edit", edit_course_path(course), :class=>"btn btn-small edit"
+								%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
+									%span.caret
+								%ul.dropdown-menu
+									%li 
+										= link_to "Clone", clone_course_path(course)
+									%li 
+										= link_to "Delete", course, :confirm => "Destroy course \n #{course.code}: #{course.name} ?", :method => :delete, :class=>"delete"

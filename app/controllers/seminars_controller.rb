@@ -1,5 +1,24 @@
 class SeminarsController < SecureController
 
+	before_filter :read_auth, :only => [:index,:show]
+	before_filter :manage_auth, :except => [:index,:show]
+
+
+
+	def read_auth
+		unless can?(:read, Seminar)
+			flash[:error] = 'You don\'t have the permission to do this action'
+		  	redirect_to :back
+		end
+	end
+
+	def manage_auth
+		unless can?(:manage, Seminar)
+			flash[:error] = 'You don\'t have the permission to do this action'
+		  	redirect_to :back
+		end
+	end
+
 	def index
 		@course = Course.find(params[:course_id])
 		@seminars = @course.seminars

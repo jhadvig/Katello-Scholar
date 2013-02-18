@@ -1,6 +1,7 @@
 %span.muted.count
 	= "Viewing #{@course.templates.count} of #{@course.templates.count} results (#{@course.templates.count} Total Templates)"
-	= link_to "+ New Template", new_course_template_path(@course), :class=>"btn btn-info template-new-path"
+	- if can? :manage, Template
+		= link_to "+ New Template", new_course_template_path(@course), :class=>"btn btn-info template-new-path"
 %br
 %br
 
@@ -11,7 +12,8 @@
 				%th Template Name
 				%th Info
 				%th Created
-				%th.action Action
+				- if can? :manage, Template
+					%th.action Action
 
 		%tbody
 			- @course.templates.each do |template|
@@ -19,11 +21,12 @@
 					%td.template_name #{template.name}
 					%td.info #{template.info}
 					%td.created_at #{template.created_at}
-					%td.action
-						.btn-group.table-action-button
-							=link_to "Edit", edit_course_template_path(@course,template), :class=>"btn btn-small edit"
-							%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
-								%span.caret
-							%ul.dropdown-menu
-								%li 
-									= link_to "Delete", template, :confirm => "Destroy template \n #{template.name} ?", :method => :delete, :class=>"delete"
+					- if can? :manage, Template
+						%td.action
+							.btn-group.table-action-button
+								=link_to "Edit", edit_course_template_path(@course,template), :class=>"btn btn-small edit"
+								%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
+									%span.caret
+								%ul.dropdown-menu
+									%li 
+										= link_to "Delete", template, :confirm => "Destroy template \n #{template.name} ?", :method => :delete, :class=>"delete"

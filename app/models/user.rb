@@ -9,5 +9,18 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
   has_and_belongs_to_many :roles
+
+  def admin?
+  	self.roles.include?(Role.find_by_name("admin")) ? true : false
+  end
+
+  def lector?
+  	self.roles.include?(Role.find_by_name("lector")) ? true : false
+  end
+
+  def student?
+  	self.roles.include?(Role.find_by_name("student")) ? true : false
+  end
+
   
 end
