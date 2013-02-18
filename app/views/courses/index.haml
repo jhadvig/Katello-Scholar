@@ -48,8 +48,9 @@
 						%input{:type =>"checkbox", :value=>0}
 
 				%th.course_name Course
-				%th.seminars Seminars 
-				%th.labs Labs				
+				%th.seminars Seminar Groups
+				%th.labs Labs			
+				%th.status	
 				%th.students Students
 				%th.last_report Last Report
 				%th.action Action
@@ -67,6 +68,7 @@
 						=link_to "#{course.seminars.count}", course_path(course)
 					%td.labs
 					%td.students
+					%td.status #{Lesson::STATUS.key(course.status)}
 					%td.last_report 
 					%td.action
 						.btn-group.table-action-button

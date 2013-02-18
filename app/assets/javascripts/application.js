@@ -53,6 +53,7 @@ function KS_Init() {
         $($(this).attr('href')).fadeIn();
         $($(this).attr('href')).children().fadeIn(); // Show content for current tab
         $('.table-action-button').show(); // Show buttons in tables
+        $('form > div').show(); // Show forms
         console.log($(this).attr('href'));
         }
     });

@@ -15,6 +15,7 @@
 				%th.day Day
 				%th.start Starts at
 				%th.end Ends at
+				%th.lab Lab
 				%th.info Info
 				%th.action Action
 		%tbody
@@ -25,6 +26,7 @@
 					%td.day #{Weekday::DAYS.key(seminar.day)}
 					%td.starts_at #{seminar.starts_at}
 					%td.ends_at #{seminar.ends_at}
+					%td.lab 
 					%td.info #{seminar.info}
 					%td.action
 						.btn-group.table-action-button
