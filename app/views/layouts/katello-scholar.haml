@@ -36,6 +36,7 @@
 
           .btn-group.pull-right.settings
             %a.btn.btn-info.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}
+              %i.icon-user
               #{current_user.roles.first.name.capitalize}
               %span.caret
             %ul.dropdown-menu

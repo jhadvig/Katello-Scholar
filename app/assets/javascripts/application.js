@@ -31,10 +31,12 @@ function KS_Init() {
 
 
 	$('.search-query').focus(function() {
-	     $('.search-query').animate({width: '200px'}).attr("placeholder","Course code or name");
+        var placeholder = $('.search-query').attr("data-query_type");
+	    $('.search-query').animate({width: '200px'}).attr("placeholder",placeholder);
 	});
 	$('.search-query').blur(function() {
-	     $('.search-query').animate({width: '70px'}).attr("placeholder","");
+	     $('.search-query').animate({width: '70px'}).attr("placeholder","Find...");
+         $('.icon-search').show();
 	});
 
 

@@ -14,8 +14,14 @@
 %br
 
 %span.muted.count
-	= "Viewing #{@templates.count} of #{@templates.count} results (#{@templates.count} Total Templates)"
-	-#= link_to "+ New Template", new_course_template_path(@course), :class=>"btn btn-info template-new-path"
+	= "Viewing #{@templates.count} of Total #{@templates.count} Templates"
+
+
+%form.form-search.pull-right
+	.input-append
+		%input.span2.search-query{:type => "text", :placeholder=>"Find...", :data => {:query_type => "Course code or name"}} 
+		%button.btn{:type => "text"} 
+			%i.icon-search
 %br
 %br
 

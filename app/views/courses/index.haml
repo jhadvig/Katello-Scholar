@@ -4,7 +4,7 @@
 %ul.nav.nav-tabs
 .table_info
 	%span.muted.count
-		= "Viewing #{@courses.count} of Total #{@courses.count} Courses)"
+		= "Viewing #{@courses.count} of Total #{@courses.count} Courses"
 		- if can? :manage, Course
 			= link_to "+ New Course", new_course_path, :class=>"btn btn-info courses-new-path"
 
@@ -20,8 +20,11 @@
 %ul.nav.nav-tabs
 
 %form.form-search.pull-right
-	%input.input-medium.search-query{:type => "text", :placeholder=>""} 
-	%button.btn{:type => "text"} Search
+	.input-append
+		%input.span2.search-query{:type => "text", :placeholder=>"Find...", :data => {:query_type => "Course code or name"}} 
+		%button.btn{:type => "text"} 
+			%i.icon-search
+
 
 
 - if can? :manage, Course
@@ -87,12 +90,12 @@
 								%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
 									%span.caret
 								%ul.dropdown-menu
+									%li 
+										= link_to "Clone", clone_course_path(course)
 									%li
 										- if course.status == 0
 											= link_to "Activate", de_active_course_path(course)
 										- else
 											= link_to "Deactivate", de_active_course_path(course)
-									%li 
-										= link_to "Clone", clone_course_path(course)
 									%li 
 										= link_to "Delete", course, :confirm => "Destroy course \n #{course.code}: #{course.name} ?", :method => :delete, :class=>"delete"
