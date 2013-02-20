@@ -4,7 +4,7 @@ class LabsController < SecureController
 		@labs = Lab.all(:order => "name ASC")
 		respond_to do |format|
 			format.html 
-			format.json { render :json => @seminars}
+			format.json { render :json => @labs}
 		end
 	end
 

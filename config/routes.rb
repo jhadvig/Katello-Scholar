@@ -24,6 +24,10 @@ KatelloScholar::Application.routes.draw do
   end
 
   resources :labs do
+    resources :system_hosts
+  end
+
+  resources :system_hosts do
   end
 
   #match 'course/de_active/:id' => 'courses#de_active', :via => :get

@@ -1,0 +1,73 @@
+%h2.section
+	#{"hosts".capitalize}
+
+%ul.nav.nav-tabs
+.table_info
+	%span.muted.count
+		= "Viewing #{@system_hosts.count} of Total #{@system_hosts.count} Hosts"
+		= link_to "+ New Host", new_lab_system_host_path, :class=>"btn btn-info system-host-new-path"
+
+		=render :partial=>"shared/alerts"
+%br
+%ul.nav.nav-tabs
+
+%form.form-search.pull-right
+	.input-append
+		%input.span2.search-query{:type => "text", :placeholder=>"Find...", :data => {:query_type => "Hosts name"}} 
+		%button.btn{:type => "text"} 
+			%i.icon-search
+
+.btn-group.settings
+	%a.btn.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}
+		Action
+		%span.caret
+	%ul.dropdown-menu
+		%li
+			%a{:href=>root_path} 
+		%li
+			%a{:href=>root_path} Delete All
+
+%br
+%br
+
+.system_hosts-table
+
+	%table.table-striped.table-bordered.table-hover.system_hosts
+		%thead
+			%tr
+				%th.checkbox.check_all
+					%label.checkbox
+						%input{:type =>"checkbox", :value=>0}
+				%th.name Host
+				%th.status	Status
+				%th.ip IP
+				%th.domain Domain
+				%th.mac MAC
+				%th.action Action
+		%tbody
+			- @system_hosts.each do |host|
+				%tr
+					%td.checkbox
+						%label.checkbox
+							%input{:type =>"checkbox", :value=>0}
+					%td.name #{host.name}
+					%td.status 
+						- case host.status
+						- when 0
+							%span.label.label-warning #{SystemHost::STATUS.key(host.status)}
+						- when 1
+							%span.label.label-success #{SystemHost::STATUS.key(host.status)}
+						- when 2
+							%span.label.label-important #{SystemHost::STATUS.key(host.status)}
+					%td.ip #{host.ip}
+					%td.domain #{host.domain}
+					%td.mac #{host.mac}
+					%td.action
+						.btn-group.table-action-button
+							=link_to "Edit", edit_system_host_path(host), :class=>"btn btn-small edit"
+							%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
+								%span.caret
+							%ul.dropdown-menu
+
+								%li 
+									= link_to "Delete", host, :confirm => "Destroy lab \n #{host.name} ?", :method => :delete, :class=>"delete"

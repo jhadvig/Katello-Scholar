@@ -152,7 +152,8 @@ table.courses,
 table.seminars,
 table.templates,
 table.lessons,
-table.labs {
+table.labs,
+table.system_hosts {
     table-layout: fixed;
     width: 100%;
     text-align:left;
@@ -188,6 +189,21 @@ table.labs {
 			padding-top: 4px;
 	    }
     }
+}
+
+table.system_hosts {
+	th.name {
+		width: 180px;
+	}
+	th.ip {
+		width:180px;
+	}
+	th.domain{
+		width:180px;
+	}
+	th.mac {
+		width: 240px;
+	}
 }
 
 table.lessons {
