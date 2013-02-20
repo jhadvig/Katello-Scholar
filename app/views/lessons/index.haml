@@ -29,8 +29,8 @@
 						#{lesson.number}
 						-#= link_to "#{@course.code}/ #{seminar.seminar_number}", seminar_lessons_path(seminar)
 					%td.template #{lesson.template.name}
-					%td.starts_at #{lesson.starts_at}
-					%td.ends_at #{lesson.ends_at}
+					%td.starts_at #{lesson.starts_at.strftime("%c")}
+					%td.ends_at #{lesson.ends_at.strftime("%c")}
 					-if Lesson::STATUS.key(lesson.status) == "Active"
 						%td.status 
 							%span.label.label-info #{Lesson::STATUS.key(lesson.status)}

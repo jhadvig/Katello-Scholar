@@ -54,10 +54,11 @@
 							%input{:type =>"checkbox", :value=>0}
 
 				%th.course_name Course
+				%th.status	Status
 				%th.seminars Seminar Groups
 				%th.labs Labs			
 				%th.students Students
-				%th.status	Status
+				
 				%th.last_report Last Report
 				- if can? :manage, Course
 					%th.action Action
@@ -72,16 +73,17 @@
 								%input{:type =>"checkbox", :value=>0}
 					%td.course_name 
 						=link_to "#{course.code} : #{course.name}", course_path(course)
+					-if Lesson::STATUS.key(course.status) == "Active"
+						%td.status 
+							%span.label.label-success #{Lesson::STATUS.key(course.status)} 
+					-else
+						%td.status 
+							%span.label.label-important #{Lesson::STATUS.key(course.status)}
 					%td.seminars
 						=link_to "#{course.seminars.count}", course_path(course)
 					%td.labs
 					%td.students
-					-if Lesson::STATUS.key(course.status) == "Active"
-						%td.status 
-							%span.label.label-info #{Lesson::STATUS.key(course.status)}
-					-else
-						%td.status 
-							%span.label.label-important #{Lesson::STATUS.key(course.status)}
+					
 					%td.last_report 
 					- if can? :manage, Course
 						%td.action
@@ -93,7 +95,7 @@
 									%li 
 										= link_to "Clone", clone_course_path(course)
 									%li
-										- if course.status == 0
+										- if course.status == false
 											= link_to "Activate", de_active_course_path(course)
 										- else
 											= link_to "Deactivate", de_active_course_path(course)

@@ -15,15 +15,16 @@
 
 %span.muted.count
 	= "Viewing #{@templates.count} of Total #{@templates.count} Templates"
+%br
+%br
 
-
-%form.form-search.pull-right
-	.input-append
-		%input.span2.search-query{:type => "text", :placeholder=>"Find...", :data => {:query_type => "Course code or name"}} 
+%form.form-search
+	.input-prepend
 		%button.btn{:type => "text"} 
 			%i.icon-search
-%br
-%br
+		%input.span2.search-query{:type => "text", :placeholder=>"Find...", :data => {:query_type => "Course code or name"}} 
+		
+
 
 .templates-table
 	%table.table-striped.table-bordered.table-hover.templates
