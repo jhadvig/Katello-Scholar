@@ -24,10 +24,12 @@
 
             %li{:class=> ("active" if params[:controller] == 'dashboard')}
               = link_to "Dashboard", dashboard_path
-            %li{:class=> ("active" if params[:controller] == 'courses')}
+            %li{:class=> ("active" if  ['courses','seminars','lessons'].include?(params[:controller]))}
               = link_to "Courses", courses_path
             %li{:class=> ("active" if params[:controller] == 'templates')}
               = link_to "Templates", templates_path
+            %li{:class=> ("active" if params[:controller] == 'labs')}
+              = link_to "Labs", labs_path
 
 
             

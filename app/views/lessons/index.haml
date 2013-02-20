@@ -15,10 +15,10 @@
 		%thead
 			%tr
 				%th.number Lesson
+				%th.status Status
 				%th.template Template
 				%th.start Starts at
 				%th.end Ends at
-				%th.status Status
 				%th.info Info
 				- if can? :manage, Lesson
 					%th.action Action
@@ -28,15 +28,15 @@
 					%td.lesson
 						#{lesson.number}
 						-#= link_to "#{@course.code}/ #{seminar.seminar_number}", seminar_lessons_path(seminar)
-					%td.template #{lesson.template.name}
-					%td.starts_at #{lesson.starts_at.strftime("%c")}
-					%td.ends_at #{lesson.ends_at.strftime("%c")}
 					-if Lesson::STATUS.key(lesson.status) == "Active"
 						%td.status 
-							%span.label.label-info #{Lesson::STATUS.key(lesson.status)}
+							%span.label.label-success #{Lesson::STATUS.key(lesson.status)}
 					-else
 						%td.status 
 							%span.label.label-important #{Lesson::STATUS.key(lesson.status)}
+					%td.template #{lesson.template.name}
+					%td.starts_at #{lesson.starts_at.strftime("%c")}
+					%td.ends_at #{lesson.ends_at.strftime("%c")}
 					%td.info #{lesson.info}
 					- if can? :manage, Lesson
 						%td.action

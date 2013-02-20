@@ -1,30 +1,20 @@
 %h2.section
 	= params[:controller].capitalize
 
-- if flash[:success]   
-	.alert.alert-success
-		= flash[:success] 
-		%a.close{"data-dismiss" => "alert"} &times;
-- if flash[:error]   
-	.alert.alert-error
-		= flash[:error] 
-		%a.close{"data-dismiss" => "alert"} &times;
+%ul.nav.nav-tabs
+.table_info
+	%span.muted.count
+		= "Viewing #{@templates.count} of Total #{@templates.count} Templates"
 
+		=render :partial=>"shared/alerts"
 %br
-%br
+%ul.nav.nav-tabs
 
-%span.muted.count
-	= "Viewing #{@templates.count} of Total #{@templates.count} Templates"
-%br
-%br
-
-%form.form-search
-	.input-prepend
+%form.form-search.pull-right
+	.input-append
+		%input.span2.search-query{:type => "text", :placeholder=>"Find...", :data => {:query_type => "Template name"}} 
 		%button.btn{:type => "text"} 
 			%i.icon-search
-		%input.span2.search-query{:type => "text", :placeholder=>"Find...", :data => {:query_type => "Course code or name"}} 
-		
-
 
 .templates-table
 	%table.table-striped.table-bordered.table-hover.templates

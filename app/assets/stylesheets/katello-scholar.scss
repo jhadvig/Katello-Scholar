@@ -8,7 +8,7 @@ body{
 	margin-top: 10px;
 	margin-bottom: 100px;
 	width: 1152px;
-	background-color:white;
+	background-color:#f5f5f5;
 	-webkit-border-radius: 10px;
        -moz-border-radius: 10px;
              border-radius: 10px;
@@ -138,15 +138,21 @@ table.list{
 	}
 }
 
+ul.nav-tabs.pill-tabs-bar{
+	padding-left:17px;
+}
+
 .tab-content{
 	overflow: visible;
 	margin-left: 30px;
+	margin-right: 30px;
 }
 
 table.courses,
 table.seminars,
 table.templates,
-table.lessons {
+table.lessons,
+table.labs {
     table-layout: fixed;
     width: 100%;
     text-align:left;
@@ -165,7 +171,7 @@ table.lessons {
 			padding-top: 4px;
 	    }
 	    th.status {
-	    	width: 70px;
+	    	width: 88px;
 	    }
 
     }

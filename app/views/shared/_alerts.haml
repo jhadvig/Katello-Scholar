@@ -1,0 +1,8 @@
+- if flash[:success]   
+	.alert.alert-success
+		= flash[:success] 
+		%a.close{"data-dismiss" => "alert"} &times;
+- if flash[:error]   
+	.alert.alert-error
+		= flash[:error] 
+		%a.close{"data-dismiss" => "alert"} &times;

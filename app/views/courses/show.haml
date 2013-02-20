@@ -1,19 +1,12 @@
 %h2.section
 	#{@course.code} : #{@course.name}
 
-- if flash[:success]   
-	.alert.alert-success
-		= flash[:success] 
-		%a.close{"data-dismiss" => "alert"} &times;
-- if flash[:error]   
-	.alert.alert-error
-		= flash[:error] 
-		%a.close{"data-dismiss" => "alert"} &times;
+=render :partial=>"shared/alerts"
 
 %br
 %br
 
-%ul.nav.nav-tabs
+%ul.nav.nav-tabs.pill-tabs-bar
 	%li
 		%a{"data-toggle" => "tab", :href => "#seminar_groups"} Course Seminars
 	%li

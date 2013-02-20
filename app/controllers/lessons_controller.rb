@@ -93,7 +93,15 @@ class LessonsController < SecureController
 		    flash[:error] = 'ERROR: Lesson can\'t be cloned.'
 		end
 		redirect_to seminar_lessons_path(@seminar)
+	end
 
+	def de_active
+		@lesson = Lesson.find(params[:id])
+		
+		@lesson.status = !@lesson.status
+		@lesson.save
+
+		redirect_to :back
 	end
 
 end 

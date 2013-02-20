@@ -8,14 +8,8 @@
 		- if can? :manage, Course
 			= link_to "+ New Course", new_course_path, :class=>"btn btn-info courses-new-path"
 
-		- if flash[:success]   
-			.alert.alert-success
-				= flash[:success] 
-				%a.close{"data-dismiss" => "alert"} &times;
-		- if flash[:error]   
-			.alert.alert-error
-				= flash[:error] 
-				%a.close{"data-dismiss" => "alert"} &times;
+		=render :partial=>"shared/alerts"
+%br
 
 %ul.nav.nav-tabs
 

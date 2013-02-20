@@ -1,0 +1,79 @@
+
+%h2.section
+	= params[:controller].capitalize
+
+%ul.nav.nav-tabs
+.table_info
+	%span.muted.count
+		= "Viewing #{@labs.count} of Total #{@labs.count} Labs"
+		- if can? :manage, Course
+			= link_to "+ Add Lab", new_lab_path, :class=>"btn btn-info labs-new-path"
+
+		=render :partial=>"shared/alerts"
+%br
+%ul.nav.nav-tabs
+
+%form.form-search.pull-right
+	.input-append
+		%input.span2.search-query{:type => "text", :placeholder=>"Find...", :data => {:query_type => "Lab name"}} 
+		%button.btn{:type => "text"} 
+			%i.icon-search
+
+- if can? :manage, Course
+	.btn-group.settings
+		%a.btn.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}
+			Action
+			%span.caret
+		%ul.dropdown-menu
+			%li
+				%a{:href=>root_path} Maintain All
+			%li
+				%a{:href=>root_path} Delete All
+
+%br
+%br
+		
+.labs-table
+
+	%table.table-striped.table-bordered.table-hover.labs
+		%thead
+			%tr
+				- if can? :manage, Course
+					%th.checkbox.check_all
+						%label.checkbox
+							%input{:type =>"checkbox", :value=>0}
+
+				%th.name Lab Name
+				%th.status	Status
+				%th.host_count Hosts
+				%th.last_report Last Report
+				- if can? :manage, Course
+					%th.action Action
+		%tbody
+			- @labs.each do |lab|
+				%tr
+					- if can? :manage, Course
+						%td.checkbox
+							%label.checkbox
+								%input{:type =>"checkbox", :value=>0}
+					%td.name #{lab.name}
+					-if Lab::STATUS.key(lab.status) == "Maintenance"
+						%td.status 
+							%span.label.label-important #{Lab::STATUS.key(lab.status)} 
+					-elsif Lab::STATUS.key(lab.status) == "Ready"
+						%td.status 
+							%span.label.label-success #{Lab::STATUS.key(lab.status)}
+					-else
+						%td.status 
+							%span.label.label-warning #{Lab::STATUS.key(lab.status)}
+					%td.host_count 
+					%td.last_report
+					- if can? :manage, Course
+						%td.action
+							.btn-group.table-action-button
+								=link_to "Edit", edit_lab_path(lab), :class=>"btn btn-small edit"
+								%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
+									%span.caret
+								%ul.dropdown-menu
+									%li 
+										= link_to "Delete", lab, :confirm => "Destroy course \n #{lab.name} ?", :method => :delete, :class=>"delete"

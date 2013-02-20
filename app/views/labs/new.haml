@@ -1,0 +1,9 @@
+%h2.section
+	= params[:action].capitalize
+	= params[:controller].singularize
+%ul.nav.nav-tabs
+
+=render :partial => 'form'
+
+= link_to 'Back', labs_path
+
