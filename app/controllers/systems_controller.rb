@@ -1,4 +1,4 @@
-class SystemsController < SecureController 
+class SystemsController < SecureController
 
 	def index
 		

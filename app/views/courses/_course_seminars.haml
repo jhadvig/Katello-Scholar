@@ -26,8 +26,8 @@
 					%td.seminar_number 
 						= link_to course_seminar(seminar), seminar_lessons_path(seminar)
 					%td.day #{Weekday::DAYS.key(seminar.day)}
-					%td.starts_at #{seminar.starts_at}
-					%td.ends_at #{seminar.ends_at}
+					%td.starts_at #{seminar.starts_at.strftime("%R")}
+					%td.ends_at #{seminar.ends_at.strftime("%R")}
 					%td.lab 
 					%td.info #{seminar.info}
 					- if can? :manage, Seminar

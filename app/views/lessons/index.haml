@@ -31,7 +31,12 @@
 					%td.template #{lesson.template.name}
 					%td.starts_at #{lesson.starts_at}
 					%td.ends_at #{lesson.ends_at}
-					%td.status #{Lesson::STATUS.key(lesson.status)}
+					-if Lesson::STATUS.key(lesson.status) == "Active"
+						%td.status 
+							%span.label.label-info #{Lesson::STATUS.key(lesson.status)}
+					-else
+						%td.status 
+							%span.label.label-important #{Lesson::STATUS.key(lesson.status)}
 					%td.info #{lesson.info}
 					- if can? :manage, Lesson
 						%td.action

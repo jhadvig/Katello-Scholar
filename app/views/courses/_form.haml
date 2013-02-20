@@ -9,7 +9,7 @@
 		= c.text_field :code, :placeholder => "Code of the course", :title=>" 3 to 10 characters"
 	.seminar_count.control-group
 		= c.label :seminars_count
-		= c.number_field :seminars_count, :in => 1...31, :placeholder => "Number of seminar groups", :title=>"up to 30 seminar groups"
+		= c.number_field :seminars_count, :in => 1...31, :placeholder => "Max number of seminar groups", :title=>"up to 30 seminar groups"
 	.status.control-group
 		= c.label :course_status
 		= c.select :status, options_for_select(Course::STATUS)

@@ -7,6 +7,7 @@
     / = javascript_include_tag :all
     = javascript_include_tag "application"
     = stylesheet_link_tag "application"
+    = include_gon
     = csrf_meta_tag
 
 
@@ -35,7 +36,7 @@
 
           .btn-group.pull-right.settings
             %a.btn.btn-info.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}
-              Username
+              #{current_user.roles.first.name.capitalize}
               %span.caret
             %ul.dropdown-menu
               %li

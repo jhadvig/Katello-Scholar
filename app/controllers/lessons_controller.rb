@@ -3,8 +3,6 @@ class LessonsController < SecureController
 	before_filter :read_auth, :only => [:index,:show]
 	before_filter :manage_auth, :except => [:index,:show]
 
-
-
 	def read_auth
 		unless can?(:read, Lesson)
 			flash[:error] = 'You don\'t have the permission to do this action'
@@ -22,6 +20,7 @@ class LessonsController < SecureController
 	def index
 		@seminar = Seminar.find(params[:seminar_id])
 		@lessons = @seminar.lessons
+		@lessons.each {|lesson| lesson.lesson_expiration}
 	end
 
 	def show
@@ -32,13 +31,15 @@ class LessonsController < SecureController
 	def new 
 		@seminar = Seminar.find(params[:seminar_id])
 		@lessons = @seminar.lessons.new(params[:lesson])
+		gon.starts_at = @seminar.starts_at.strftime("%R")
+		gon.ends_at = @seminar.ends_at.strftime("%R")
 	end
 
 	def create
 		@seminar = Seminar.find(params[:seminar_id])
 		@lesson = @seminar.lessons.create(params[:lesson])
 
-		@lesson.find_lesson_dates(@seminar.lessons.count-1)
+		@lesson.find_lesson_dates(@seminar.lessons.count)
 
 		if @lesson.save
 			flash[:success] = 'Lesson was successfully created'
@@ -52,6 +53,8 @@ class LessonsController < SecureController
 	def edit
 		@lesson = Lesson.find(params[:id])
 		@seminar = @lesson.seminar
+		gon.starts_at = @seminar.starts_at.strftime("%R")
+		gon.ends_at = @seminar.ends_at.strftime("%R")
 	end
 
 	def update

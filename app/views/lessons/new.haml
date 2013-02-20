@@ -16,12 +16,15 @@
 	.status.control-group
 		= c.label :lesson_status
 		= c.select :status, options_for_select(Course::STATUS)
+	.day.control-group
+		= c.label :day
+		= c.select :day, options_for_select(Weekday::DAYS, @seminar.day)
 	.start.control-group
 		= c.label :starts_at
-		= c.text_field :starts_at, :class=>"timepicker"
+		= c.text_field :starts_at, :class=>"timepicker_start"
 	.end.control-group
 		= c.label :ends_at
-		= c.text_field :ends_at, :class=>"timepicker"
+		= c.text_field :ends_at, :class=>"timepicker_end"
 	.info.control-group
 		= c.label :info
 		= c.text_area :info, :size => "30x5", :placeholder => "Info about template ..."
@@ -29,3 +32,5 @@
 		= c.submit :class=>"btn btn-info"
 
 = render :partial=>"shared/back"
+
+#{@starts_at}

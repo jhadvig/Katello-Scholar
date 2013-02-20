@@ -73,14 +73,18 @@ class CoursesController < SecureController
 
 	def destroy
 		@course = Course.find(params[:id])
-		
-		if @course.destroy
-			flash[:success] = 'Course was successfully deleted.'
+		if @course.can_destroy?
+			if @course.destroy
+				flash[:success] = 'Course was successfully deleted.'
+			else
+			    flash[:error] = 'ERROR: Course can\'t be deleted.'
+			end
+			redirect_to courses_path
 		else
-		    flash[:error] = 'ERROR: Course can\'t be deleted.'
+			flash[:error] = 'ERROR: Course can\'t be deleted because is still Active.'
+			puts params[:action]
+			redirect_to courses_path
 		end
-
-		redirect_to courses_path
 	end
 
 	def clone 

@@ -11,6 +11,12 @@
 	.day.control-group
 		= c.label :day
 		= c.select :day, options_for_select(Weekday::DAYS)
+	.start.control-group
+		= c.label :starts_at
+		= c.text_field :starts_at, :class=>"timepicker_start"
+	.end.control-group
+		= c.label :ends_at
+		= c.text_field :ends_at, :class=>"timepicker_end"
 	.info.control-group
 		= c.label :info
 		= c.text_field :info, :placeholder => "Seminar informations	"

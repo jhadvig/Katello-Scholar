@@ -25,10 +25,10 @@ $(window).ready(function(){
 
 function KS_Init() {
 
-	$('.timepicker').timepicker({
-		showMeridian: false,
-		minuteStep: 10
-	});
+
+
+
+
 
 	$('.search-query').focus(function() {
 	     $('.search-query').animate({width: '200px'}).attr("placeholder","Course code or name");
@@ -54,7 +54,6 @@ function KS_Init() {
         $($(this).attr('href')).children().fadeIn(); // Show content for current tab
         $('.table-action-button').show(); // Show buttons in tables
         $('form > div').show(); // Show forms
-        console.log($(this).attr('href'));
         }
     });
 
@@ -76,5 +75,24 @@ function KS_Init() {
 		var table = $(e.target).parents('table:first');
 		$('td input:checkbox', table).attr('checked', e.target.checked);
 	});
+
+    $('.timepicker').timepicker({
+        showMeridian: false,
+        minuteStep: 10,
+        defaultTime: '12:00'
+    });
+
+    $('.timepicker_start').timepicker({
+        showMeridian: false,
+        minuteStep: 10,
+        defaultTime: gon.starts_at
+    });
+
+    $('.timepicker_end').timepicker({
+        showMeridian: false,
+        minuteStep: 12,
+        defaultTime: gon.ends_at
+    });
+
 
 }

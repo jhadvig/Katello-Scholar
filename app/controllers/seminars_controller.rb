@@ -51,6 +51,8 @@ class SeminarsController < SecureController
 
 	def edit
 		@seminar = Seminar.find(params[:id])
+		gon.starts_at = @seminar.starts_at.strftime("%R")
+		gon.ends_at = @seminar.ends_at.strftime("%R")
 	end
 
 

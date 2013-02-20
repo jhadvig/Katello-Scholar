@@ -4,7 +4,7 @@
 %ul.nav.nav-tabs
 .table_info
 	%span.muted.count
-		= "Viewing #{@courses.count} of #{@courses.count} results (#{@courses.count} Total Courses)"
+		= "Viewing #{@courses.count} of Total #{@courses.count} Courses)"
 		- if can? :manage, Course
 			= link_to "+ New Course", new_course_path, :class=>"btn btn-info courses-new-path"
 
@@ -73,7 +73,12 @@
 						=link_to "#{course.seminars.count}", course_path(course)
 					%td.labs
 					%td.students
-					%td.status #{Lesson::STATUS.key(course.status)}
+					-if Lesson::STATUS.key(course.status) == "Active"
+						%td.status 
+							%span.label.label-info #{Lesson::STATUS.key(course.status)}
+					-else
+						%td.status 
+							%span.label.label-important #{Lesson::STATUS.key(course.status)}
 					%td.last_report 
 					- if can? :manage, Course
 						%td.action
@@ -82,6 +87,11 @@
 								%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
 									%span.caret
 								%ul.dropdown-menu
+									%li
+										- if course.status == 0
+											= link_to "Activate", de_active_course_path(course)
+										- else
+											= link_to "Deactivate", de_active_course_path(course)
 									%li 
 										= link_to "Clone", clone_course_path(course)
 									%li 

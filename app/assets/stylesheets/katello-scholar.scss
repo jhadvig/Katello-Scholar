@@ -136,6 +136,7 @@ table.list{
 
 .tab-content{
 	overflow: visible;
+	margin-left: 30px;
 }
 
 table.courses,
@@ -159,7 +160,9 @@ table.lessons {
 	    	padding-left: 6px;
 			padding-top: 4px;
 	    }
-	    
+	    th.status {
+	    	width: 70px;
+	    }
 
     }
     tbody{
