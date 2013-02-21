@@ -3,7 +3,9 @@
 
 	= "Viewing #{@course.seminars.count} of #{@course.seminars.count} results (#{@course.seminars.count} Total Seminars)"
 	- if can? :manage, Seminar
-		= link_to "+ New Seminar", new_course_seminar_path(@course), :class=>"btn btn-info seminars-new-path"
+		= link_to new_course_seminar_path(@course), :class=>"btn btn-info seminars-new-path" do
+			%i.icon-plus-sign
+			Add Seminar
 
 %br
 %br
@@ -38,4 +40,6 @@
 									%span.caret
 								%ul.dropdown-menu
 									%li 
-										= link_to "Delete", seminar, :confirm => "Destroy seminar \n #{seminar.seminar_number} ?", :method => :delete, :class=>"delete"
+										= link_to seminar, :confirm => "Destroy seminar \n #{seminar.seminar_number} ?", :method => :delete, :class=>"delete" do
+											%i.icon-trash
+											Delete

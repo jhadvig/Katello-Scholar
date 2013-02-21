@@ -61,6 +61,9 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    font-awesome-sass-rails (3.0.2.1)
+      railties (>= 3.1.1)
+      sass-rails (>= 3.1.1)
     fssm (0.2.10)
     gon (4.0.2)
       actionpack (>= 2.3.0)
@@ -161,6 +164,7 @@ DEPENDENCIES
   compass-colors
   compass-rails (~> 1.0.0.rc.2)
   devise
+  font-awesome-sass-rails
   gon
   haml (>= 3.1.2)
   haml-rails

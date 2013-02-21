@@ -37,6 +37,7 @@ gem 'gon'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-timepicker-rails'
 gem "rake-progressbar", "~> 0.0.5"
+gem 'font-awesome-sass-rails'
 
 gem "cancan"
 

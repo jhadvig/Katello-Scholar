@@ -5,7 +5,9 @@
 .table_info
 	%span.muted.count
 		= "Viewing #{@system_hosts.count} of Total #{@system_hosts.count} Hosts"
-		= link_to "+ New Host", new_lab_system_host_path, :class=>"btn btn-info system-host-new-path"
+		= link_to new_lab_system_host_path, :class=>"btn btn-info system-host-new-path" do
+			%i.icon-plus-sign
+			New Host
 
 		=render :partial=>"shared/alerts"
 %br
@@ -70,4 +72,6 @@
 							%ul.dropdown-menu
 
 								%li 
-									= link_to "Delete", host, :confirm => "Destroy lab \n #{host.name} ?", :method => :delete, :class=>"delete"
+									= link_to host, :confirm => "Destroy lab \n #{host.name} ?", :method => :delete, :class=>"delete" do
+										%i.icon-trash
+										Delete

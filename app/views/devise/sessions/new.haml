@@ -16,8 +16,8 @@
       %div
         = f.check_box :remember_me
         = f.label :remember_me, :class=>"remember"
-
-    %div= f.submit "Sign in", :class => "btn btn-info btn-large"
+      = f.submit "Sign in", :class => "btn btn-info btn-large"
+    %div
     = image_tag "katello-scholar-login-logo2.png", :class=>"login-logo"
     
     = render "devise/shared/links"

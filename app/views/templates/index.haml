@@ -40,6 +40,8 @@
 								%span.caret
 							%ul.dropdown-menu
 								%li 
-									= link_to "Delete", template, :confirm => "Destroy template \n #{template.name} ?", :method => :delete, :class=>"delete"
+									= link_to template, :confirm => "Destroy template \n #{template.name} ?", :method => :delete, :class=>"delete" do
+										%i.icon-trash
+										Delete
 
 = render :partial=>"shared/back"

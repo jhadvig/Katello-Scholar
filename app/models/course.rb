@@ -9,7 +9,7 @@ class Course < ActiveRecord::Base
 
   validates :code, :presence => true, :length => { :minimum => 3, :maximum => 10} # :uniqueness => { :scope => :year, :message => "should happen once per year" }
   validates :name, :presence => true, :length => { :minimum => 3, :maximum => 50}
-  validates :seminars_count, :numericality => { :only_integer => true}
+  #validates :seminars_count, :numericality => { :only_integer => true}
 
   def can_destroy?
   	self.status == false ? true : false

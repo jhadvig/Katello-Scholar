@@ -6,7 +6,9 @@
 .table_info
 	%span.muted.count
 		= "Viewing #{@labs.count} of Total #{@labs.count} Labs"
-		= link_to "+ Add Lab", new_lab_path, :class=>"btn btn-info labs-new-path"
+		= link_to new_lab_path, :class=>"btn btn-info labs-new-path" do
+			%i.icon-plus-sign
+			Add Lab
 
 		=render :partial=>"shared/alerts"
 %br
@@ -72,6 +74,10 @@
 									%span.caret
 								%ul.dropdown-menu
 									%li
-										= link_to "Add Host", new_lab_system_host_path(lab)
+										= link_to new_lab_system_host_path(lab) do
+											%i.icon-plus
+											Add Host
 									%li 
-										= link_to "Delete", lab, :confirm => "Destroy lab \n #{lab.name} ?", :method => :delete, :class=>"delete"
+										= link_to lab, :confirm => "Destroy lab \n #{lab.name} ?", :method => :delete, :class=>"delete" do
+											%i.icon-trash
+											Delete
