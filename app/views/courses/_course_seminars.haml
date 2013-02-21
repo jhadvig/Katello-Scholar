@@ -35,7 +35,9 @@
 					- if can? :manage, Seminar
 						%td.action
 							.btn-group.table-action-button
-								=link_to "Edit", edit_seminar_path(seminar), :class=>"btn btn-small edit"
+								=link_to edit_seminar_path(seminar), :class=>"btn btn-small edit" do
+									%i.icon-edit
+									Edit
 								%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
 									%span.caret
 								%ul.dropdown-menu

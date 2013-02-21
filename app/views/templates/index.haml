@@ -32,10 +32,12 @@
 					%td.template_name #{template.name}
 					%td.template.course #{template.course.code}:  #{template.course.name}
 					%td.info #{template.info}
-					%td.created_at #{template.id}
+					%td.created_at #{template.created_at.strftime("%c")}
 					%td.action
 						.btn-group.table-action-button
-							=link_to "Edit", edit_template_path(template), :class=>"btn btn-small edit"
+							=link_to edit_template_path(template), :class=>"btn btn-small edit" do
+								%i.icon-edit
+								Edit
 							%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
 								%span.caret
 							%ul.dropdown-menu
