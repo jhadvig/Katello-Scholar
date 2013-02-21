@@ -6,7 +6,7 @@ class Lab < ActiveRecord::Base
 
 	belongs_to :lesson
 	belongs_to :seminar
-	has_many :system_hosts
+	has_many :system_hosts, :dependent => :delete_all
 
 	validates :name, :presence => true, :length => { :minimum => 3, :maximum => 10}
 
