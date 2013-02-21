@@ -23,16 +23,18 @@ class SeminarsController < SecureController
 		@course = Course.find(params[:course_id])
 		@seminars = @course.seminars
 		respond_to do |format|
-			format.html  # index.html.erb
+			format.html 
 			format.json { render :json => @seminars}
 		end
 	end
 
 	def new
 		@course = Course.find(params[:course_id])
+		@labs = Lab.all(:order => "name ASC")
+		@course_seminars_count = @course.seminars.count
 		@seminar = @course.seminars.new(params[:seminar])
 		respond_to do |format|
-			format.html  # index.html.erb
+			format.html  
 			format.json { render :json => @seminars}
 		end
 	end
@@ -51,6 +53,7 @@ class SeminarsController < SecureController
 
 	def edit
 		@seminar = Seminar.find(params[:id])
+		@labs = Lab.all(:order => "name ASC")
 		gon.starts_at = @seminar.starts_at.strftime("%R")
 		gon.ends_at = @seminar.ends_at.strftime("%R")
 	end

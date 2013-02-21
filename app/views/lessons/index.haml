@@ -10,6 +10,8 @@
 			Add Lesson
 %br
 %br
+=render :partial=>"shared/alerts"
+
 %ul.nav.nav-tabs
 
 .seminar-lesson-table
@@ -18,6 +20,7 @@
 			%tr
 				%th.number Lesson
 				%th.status Status
+				%th.lab Lab
 				%th.template Template
 				%th.start Starts at
 				%th.end Ends at
@@ -36,6 +39,7 @@
 					-else
 						%td.status 
 							%span.label.label-important #{Lesson::STATUS.key(lesson.status)}
+					%td.lab #{Lab.find(lesson.lab_id).name}
 					%td.template #{lesson.template.name}
 					%td.starts_at #{lesson.starts_at.strftime("%c")}
 					%td.ends_at #{lesson.ends_at.strftime("%c")}

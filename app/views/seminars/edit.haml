@@ -8,6 +8,9 @@
 	.seminar_number.control-group
 		= c.label :seminar_number
 		= c.number_field :seminar_number, :placeholder => "Number" 
+	.lab.control-group
+		= c.label :lab_id
+		= c.select :lab_id, options_from_collection_for_select(@labs,"id","name", @seminar.lab_id)
 	.day.control-group
 		= c.label :day
 		= c.select :day, options_for_select(Weekday::DAYS)

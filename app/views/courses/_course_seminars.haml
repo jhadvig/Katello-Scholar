@@ -30,7 +30,7 @@
 					%td.day #{Weekday::DAYS.key(seminar.day)}
 					%td.starts_at #{seminar.starts_at.strftime("%R")}
 					%td.ends_at #{seminar.ends_at.strftime("%R")}
-					%td.lab 
+					%td.lab #{Lab.find(seminar.lab_id).name}
 					%td.info #{seminar.info}
 					- if can? :manage, Seminar
 						%td.action

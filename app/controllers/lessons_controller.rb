@@ -31,6 +31,7 @@ class LessonsController < SecureController
 	def new 
 		@seminar = Seminar.find(params[:seminar_id])
 		@lessons = @seminar.lessons.new(params[:lesson])
+		@labs_all = Lab.all(:order => 'name ASC')
 		gon.starts_at = @seminar.starts_at.strftime("%R")
 		gon.ends_at = @seminar.ends_at.strftime("%R")
 	end
@@ -53,6 +54,7 @@ class LessonsController < SecureController
 	def edit
 		@lesson = Lesson.find(params[:id])
 		@seminar = @lesson.seminar
+		@labs_all = Lab.all(:order => 'name ASC')
 		gon.starts_at = @seminar.starts_at.strftime("%R")
 		gon.ends_at = @seminar.ends_at.strftime("%R")
 	end

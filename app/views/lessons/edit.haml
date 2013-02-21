@@ -10,6 +10,9 @@
 		= c.label :number
 		= c.hidden_field :number, :value => "#{@lesson.number}"
 		= c.text_field :number, :value => "#{@lesson.number}", :disabled => 'disabled'
+	.lab.control-group
+		= c.label :lab_id
+		= c.select :lab_id, options_from_collection_for_select(@labs_all,'id','name',@lesson.lab_id)
 	.template.control-group
 		= c.label :template_id
 		= c.select :template_id, options_from_collection_for_select(@seminar.course.templates,"id","name")#, :value => @lesson.template.name

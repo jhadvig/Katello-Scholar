@@ -25,10 +25,11 @@ $(window).ready(function(){
 
 function KS_Init() {
 
-
-
-
-
+    $('#course_info span').hover(function(){
+        $(this).animate({'margin-left': '45px',color:'red'},200)
+    },function(){
+        $(this).animate({'margin-left': '25px'},200)
+    });
 
 	$('.search-query').focus(function() {
         var placeholder = $('.search-query').attr("data-query_type");
