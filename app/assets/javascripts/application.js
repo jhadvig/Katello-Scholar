@@ -15,6 +15,7 @@
 //= require jquery-1.8.3
 //= require bootstrap
 //= require bootstrap-timepicker
+//= require jquery.tokeninput
 //= require_tree .
 
 
@@ -24,6 +25,17 @@ $(window).ready(function(){
 });
 
 function KS_Init() {
+
+
+    var path = $("#seminar_users").attr("data-url");
+    var text = $("#seminar_users").data("pre");
+    console.log(path);
+    console.log(text);
+    $("#seminar_users").tokenInput(path, {
+        crossDomain: false,
+        prePopulate: $("#seminar_users").data("pre"),
+        theme: "facebook"
+    });
 
     $('#course_info span').hover(function(){
         $(this).animate({'padding-left': '45px'},200)
@@ -56,7 +68,9 @@ function KS_Init() {
         $($(this).attr('href')).fadeIn();
         $($(this).attr('href')).children().fadeIn(); // Show content for current tab
         $('.table-action-button').show(); // Show buttons in tables
-        $('form > div').show(); // Show forms
+        $('form > div ').show(); // Show forms
+        $('.span6 > div').show();
+        $('.span4 > div').show();
         }
     });
 

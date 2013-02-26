@@ -2,16 +2,19 @@
 	Course Info:
 
 
+.span6
+	-@course.attributes.each do |k,v|
+		%div
+			%span 
+				-if k == "status"
+					%strong #{k.capitalize} :
+					#{Course::STATUS.key(v)}
+				-else
+					%strong #{k.capitalize} :
+					#{v}
 
--@course.attributes.each do |k,v|
-	%div
-		%span 
-			-if k == "status"
-				%strong #{k.capitalize} :
-				#{Course::STATUS.key(v)}
-			-else
-				%strong #{k.capitalize} :
-				#{v}
+.span6
+
 %br
 %br
 

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
   has_and_belongs_to_many :roles
+  has_and_belongs_to_many :seminars
 
   def admin?
   	self.roles.include?(Role.find_by_name("admin")) ? true : false

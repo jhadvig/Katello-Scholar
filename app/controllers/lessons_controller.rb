@@ -21,6 +21,17 @@ class LessonsController < SecureController
 		@seminar = Seminar.find(params[:seminar_id])
 		@lessons = @seminar.lessons
 		@lessons.each {|lesson| lesson.lesson_expiration}
+
+		@lectors =  []
+		@students = []
+		seminar_users = @seminar.users
+		seminar_users.each do |user|
+			if user.roles.include?(Role.find_by_name("lector"))
+				@lectors << user
+			elsif user.roles.include?(Role.find_by_name("student"))		
+				@students << user  
+			end
+		end
 	end
 
 	def show
@@ -41,9 +52,6 @@ class LessonsController < SecureController
 		@lesson = @seminar.lessons.create(params[:lesson])
 
 		@lesson.find_lesson_dates(@seminar.lessons.count-1)
-		puts "!!!!!!!"
-		puts @seminar.lessons.count
-		puts "!!!!!!!"
 		if @lesson.save
 			flash[:success] = 'Lesson was successfully created'
 		else

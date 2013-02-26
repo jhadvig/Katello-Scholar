@@ -1,0 +1,26 @@
+%span.muted.count
+	= "Viewing #{@lessons.count} of #{@lessons.count} results (#{@lessons.count} Total Lessons)"
+	- if can? :manage, Lesson
+		= link_to new_seminar_lesson_path(@seminar), :class=>"btn btn-info lesson-new-user-path" do
+			%i.icon-plus-sign
+			Add User
+%br	
+%br
+
+.span4
+	%h5.lectors	Lectors:
+	- unless @lectors.nil?
+		- @lectors.each do |lector|
+			= lector.email
+.span4
+	%h5.students Students:
+	- unless @students.nil?
+		- @students.each do |student|
+			%div
+				%span
+					#{student.email}
+
+
+%br
+%br
+=render :partial=>"shared/alerts"

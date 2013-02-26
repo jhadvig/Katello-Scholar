@@ -1,70 +1,28 @@
 %h2.section
 	= "#{course_seminar(@seminar)} #{params[:controller].capitalize}"
-%ul.nav.nav-tabs
 
-%span.muted.count
-	= "Viewing #{@lessons.count} of #{@lessons.count} results (#{@lessons.count} Total Templates)"
-	- if can? :manage, Lesson
-		= link_to new_seminar_lesson_path(@seminar), :class=>"btn btn-info lesson-new-path" do
-			%i.icon-plus-sign
-			Add Lesson
 %br
 %br
-=render :partial=>"shared/alerts"
 
-%ul.nav.nav-tabs
+%ul.nav.nav-tabs.pill-tabs-bar
+	%li
+		%a{"data-toggle" => "tab", :href => "#seminar_lessons"} Seminar Lessons
+	%li
+		%a{"data-toggle" => "tab", :href => "#seminar_user_list"} Seminar User List
+	%li
+		%a{"data-toggle" => "tab", :href => "#seminar_info"} Seminar Info
 
-.seminar-lesson-table
-	%table.table-striped.table-bordered.table-hover.lessons
-		%thead
-			%tr
-				%th.number Lesson
-				%th.status Status
-				%th.lab Lab
-				%th.template Template
-				%th.start Starts at
-				%th.end Ends at
-				%th.info Info
-				- if can? :manage, Lesson
-					%th.action Action
-		%tbody
-			- @lessons.order("number ASC").each do |lesson|
-				%tr
-					%td.lesson
-						#{lesson.number}
-						-#= link_to "#{@course.code}/ #{seminar.seminar_number}", seminar_lessons_path(seminar)
-					-if Lesson::STATUS.key(lesson.status) == "Active"
-						%td.status 
-							%span.label.label-success #{Lesson::STATUS.key(lesson.status)}
-					-else
-						%td.status 
-							%span.label.label-important #{Lesson::STATUS.key(lesson.status)}
-					%td.lab #{Lab.find(lesson.lab_id).name}
-					%td.template #{lesson.template.name}
-					%td.starts_at #{lesson.starts_at.strftime("%c")}
-					%td.ends_at #{lesson.ends_at.strftime("%c")}
-					%td.info #{lesson.info}
-					- if can? :manage, Lesson
-						%td.action
-							.btn-group.table-action-button
-								=link_to edit_lesson_path(lesson),:class=>"btn btn-small edit" do
-									%i.icon-edit
-									Edit
-								%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
-									%span.caret
-								%ul.dropdown-menu
-									%li
-										= link_to lesson_path(lesson), :class=>"lesson-show-path" do
-											%i.icon-eye-open
-											Show
-									%li
-										= link_to clone_lesson_path(lesson), :class=>"lesson-clone-path" do
-											%i.icon-refresh
-											Clone
-									%li 
-										= link_to lesson, :confirm => "Destroy lesson \n #{lesson.number} ?", :method => :delete, :class=>"delete" do
-											%i.icon-trash
-											Delete
+.tab-content
+	.tab-pane#seminar_lessons
+		= render :partial => "seminar_lessons"
+
+	.tab-pane#seminar_user_list
+		= render :partial => "seminar_user_list"
+
+	.tab-pane#seminar_info
+		= render :partial => "seminar_info"
+
+
 
 
 = render :partial=>"shared/back"

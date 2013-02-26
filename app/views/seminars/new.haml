@@ -4,26 +4,34 @@
 %ul.nav.nav-tabs
 
 = form_for([@course,@course.seminars.build])  do |c|
-	.seminar_number.control-group
-		= c.label :seminar_number
-		= c.number_field :seminar_number, :value => @course_seminars_count+1 ,:placeholder => "Number" 
-	.lab.control-group
-		= c.label :lab_id
-		= c.select :lab_id, options_from_collection_for_select(@labs,"id","name")
-	.day.control-group
-		= c.label :day
-		= c.select :day, options_for_select(Weekday::DAYS)
-	.start.control-group
-		= c.label :starts_at
-		= c.text_field :starts_at, :class=>"timepicker"
-	.end.control-group
-		= c.label :ends_at
-		= c.text_field :ends_at, :class=>"timepicker"
-	.info.control-group
-		= c.label :info
-		= c.text_field :info, :placeholder => "Seminar informations	"
-	%div.control-group
-		= c.submit :class=>"btn btn-info"
+	.span4
+		.seminar_number.control-group
+			= c.label :seminar_number
+			= c.number_field :seminar_number, :value => @course_seminars_count+1 ,:placeholder => "Number" 
+		.lab.control-group
+			= c.label :lab_id
+			= c.select :lab_id, options_from_collection_for_select(@labs,"id","name")
+		.info.control-group
+			= c.label :info
+			= c.text_field :info, :placeholder => "Seminar informations	"
+
+	.span4
+		.day.control-group
+			= c.label :day
+			= c.select :day, options_for_select(Weekday::DAYS)
+		.start.control-group
+			= c.label :starts_at
+			= c.text_field :starts_at, :class=>"timepicker"
+		.end.control-group
+			= c.label :ends_at
+			= c.text_field :ends_at, :class=>"timepicker"
+
+	.span4.users
+		.user.control-group
+			= c.label :users, "Students"
+			= c.text_field :users, "data-url" => "#{request.path}"
+
+	%div.control-group.pull-right
+		= c.submit :class=>"btn btn-info create-seminar-btn"
 
 = render :partial=>"shared/back"
-

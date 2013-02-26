@@ -22,10 +22,6 @@ class SeminarsController < SecureController
 	def index
 		@course = Course.find(params[:course_id])
 		@seminars = @course.seminars
-		respond_to do |format|
-			format.html 
-			format.json { render :json => @seminars}
-		end
 	end
 
 	def new
@@ -33,15 +29,21 @@ class SeminarsController < SecureController
 		@labs = Lab.all(:order => "name ASC")
 		@course_seminars_count = @course.seminars.count
 		@seminar = @course.seminars.new(params[:seminar])
+
+		@users = User.where("email like ?","%#{params[:q]}%")
 		respond_to do |format|
-			format.html  
-			format.json { render :json => @seminars}
+			format.html
+			format.json do
+				render :json => @users.map { |user| {:id => user.id, :name => user.email}}
+			end
 		end
 	end
 
 
 	def create
+		puts params[:seminar][:users].class
 		@course = Course.find(params[:course_id])
+		params[:seminar][:users] = params[:seminar][:users].split(",").map {|i| User.find(i.to_i)}
 		if @seminar = @course.seminars.create(params[:seminar])
 			flash[:success] = 'Seminar was successfully created'
 		else
@@ -54,8 +56,20 @@ class SeminarsController < SecureController
 	def edit
 		@seminar = Seminar.find(params[:id])
 		@labs = Lab.all(:order => "name ASC")
+		@pre_users = @seminar.users
+		puts @pre_users
 		gon.starts_at = @seminar.starts_at.strftime("%R")
 		gon.ends_at = @seminar.ends_at.strftime("%R")
+
+		puts @pre_users.map {|user| {:id=>user.id, :name=>user.email}.to_json}
+
+		@users = User.where("email like ?","%#{params[:q]}%")
+		respond_to do |format|
+			format.html
+			format.json do
+				render :json => @users.map { |user| {:id => user.id, :name => user.email}}
+			end
+		end
 	end
 
 

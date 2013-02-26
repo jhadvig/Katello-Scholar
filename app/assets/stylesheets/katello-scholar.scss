@@ -249,8 +249,56 @@ table.lessons {
 	}
 }
 
-#course_info span {
-	margin-left: 25px;
+#course_info {
+	.span6 {
+		background-color: #f5f5f5;
+		height: 300px;
+		border-radius: 10px;
+		margin-bottom: 20px;
+		&:hover {
+			background-color: white;
+		}
+		h5 {
+			margin-left: 15px;
+			&:first-child {
+				margin-top: 15px;
+			}
+		}
+		& > div {
+			margin-top: 10px;
+			padding-left: 10px;
+		} 
+	}
+}
+
+
+
+form.new_seminar,
+form.edit_seminar {
+	.span4 {
+		background-color: #f5f5f5;
+		border-radius: 10px;
+		margin-bottom: 20px;
+		& > div {
+			padding-left: 10px;
+			padding-top: 5px;
+			.token-input-list-facebook {
+				border-radius: 5px;
+			}
+		}
+		&:hover {
+			background-color: white;
+		}
+		&.users {
+		 width:420px;
+		 height:200px;
+		}
+	}
+	.create-seminar-btn,
+	.edit-seminar-btn {
+		margin-right: 33px;
+	}
+	
 }
 
 @import 'font-awesome';
