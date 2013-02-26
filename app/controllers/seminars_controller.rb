@@ -75,6 +75,7 @@ class SeminarsController < SecureController
 
 	def update
 		@seminar = Seminar.find(params[:id])
+		params[:seminar][:users] = params[:seminar][:users].split(",").map {|i| User.find(i.to_i)}
 		if @seminar.update_attributes(params[:seminar])
 			flash[:success] = 'Course was successfully updated'
 		else
