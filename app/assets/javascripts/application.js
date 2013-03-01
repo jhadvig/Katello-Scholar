@@ -28,9 +28,6 @@ function KS_Init() {
 
 
     var path = $("#seminar_users").attr("data-url");
-    var text = $("#seminar_users").data("pre");
-    console.log(path);
-    console.log(text);
     $("#seminar_users").tokenInput(path, {
         crossDomain: false,
         prePopulate: $("#seminar_users").data("pre"),
