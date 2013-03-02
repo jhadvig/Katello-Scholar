@@ -35,9 +35,9 @@ function KS_Init() {
     });
 
     $('#course_info span').hover(function(){
-        $(this).animate({'padding-left': '45px'},200)
+        $(this).css("font-weight","bolder").css("color","#2f96b4");
     },function(){
-        $(this).animate({'padding-left': '0px'},200)
+        $(this).css("font-weight","normal").css("color","black");
     });
 
 	$('.search-query').focus(function() {
