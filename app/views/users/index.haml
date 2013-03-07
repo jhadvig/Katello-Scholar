@@ -1,0 +1,76 @@
+.users_list
+	.span4
+		%h5.students Students:
+		.student-table
+			%table.table.students
+				%tbody
+					-@students.each do |student|
+						%tr
+							%td.email #{student.email}
+							%td.edit
+								.btn-group
+									%a.btn.btn-small.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}
+										%i.icon-cog
+										%span.caret
+									%ul.dropdown-menu
+										%li
+											=link_to edit_user_path(student) do
+												%i.icon-edit
+												Edit
+										%li
+											=link_to user_path(student) do
+												%i.icon-bolt
+												Reset password
+										%li
+											=link_to user_path(student), :method=>'delete' do
+												%i.icon-trash
+												Delete
+										
+	.span4
+		%h5.lectors Lectors:
+		.lector-table
+			%table.table.lectors
+				%tbody
+					-@lectors.each do |lector|
+						%tr
+							%td.email #{lector.email}
+							%td.edit
+								.btn-group
+									%a.btn.btn-small.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}
+										%i.icon-cog
+										%span.caret
+									%ul.dropdown-menu
+										%li
+											=link_to edit_user_path(lector) do
+												%i.icon-edit
+												Edit
+										%li
+											=link_to user_path(lector) do
+												%i.icon-bolt
+												Reset password
+										%li
+											=link_to user_path(lector), :method=>'delete' do
+												%i.icon-trash
+												Delete
+	.span4
+		%h5.admins Admins:
+		.admin-table
+			%table.table.admins
+				%tbody
+					-@admins.each do |admin|
+						%tr
+							%td.email #{admin.email}
+							%td.edit
+								.btn-group
+									%a.btn.btn-small.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}
+										%i.icon-cog
+										%span.caret
+									%ul.dropdown-menu
+										%li
+											=link_to edit_user_path(admin) do
+												%i.icon-edit
+												Edit
+										%li
+											=link_to user_path(admin), :method=>'delete' do
+												%i.icon-trash
+												Delete

@@ -1,5 +1,7 @@
 KatelloScholar::Application.routes.draw do
-  devise_for :users
+  devise_for :users do
+    # get 'user/edit' => 'devise/registrations#edit'
+  end
 
   root :to => 'dashboard#index'
   match 'dashboard' => 'dashboard#index', :as => :dashboard
@@ -28,6 +30,9 @@ KatelloScholar::Application.routes.draw do
   end
 
   resources :system_hosts do
+  end
+
+  resources :users do
   end
 
   #match 'course/de_active/:id' => 'courses#de_active', :via => :get

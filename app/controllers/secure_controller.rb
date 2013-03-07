@@ -36,6 +36,7 @@ class SecureController < ApplicationController
 	layout 'katello-scholar'
 
 	def user_is
+		puts current_user.inspect
 		puts current_user.roles.inspect
 	end
 

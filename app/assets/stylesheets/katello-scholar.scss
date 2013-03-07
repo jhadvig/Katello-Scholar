@@ -3,6 +3,14 @@ body{
 	background-image:url('background.jpg');
 }
 
+#clock {
+	width: 400px;
+	height: 400px;
+	margin: 0 auto;
+}
+
+
+
 
 .maincontainer{
 	margin-top: 10px;
@@ -298,6 +306,41 @@ form.edit_seminar {
 		&.users {
 		 width:420px;
 		 height:200px;
+		}
+	}
+	.create-seminar-btn,
+	.edit-seminar-btn {
+		margin-right: 33px;
+	}
+	
+}
+
+.users_list {
+	.span4 {
+		background-color: #f5f5f5;
+		border-radius: 10px;
+		margin-bottom: 20px;
+		margin-left: 45px;
+		& > h5 {
+			padding-left: 13px;
+			padding-top: 5px;
+		}
+		& > div {
+			padding-left: 10px;
+			padding-right: 10px;
+			padding-top: 5px;
+		}
+		&:hover {
+			background-color: white;
+		}
+
+	}
+	table{
+		td{
+			padding: 4px;
+			&.email{
+				width:225px;
+			}
 		}
 	}
 	.create-seminar-btn,

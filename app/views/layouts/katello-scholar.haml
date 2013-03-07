@@ -30,7 +30,8 @@
               = link_to "Templates", templates_path
             %li{:class=> ("active" if params[:controller] == 'labs')}
               = link_to "Labs", labs_path
-
+            %li{:class=> ("active" if params[:controller] == 'user')}
+              = link_to "Users", users_path
 
             
 
@@ -57,7 +58,6 @@
     .container.maincontainer
       .maincontent
         = yield
-
 
     %footer.modal-footer.navbar.navbar-fixed-bottom
       %center
