@@ -1,6 +1,13 @@
 .users_list
 	.span4
-		%h5.students Students:
+		.students.head
+			%h5.students Students:
+			%form.form-search
+				.input-prepend
+					%button.btn{:type => "text"} 
+						%i.icon-search
+					%input.span2.search-query#students_search{:type => "text", :autocomplete=>"off", :placeholder=>"Find...", :data => {:query_type => "Student email", :table_type => 'students'}} 
+
 		.student-table
 			%table.table.students
 				%tbody
@@ -22,12 +29,19 @@
 												%i.icon-bolt
 												Reset password
 										%li
-											=link_to user_path(student), :method=>'delete' do
+											=link_to user_path(student), :confirm => "Delete student #{student.email} ?", :method=>'delete' do
 												%i.icon-trash
 												Delete
 										
 	.span4
-		%h5.lectors Lectors:
+		.lectors.head
+			%h5.lectors Lectors:
+			%form.form-search
+				.input-prepend
+					%button.btn{:type => "text"} 
+						%i.icon-search
+					%input.span2.search-query#lectors_search{:type => "text", :placeholder=>"Find...", :data => {:query_type => "Lector email", :table_type => 'lectors'}} 
+
 		.lector-table
 			%table.table.lectors
 				%tbody
@@ -49,11 +63,17 @@
 												%i.icon-bolt
 												Reset password
 										%li
-											=link_to user_path(lector), :method=>'delete' do
+											=link_to user_path(lector), :confirm => "Delete lector #{lector.email} ?", :method=>'delete' do
 												%i.icon-trash
 												Delete
 	.span4
-		%h5.admins Admins:
+		.admins.head
+			%h5.admins Admins:
+			%form.form-search
+				.input-prepend
+					%button.btn{:type => "text"} 
+						%i.icon-search
+					%input.span2.search-query#admins_search{:type => "text", :placeholder=>"Find...", :data => {:query_type => "Admin email", :table_type => 'admins'}} 
 		.admin-table
 			%table.table.admins
 				%tbody
@@ -71,6 +91,6 @@
 												%i.icon-edit
 												Edit
 										%li
-											=link_to user_path(admin), :method=>'delete' do
+											=link_to user_path(admin), :confirm => "Delete admin #{admin.email} ?", :method=>'delete' do
 												%i.icon-trash
 												Delete

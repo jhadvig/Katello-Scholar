@@ -22,7 +22,8 @@ class LessonsController < SecureController
 		@lessons = @seminar.lessons
 		@lessons.each {|lesson| lesson.lesson_expiration}
 
-		@lectors, @students =  [], []
+		@lectors =  []
+		@students = []
 		seminar_users = @seminar.users
 		seminar_users.each do |user|
 			if user.roles.include?(Role.find_by_name("lector"))

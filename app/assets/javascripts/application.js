@@ -26,6 +26,40 @@ $(window).ready(function(){
 
 function KS_Init() {
 
+    // $("table.students tbody tr").hover(function(){
+    //     $(this).find('td:last-child .btn-group').fadeToggle("fast", "linear")
+    // });
+    $("table.students tbody tr, table.lectors tbody tr, table.admins tbody tr").hover(function(){
+        $(this).find('td:last-child .btn-group > a').addClass("btn-primary");
+        $(this).css("font-weight","bolder").css("color","#2f96b4");
+    },function(){
+        $(this).find('td:last-child .btn-group > a').removeClass("btn-primary");
+        $(this).css("font-weight","normal").css("color","black");
+    });
+
+
+    $("#admins_search,#lectors_search,#students_search").focus(function() {
+            var placeholder = $(this).attr("data-query_type");        
+            $(this).animate({width: '200px'}).attr("placeholder",placeholder);
+        })
+        .on("keyup", function() {
+            var value = $(this).val();
+            var table = $(this).attr("data-table_type");
+            $("table."+table+" tbody tr").each(function(index) {
+                $row = $(this);
+                var id = $row.find("td:first").text();
+                if (id.indexOf(value) !== 0) {
+                    $row.hide();
+                }
+                else {
+                    $row.show();
+                }
+            });
+        })
+        .blur(function() {
+             $(this).animate({width: '70px'},300).attr("placeholder","Find...");
+             $('.icon-search').show();
+    });
 
     var path = $("#seminar_users").attr("data-url");
     $("#seminar_users").tokenInput(path, {
@@ -40,7 +74,7 @@ function KS_Init() {
         $(this).css("font-weight","normal").css("color","black");
     });
 
-	$('.search-query').focus(function() {
+	$('.basic_seach_query').focus(function() {
         var placeholder = $('.search-query').attr("data-query_type");
 	    $('.search-query').animate({width: '200px'}).attr("placeholder",placeholder);
 	});
@@ -67,6 +101,7 @@ function KS_Init() {
         $('.table-action-button').show(); // Show buttons in tables
         $('form * ').show(); // Show forms
         $('.span6 *').show();
+        $('.span4 *').show();
         }
     });
 

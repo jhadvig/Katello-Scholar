@@ -1,5 +1,7 @@
 class UsersController < SecureController
 
+	layout 'katello-scholar'
+
 	def index
 
 		@admins=Role.find_by_name(:admin).users
@@ -10,6 +12,7 @@ class UsersController < SecureController
 
 	def edit
 		@user = User.find(params[:id])
+		puts @user
 		render "devise/registrations/edit"
 	end
 
