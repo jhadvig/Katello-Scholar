@@ -29,6 +29,11 @@ function KS_Init() {
     // $("table.students tbody tr").hover(function(){
     //     $(this).find('td:last-child .btn-group').fadeToggle("fast", "linear")
     // });
+
+    if ( $('.alert.alert-success, .alert.alert-error').length > 0 ){
+        $('.alert.alert-success, .alert.alert-error').delay(5000).slideUp(500);
+    }
+
     $("table.students tbody tr, table.lectors tbody tr, table.admins tbody tr").hover(function(){
         $(this).find('td:last-child .btn-group > a').addClass("btn-info");
         $(this).css("font-weight","bolder").css("color","#2f96b4");
@@ -136,7 +141,6 @@ function KS_Init() {
     });
     var starts_at = ($('.timepicker_start').attr("data-starts-at"));
     var ends_at = ($('.timepicker_end').attr("data-ends-at"));
-    console.log(ends_at);
     $('.timepicker_start').timepicker({
         showMeridian: false,
         minuteStep: 10,
