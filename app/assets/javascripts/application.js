@@ -30,13 +30,18 @@ function KS_Init() {
     //     $(this).find('td:last-child .btn-group').fadeToggle("fast", "linear")
     // });
     $("table.students tbody tr, table.lectors tbody tr, table.admins tbody tr").hover(function(){
-        $(this).find('td:last-child .btn-group > a').addClass("btn-primary");
+        $(this).find('td:last-child .btn-group > a').addClass("btn-info");
         $(this).css("font-weight","bolder").css("color","#2f96b4");
     },function(){
-        $(this).find('td:last-child .btn-group > a').removeClass("btn-primary");
+        $(this).find('td:last-child .btn-group > a').removeClass("btn-info");
         $(this).css("font-weight","normal").css("color","black");
     });
 
+    $("table.templates tbody tr, table.courses tbody tr, table.seminars tbody tr, table.lessons tbody tr, table.labs tbody tr, table.system_hosts tbody tr").hover(function(){
+        $(this).find('td:last-child .btn-group > a,td:last-child .btn-group > button').addClass("btn-info");
+    },function(){
+        $(this).find('td:last-child .btn-group > a,td:last-child .btn-group > button').removeClass("btn-info");
+    });
 
     $("#admins_search,#lectors_search,#students_search").focus(function() {
             var placeholder = $(this).attr("data-query_type");        
