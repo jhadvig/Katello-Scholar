@@ -129,17 +129,18 @@ function KS_Init() {
         minuteStep: 10,
         defaultTime: '12:00'
     });
-
+    var starts_at = ($('.timepicker_start').attr("data-starts-at"));
+    var ends_at = ($('.timepicker_end').attr("data-ends-at"));
+    console.log(ends_at);
     $('.timepicker_start').timepicker({
         showMeridian: false,
         minuteStep: 10,
-        defaultTime: gon.starts_at
+        defaultTime: starts_at
     });
-
     $('.timepicker_end').timepicker({
         showMeridian: false,
-        minuteStep: 12,
-        defaultTime: gon.ends_at
+        minuteStep: 10,
+        defaultTime: ends_at
     });
 
 

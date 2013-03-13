@@ -24,10 +24,10 @@
 		= c.select :day, options_for_select(Weekday::DAYS, @seminar.day)
 	.start.control-group
 		= c.label :starts_at
-		= c.text_field :starts_at, :class=>"timepicker_start"
+		= c.text_field :starts_at, :class=>"timepicker_start", :data => {:starts_at=> @seminar_starts_at}
 	.end.control-group
 		= c.label :ends_at
-		= c.text_field :ends_at, :class=>"timepicker_end"
+		= c.text_field :ends_at, :class=>"timepicker_end", :data => {:ends_at=> @seminar_ends_at}
 	.info.control-group
 		= c.label :info
 		= c.text_area :info, :size => "30x5", :placeholder => "Info about template ..."

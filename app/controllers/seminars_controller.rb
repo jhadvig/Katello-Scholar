@@ -58,8 +58,9 @@ class SeminarsController < SecureController
 		@labs = Lab.all(:order => "name ASC")
 		@pre_users = @seminar.users
 		puts @pre_users
-		gon.starts_at = @seminar.starts_at.strftime("%R")
-		gon.ends_at = @seminar.ends_at.strftime("%R")
+
+		@seminar_starts_at = @seminar.starts_at.strftime("%R")
+		@seminar_ends_at = @seminar.ends_at.strftime("%R")
 
 		puts @pre_users.map {|user| {:id=>user.id, :name=>user.email}.to_json}
 
