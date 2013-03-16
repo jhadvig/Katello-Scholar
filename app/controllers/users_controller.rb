@@ -12,14 +12,16 @@ class UsersController < SecureController
 
 	def edit
 		@user = User.find(params[:id])
+		@roles = Role.all
 		puts @user
-		render "devise/registrations/edit"
+		#render "devise/registrations/edit"
 	end
 
 	def update
 		@user = User.find(params[:id])
 		if  @user.valid_password?(params[:user][:current_password])
 			params[:user].delete(:current_password)
+			#@user.roles.delete
 			if @user.update_attributes(params[:user])
 				flash[:success] = "#{@user.email} password was successfully updated"
 			else
@@ -39,6 +41,10 @@ class UsersController < SecureController
 		else
 			flsh[:error] = 'ERROR: User #{@user.email} can\'t be deleted.'
 		end
+	end
+
+	def reset_password
+
 	end
 
 end

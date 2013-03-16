@@ -166,7 +166,7 @@ table.system_hosts {
     width: 100%;
     text-align:left;
     thead{
-    	color:#005C5C;
+    	color:#2f96b4;
     	th {
     		padding-left: 5px;
     	}
@@ -288,7 +288,8 @@ table.lessons {
 
 
 form.new_seminar,
-form.edit_seminar {
+form.edit_seminar,
+form.edit_user {
 	.span4 {
 		background-color: #f5f5f5;
 		border-radius: 10px;

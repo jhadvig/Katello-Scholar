@@ -1,1 +1,30 @@
-=render :partial => 'devise/registrations/edit', :locals => {:resource=>@user, :resource_name=>:user}
+
+%h2.section
+	= params[:controller].capitalize
+
+= form_for @user do |f| 
+	.span4
+		.user_email.control-group
+			= f.label :email 
+			= f.email_field :email, :autofocus => true
+		.user_current_password
+			= f.label :current_password 
+			= f.password_field :current_password 
+		.user_password.control-group		
+			= f.label :password 
+			= f.password_field :password, :autocomplete => "off" 
+		.user_password_confirmation
+			= f.label :password_confirmation 
+			= f.password_field :password_confirmation 
+		.submit.control-group
+			= f.submit "Update", :class => "btn btn-info edit-user-btn"
+
+
+	/ .span4
+	/ 	=# f.fields_for :roles do |r|
+	/ 	.user_roles.control-group
+	/ 		= f.label :roles
+	/ 		=# r.options_from_collection_for_select(@roles,:id,:name,@user.roles.first.id)
+	/ 		= f.select(:roles, @roles.map { |role| [role.name, role] })
+
+

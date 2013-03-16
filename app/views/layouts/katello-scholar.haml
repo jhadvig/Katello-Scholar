@@ -30,7 +30,7 @@
               = link_to "Templates", templates_path
             %li{:class=> ("active" if params[:controller] == 'labs')}
               = link_to "Labs", labs_path
-            %li{:class=> ("active" if params[:controller] == 'user')}
+            %li{:class=> ("active" if params[:controller] == 'users')}
               = link_to "Users", users_path
 
             
@@ -45,9 +45,9 @@
               %span.caret
             %ul.dropdown-menu
               %li
-                =link_to do
+                =link_to edit_user_path(current_user) do
                   %i.icon-cogs
-                  Settings
+                  Settings 
               %li
                 =link_to destroy_user_session_path, :method => :delete do
                   %i.icon-signout

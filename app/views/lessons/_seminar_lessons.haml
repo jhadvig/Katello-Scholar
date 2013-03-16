@@ -35,8 +35,8 @@
 							%span.label.label-important #{Lesson::STATUS.key(lesson.status)}
 					%td.lab #{Lab.find(lesson.lab_id).name}
 					%td.template #{lesson.template.name}
-					%td.starts_at #{lesson.starts_at.strftime("%c")}
-					%td.ends_at #{lesson.ends_at.strftime("%c")}
+					%td.starts_at #{lesson.starts_at.strftime("%a %b %e %R")}
+					%td.ends_at #{lesson.ends_at.strftime("%a %b %e %R")}
 					%td.info #{lesson.info}
 					- if can? :manage, Lesson
 						%td.action

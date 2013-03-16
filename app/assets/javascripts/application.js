@@ -109,7 +109,7 @@ function KS_Init() {
         $($(this).attr('href')).fadeIn();
         $($(this).attr('href')).children().fadeIn(); // Show content for current tab
         $('.table-action-button').show(); // Show buttons in tables
-        $('form * ').show(); // Show forms
+        // $('form * ').show(); // Show forms
         $('.span6 *').show();
         $('.span4 *').show();
         }
@@ -139,6 +139,7 @@ function KS_Init() {
         minuteStep: 10,
         defaultTime: '12:00'
     });
+
     var starts_at = ($('.timepicker_start').attr("data-starts-at"));
     var ends_at = ($('.timepicker_end').attr("data-ends-at"));
     $('.timepicker_start').timepicker({
