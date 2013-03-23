@@ -39,7 +39,7 @@ class UsersController < SecureController
 		if @user.destroy
 			flash[:success] = "User #{@user.email} was successfully delete."
 		else
-			flsh[:error] = 'ERROR: User #{@user.email} can\'t be deleted.'
+			flsh[:error] = 'User #{@user.email} can\'t be deleted.'
 		end
 	end
 

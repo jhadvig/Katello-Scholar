@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require bootstrap-timepicker
 //= require jquery.tokeninput
+//= require pnotify
 //= require_tree .
 
 
@@ -30,9 +31,36 @@ function KS_Init() {
     //     $(this).find('td:last-child .btn-group').fadeToggle("fast", "linear")
     // });
 
-    if ( $('.alert.alert-success, .alert.alert-error').length > 0 ){
-        $('.alert.alert-success, .alert.alert-error').delay(5000).slideUp(500);
+
+
+    if ( $('.alert.alert-success').length > 0 ){
+        $('.alert.alert-success').hide();
+        var alert_text = $('.alert.alert-success').text();
+        
+        $.pnotify({
+        title: 'Success',
+        text: alert_text,
+        type: 'success',
+        sticker: false
+        });
     }
+
+    if ( $('.alert.alert-error').length > 0 ){
+        $('.alert.alert-error').hide();
+        var alert_text = $('.alert.alert-error').text();
+
+        $('.alert.alert-success')
+        $.pnotify({
+        title: 'Error',
+        text: alert_text,
+        type: 'error',
+        sticker: false
+        });
+    }
+
+    // if ( $('.alert.alert-success, .alert.alert-error').length > 0 ){
+    //     $('.alert.alert-success, .alert.alert-error').delay(5000).slideUp(500);
+    // }
 
     $("table.students tbody tr, table.lectors tbody tr, table.admins tbody tr").hover(function(){
         $(this).find('td:last-child .btn-group > a').addClass("btn-info");

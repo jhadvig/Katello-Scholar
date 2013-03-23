@@ -15,7 +15,7 @@ class SystemHostsController < SecureController
 		if @system_host = @lab.system_hosts.create(params[:system_host])
 			flash[:success] = 'Host was successfully created'
 		else
-		    flash[:error] = 'ERROR: Host can\'t be created'
+		    flash[:error] = 'Host can\'t be created'
 		end
 		redirect_to lab_system_hosts_path(@lab)
 	end
@@ -30,7 +30,7 @@ class SystemHostsController < SecureController
 		if @system_host.update_attributes(params[:system_host])
 			flash[:success] = 'Host was successfully updated'
 		else
-		    flash[:error] = 'ERROR: Host can\'t be updated'
+		    flash[:error] = 'Host can\'t be updated'
 		end
 		redirect_to lab_system_hosts_path(@system_host)
 	end
@@ -41,7 +41,7 @@ class SystemHostsController < SecureController
 		if @system_host.destroy
 			flash[:success] = 'Host group was successfully deleted.'
 		else
-		    flash[:error] = 'ERROR: Host group can\'t be deleted.'
+		    flash[:error] = 'Host group can\'t be deleted.'
 		end
 
 		redirect_to lab_system_hosts_path(@system_host)

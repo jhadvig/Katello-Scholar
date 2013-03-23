@@ -17,7 +17,7 @@ class LabsController < SecureController
 		if @lab.save
 			flash[:success] = 'Lab was successfully created'
 		else
-		    flash[:error] = 'ERROR: Lab can\'t be created'
+		    flash[:error] = 'Lab can\'t be created'
 		end
 		redirect_to labs_path
 	end
@@ -35,7 +35,7 @@ class LabsController < SecureController
 		if @lab.update_attributes(params[:course])
 			flash[:success] = 'Lab was successfully updated'
 		else
-		    flash[:error] = 'ERROR: Lab can\'t be updated'
+		    flash[:error] = 'Lab can\'t be updated'
 		end
 		redirect_to labs_path
 	end
@@ -45,7 +45,7 @@ class LabsController < SecureController
 		if @lab.destroy
 			flash[:success] = 'Lab was successfully deleted.'
 		else
-		    flash[:error] = 'ERROR: Lab can\'t be deleted.'
+		    flash[:error] = 'Lab can\'t be deleted.'
 		end
 		redirect_to labs_path
 	end

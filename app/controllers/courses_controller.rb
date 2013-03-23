@@ -45,7 +45,7 @@ class CoursesController < SecureController
 		if @course.save
 			flash[:success] = 'Course was successfully created'
 		else
-		    flash[:error] = 'ERROR: Course can\'t be created'
+		    flash[:error] = 'Course can\'t be created'
 		end
 
 		redirect_to courses_path
@@ -65,7 +65,7 @@ class CoursesController < SecureController
 		if @course.update_attributes(params[:course])
 			flash[:success] = 'Course was successfully updated'
 		else
-		    flash[:error] = 'ERROR: Course can\'t be updated'
+		    flash[:error] = 'Course can\'t be updated'
 		end
 
 		redirect_to courses_path
@@ -77,11 +77,11 @@ class CoursesController < SecureController
 			if @course.destroy
 				flash[:success] = 'Course was successfully deleted.'
 			else
-			    flash[:error] = 'ERROR: Course can\'t be deleted.'
+			    flash[:error] = 'Course can\'t be deleted.'
 			end
 			redirect_to courses_path
 		else
-			flash[:error] = 'ERROR: Course can\'t be deleted because is still Active.'
+			flash[:error] = 'Course can\'t be deleted because is still Active.'
 			puts params[:action]
 			redirect_to courses_path
 		end
@@ -94,7 +94,7 @@ class CoursesController < SecureController
 		if @curr_course.save
 			flash[:success] = 'Course was successfully cloned.'
 		else
-		    flash[:error] = 'ERROR: Course can\'t be cloned.'
+		    flash[:error] = 'Course can\'t be cloned.'
 		end
 		redirect_to courses_path
 	end

@@ -47,7 +47,7 @@ class SeminarsController < SecureController
 		if @seminar = @course.seminars.create(params[:seminar])
 			flash[:success] = 'Seminar was successfully created'
 		else
-		    flash[:error] = 'ERROR: Seminar can\'t be created'
+		    flash[:error] = 'Seminar can\'t be created'
 		end
 		redirect_to course_path(@course)
 	end
@@ -80,7 +80,7 @@ class SeminarsController < SecureController
 		if @seminar.update_attributes(params[:seminar])
 			flash[:success] = 'Course was successfully updated'
 		else
-		    flash[:error] = 'ERROR: Course can\'t be updated'
+		    flash[:error] = 'Course can\'t be updated'
 		end
 		redirect_to course_path(@seminar.course.id)
 	end
@@ -96,7 +96,7 @@ class SeminarsController < SecureController
 		if @seminar.destroy
 			flash[:success] = 'Seminar group was successfully deleted.'
 		else
-		    flash[:error] = 'ERROR: Seminar group can\'t be deleted.'
+		    flash[:error] = 'Seminar group can\'t be deleted.'
 		end
 
 		redirect_to course_path(@course)

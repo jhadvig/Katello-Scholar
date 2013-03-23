@@ -16,5 +16,7 @@
  *= require bootstrap-timepicker
  *= require _font-awesome
  *= require token-input-facebook
+ *= require jquery.pnotify.default
+ *= require jquery.pnotify.default.icons
  */
 

@@ -150,6 +150,10 @@ ul.nav-tabs.pill-tabs-bar{
 	padding-left:17px;
 }
 
+ul.nav-tabs.bottom {
+	padding-top:20px;
+}
+
 .tab-content{
 	overflow: visible;
 	margin-left: 30px;
@@ -349,6 +353,11 @@ form.edit_user {
 		margin-right: 33px;
 	}
 	
+}
+
+div.alert.alert-error,
+div.alert.alert-success {
+	margin-top: 50px;
 }
 
 @import 'font-awesome';
