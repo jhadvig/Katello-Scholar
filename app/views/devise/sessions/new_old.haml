@@ -1,0 +1,23 @@
+
+.form-container
+  = form_for(resource, :as => resource_name, :html => {:class => "form-signin"}, :url => session_path(resource_name)) do |f|
+    = image_tag "katello-scholar-login-title.png", :class=>"login-title"
+    -#%h1.form-signin-heading Sign in
+    = devise_error_messages!
+    %div
+      = f.label :email, :class=>"email"
+      %br/
+      = f.email_field :email, :autofocus => true, :placeholder => "Email address"
+    %div
+      = f.label :password, :class=>"password"
+      %br/
+      = f.password_field :password, :placeholder => "Password"
+    - if devise_mapping.rememberable?
+      %div
+        = f.check_box :remember_me
+        = f.label :remember_me, :class=>"remember"
+      = f.submit "Sign in", :class => "btn btn-info btn-large"
+    %div
+    = image_tag "katello-scholar-login-logo2.png", :class=>"login-logo"
+    
+    = render "devise/shared/links"

@@ -2,43 +2,18 @@ body{
   background-image:url('background.jpg');
 }
 
-.form-container {
-  position: relative;
-  background-color:#f5f5f5;
-  max-width: 400px;
-  max-height:400px;
-  padding: 40px 80px 60px;
-  margin: 0 auto 20px;
-  border: 7px solid #0a8492;
-  -webkit-border-radius: 50px;
-     -moz-border-radius: 50px;
-          border-radius: 50px;
-
-  label.email,
-  label.password {
-    margin-bottom : -20px;
-  }
-
-  label.remember{
-    max-width: 100px;
-  }
-
-  input#user_email,
-  input#user_password {
-    background-color: #C6D4EF;
-    font-size: 16px;
-    height: auto;
-    margin-bottom: 15px;
-    padding: 7px 9px;   
-  }
-
-  img.login-logo {
-  position: absolute;
-  top: 145px;
-  right: 90px;
+#new_user {
+  margin-top: 8px;
+  margin-bottom: -10px;
+  div {
+    display: inline-block;
+    margin-right: 10px;
+    .remember {
+      color: white;
+    }
+    #user_remember_me{
+      margin-top:-7px;
+    }
   }
 }
 
-.container.flash{
-  width: 500px
-}

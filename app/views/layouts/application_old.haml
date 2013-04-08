@@ -1,0 +1,30 @@
+!!!
+%html
+  %head
+    %meta(http-equiv="Content-Type" content="text/html; charset=UTF-8")
+    %title Katello-Scholar
+    = favicon_link_tag 'favicon.png'
+    / = javascript_include_tag :all
+    = javascript_include_tag "application"
+    = stylesheet_link_tag "application"
+    = csrf_meta_tag
+
+  %body
+     
+    =yield
+    .container.flash
+      - if flash[:notice]   
+        .alert.alert-success
+          = flash[:notice] 
+      - if flash[:alert]   
+        .alert.alert-error
+          = flash[:alert] 
+
+
+    %footer.modal-footer.navbar.navbar-fixed-bottom
+      %center
+        %span.muted.credit Katello-Scholar powered by
+        = link_to "Katello.org", "http://www.katello.org"
+        and 
+        = link_to "TheForeman.org", "http://theforeman.org"
+        = image_tag "redhat.png", :class => "pull-right"
