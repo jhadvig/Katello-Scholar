@@ -23,7 +23,9 @@
 				%th Course
 				%th Info
 				%th Created
-				%th.action Action
+				- if can? :manage, Template
+					%th.action Action				
+
 
 		%tbody
 			- @templates.each do |template|
@@ -32,17 +34,18 @@
 					%td.template.course #{template.course.code}:  #{template.course.name}
 					%td.info #{template.info}
 					%td.created_at #{template.created_at.strftime("%c")}
-					%td.action
-						.btn-group.table-action-button
-							=link_to edit_template_path(template), :class=>"btn btn-small edit" do
-								%i.icon-edit
-								Edit
-							%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
-								%span.caret
-							%ul.dropdown-menu
-								%li 
-									= link_to template, :confirm => "Destroy template \n #{template.name} ?", :method => :delete, :class=>"delete" do
-										%i.icon-trash
-										Delete
+					- if can? :manage, Template
+						%td.action
+							.btn-group.table-action-button
+								=link_to edit_template_path(template), :class=>"btn btn-small edit" do
+									%i.icon-edit
+									Edit
+								%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
+									%span.caret
+								%ul.dropdown-menu
+									%li 
+										= link_to template, :confirm => "Destroy template \n #{template.name} ?", :method => :delete, :class=>"delete" do
+											%i.icon-trash
+											Delete
 
 = render :partial=>"shared/back"

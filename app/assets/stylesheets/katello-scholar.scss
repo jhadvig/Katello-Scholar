@@ -130,6 +130,7 @@ table.list{
 			background-color: #2f96b4;
 			li a {
 				color: white;
+				z-index:1050;
 			}
 
 		}
@@ -354,7 +355,12 @@ form.edit_user {
 
 div.alert.alert-error,
 div.alert.alert-success {
-	margin-top: 50px;
+	top: 50px;
+}
+
+div.ui-pnotify{
+	top: 80px;
+	z-index: 1000;
 }
 
 @import 'font-awesome';

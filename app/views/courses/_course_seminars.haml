@@ -23,7 +23,7 @@
 				- if can? :manage, Seminar
 					%th.action Action
 		%tbody
-			- @course.seminars.order("seminar_number ASC").each do |seminar|
+			- @seminars.each do |seminar|
 				%tr
 					%td.seminar_number 
 						= link_to course_seminar(seminar), seminar_lessons_path(seminar)

@@ -21,7 +21,9 @@ class SeminarsController < SecureController
 
 	def index
 		@course = Course.find(params[:course_id])
-		@seminars = @course.seminars
+		@seminars = []
+		current_user.seminars.each {|seminar| @seminars << seminar if seminar.course.id == @course.id}
+		#@seminars = @course.seminars
 	end
 
 	def new
@@ -49,6 +51,8 @@ class SeminarsController < SecureController
 		else
 		    flash[:error] = 'Seminar can\'t be created'
 		end
+		current_user.seminars << @seminar
+
 		redirect_to course_path(@course)
 	end
 
@@ -93,6 +97,7 @@ class SeminarsController < SecureController
 	def destroy
 		@seminar = Seminar.find(params[:id])
 		@course = @seminar.course
+		current_user.seminars.delete(@seminar)
 		if @seminar.destroy
 			flash[:success] = 'Seminar group was successfully deleted.'
 		else

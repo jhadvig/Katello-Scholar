@@ -21,7 +21,16 @@ class CoursesController < SecureController
 
 
 	def index
-		@courses = Course.all
+
+		if current_user.admin?
+			@courses = Course.all
+		else
+			@courses = []
+			current_user.seminars.each {|seminar| @courses << seminar.course }
+			@courses.uniq!
+		end
+
+		
 
 		respond_to do |format|
 			format.html  # index.html.erb
@@ -53,6 +62,12 @@ class CoursesController < SecureController
 
 	def show
 		@course = Course.find(params[:id])
+		if current_user.admin?
+			@seminars = @course.seminars
+		else
+			@seminars = []
+			current_user.seminars.each {|seminar| @seminars << seminar if seminar.course.id == @course.id}
+		end
 	end
 
 	def edit 

@@ -11,14 +11,15 @@ class Ability
     alias_action :destroy,      :to => :delete
 
     @user = user || User.new # guest user (not logged in)
+
     if @user.admin?
         can :manage, :all
 
     elsif @user.lector?
         can :read, Course
         can :manage, Seminar
-        can :manage, Template
         can :manage, Lesson
+        can :manage, Template
 
     elsif @user.student?
         can :read, :all

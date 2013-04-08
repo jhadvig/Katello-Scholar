@@ -42,6 +42,9 @@ class SecureController < ApplicationController
 
 	def current_ability
 		@current_ability ||= Ability.new(current_user)
+		# puts "!!!!!!!!!!!!!!"
+		# puts @current_ability
+		# puts "!!!!!!!!!!!!!!"
 	end
 
 end

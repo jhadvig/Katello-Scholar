@@ -1,0 +1,12 @@
+common:
+  app_mode: katello-scholar
+
+  url_prefix: /katello-scholar
+  host: 127.0.0.1
+  port: 3000
+  use_ssl: false
+
+  foreman:
+    url: https://localhost/foreman
+    oauth_key: katello-scholar
+    oauth_secret: 
