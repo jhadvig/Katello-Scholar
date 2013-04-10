@@ -9,6 +9,7 @@ class Course < ActiveRecord::Base
 
   validates :code, :presence => true, :length => { :minimum => 3, :maximum => 10} # :uniqueness => { :scope => :year, :message => "should happen once per year" }
   validates :name, :presence => true, :length => { :minimum => 3, :maximum => 50}
+
   #validates :seminars_count, :numericality => { :only_integer => true}
 
   before_create :create_env

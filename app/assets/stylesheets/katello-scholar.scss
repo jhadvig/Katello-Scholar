@@ -361,9 +361,11 @@ div.alert.alert-success {
 	top: 50px;
 }
 
-div.ui-pnotify{
-	top: 80px;
-	z-index: 1000;
+div {
+	&.ui-pnotify{
+		top: 80px;
+		z-index: 1000;
+	}
 }
 
 @import 'font-awesome';

@@ -8,11 +8,11 @@
 
 #admin = User.create :name => "admin", :email => "admin@admin.com", :password => "admin"
 
-roles = {"admin"=>1, "lector"=>2, "student"=>3 }
-Role.delete_all
-roles.each do |k,v|
-	Role.create!(:name=>k, :value=>v)
-end
+# roles = {"admin"=>1, "lector"=>2, "student"=>3 }
+# Role.delete_all
+# roles.each do |k,v|
+# 	Role.create!(:name=>k, :value=>v)
+# end
 
 
 # options = {:base_url => 'https://localhost/foreman',
