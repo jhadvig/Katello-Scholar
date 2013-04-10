@@ -26,6 +26,7 @@ def delete_domains_archs
 	architectures.each { |a| Resources::Foreman::Architecture.destroy("id"=>a["architecture"]["id"])}
 	domains = Resources::Foreman::Domain.index.first
 	domains.each { |d| Resources::Foreman::Domain.destroy("id"=>d["domain"]["id"])}
+	Architecture.all.each { |a| a.destroy}
 rescue
 	false
 end
@@ -37,8 +38,10 @@ rescue
 end
 
 def create_architecture
-	Resources::Foreman::Architecture.create(:architecture => {:name => "x86_64"})
-	Resources::Foreman::Architecture.create(:architecture => {:name => "i386"})
+	foreman_id = Resources::Foreman::Architecture.create(:architecture => {:name => "x86_64"}).first["architecture"]["id"]
+	Architecture.create(:name => "x86_64", :foreman_id =>foreman_id)
+	foreman_id = Resources::Foreman::Architecture.create(:architecture => {:name => "i386"}).first["architecture"]["id"]
+	Architecture.create(:name => "i386", :foreman_id =>foreman_id)
 rescue 
 	false
 end
