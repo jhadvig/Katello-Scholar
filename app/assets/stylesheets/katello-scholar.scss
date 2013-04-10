@@ -131,6 +131,9 @@ table.list{
 			li a {
 				color: white;
 				z-index:1050;
+				&:hover {
+					color: black;
+				}
 			}
 
 		}

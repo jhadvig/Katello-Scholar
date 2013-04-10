@@ -34,7 +34,7 @@ class CoursesController < SecureController
 
 		respond_to do |format|
 			format.html  # index.html.erb
-			format.json { render :json => @posts}
+			format.json { render :json => @courses}
 		end
 
 	end
@@ -43,7 +43,7 @@ class CoursesController < SecureController
 		@course = Course.new
 		respond_to do |format|
     		format.html  # new.html.erb
-    		format.json  { render :json => @post }
+    		format.json  { render :json => @course }
   		end
 
 	end
@@ -52,9 +52,9 @@ class CoursesController < SecureController
 		@course = Course.new(params[:course])
 		
 		if @course.save
-			flash[:success] = 'Course was successfully created'
+			flash[:success] = "Course #{@course.course_code_name} was successfully created"
 		else
-		    flash[:error] = 'Course can\'t be created'
+		    flash[:error] = "Course can\'t be created"
 		end
 
 		redirect_to courses_path
@@ -78,9 +78,10 @@ class CoursesController < SecureController
 		@course = Course.find(params[:id])
 
 		if @course.update_attributes(params[:course])
-			flash[:success] = 'Course was successfully updated'
+
+			flash[:success] = "Course #{@course.course_code_name} was successfully updated"
 		else
-		    flash[:error] = 'Course can\'t be updated'
+		    flash[:error] = "Course can\'t be updated"
 		end
 
 		redirect_to courses_path
@@ -90,13 +91,13 @@ class CoursesController < SecureController
 		@course = Course.find(params[:id])
 		if @course.can_destroy?
 			if @course.destroy
-				flash[:success] = 'Course was successfully deleted.'
+				flash[:success] = "Course #{@course.course_code_name} was successfully deleted."
 			else
-			    flash[:error] = 'Course can\'t be deleted.'
+			    flash[:error] = "Course can\'t be deleted."
 			end
 			redirect_to courses_path
 		else
-			flash[:error] = 'Course can\'t be deleted because is still Active.'
+			flash[:error] = "Course can\'t be deleted because is still Active."
 			puts params[:action]
 			redirect_to courses_path
 		end
@@ -107,9 +108,9 @@ class CoursesController < SecureController
 
 
 		if @curr_course.save
-			flash[:success] = 'Course was successfully cloned.'
+			flash[:success] = "Course was successfully cloned."
 		else
-		    flash[:error] = 'Course can\'t be cloned.'
+		    flash[:error] = "Course can\'t be cloned."
 		end
 		redirect_to courses_path
 	end

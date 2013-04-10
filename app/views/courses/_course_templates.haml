@@ -1,6 +1,6 @@
 %span.muted.count
 	= "Viewing #{@course.templates.count} of #{@course.templates.count} results (#{@course.templates.count} Total Templates)"
-	- if can? :manage, Template
+	- if can? :manage, ::Template
 		= link_to new_course_template_path(@course), :class=>"btn btn-info template-new-path" do
 			%i.icon-plus-sign
 			Add Template
@@ -14,7 +14,7 @@
 				%th Template Name
 				%th Info
 				%th Created
-				- if can? :manage, Template
+				- if can? :manage, ::Template
 					%th.action Action
 
 		%tbody
@@ -23,7 +23,7 @@
 					%td.template_name #{template.name}
 					%td.info #{template.info}
 					%td.created_at #{template.created_at}
-					- if can? :manage, Template
+					- if can? :manage, ::Template
 						%td.action
 							.btn-group.table-action-button
 								=link_to edit_course_template_path(@course,template), :class=>"btn btn-small edit" do

@@ -4,7 +4,6 @@ class TemplatesController < SecureController
 	before_filter :manage_auth, :except => [:index,:show]
 
 
-
 	def read_auth
 		unless can?(:read, Template)
 			flash[:error] = 'You don\'t have the permission to do this action'
