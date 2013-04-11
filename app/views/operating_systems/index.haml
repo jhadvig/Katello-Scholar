@@ -1,0 +1,80 @@
+
+%h2.section
+	= params[:controller].capitalize.gsub("_"," ")
+%ul.nav.nav-tabs
+.table_info
+	%span.muted.count
+		= "Viewing #{@operating_systems.count} of Total #{@operating_systems.count} Courses"
+		- if can? :manage, OperatingSystem
+			= link_to new_operating_system_path, :class=>"btn btn-info operating_systems-new-path" do
+				%i.icon-plus-sign
+				Add Operating System
+
+%br
+
+%ul.nav.nav-tabs
+
+%form.form-search.pull-right
+	.input-append
+		%input.span2.search-query.basic_seach_query{:type => "text", :placeholder=>"Find...", :data => {:query_type => "Operating system name"}} 
+		%button.btn{:type => "text"} 
+			%i.icon-search
+
+- if can? :manage, OperatingSystem
+	.btn-group.settings
+		%a.btn.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}
+			%icon.icon-cog
+			Action
+			%span.caret
+		%ul.dropdown-menu
+			%li
+				%a{:href=>"#"} Edit
+			%li
+				%a{:href=>root_path} Delete
+
+%br
+%br
+
+.operating-systems-table
+
+	%table.table-striped.table-bordered.table-hover.operating_systems
+		%thead
+			%tr
+				- if can? :manage, OperatingSystem
+					%th.checkbox.check_all
+						%label.checkbox
+							%input{:type =>"checkbox", :value=>0}
+
+				%th.name Name
+				%th.architecture Architecture
+				%th.path Path
+
+				- if can? :manage, OperatingSystem
+					%th.action Action
+		%tbody
+
+			- @operating_systems.each do |os|
+
+				%tr
+					- if can? :manage, OperatingSystem
+						%td.checkbox
+							%label.checkbox
+								%input{:type =>"checkbox", :value=>0}
+					%td.name 
+						=link_to "#{os.name}", operating_system_path(os)
+					%td.architecture #{os.architecture}"
+					%td.path "#{os.path}"
+					
+					- if can? :manage, OperatingSystem
+						%td.action
+							.btn-group.table-action-button
+								=link_to edit_operating_system_path(course), :class=>"btn btn-small edit" do
+									%i.icon-edit
+									Edit
+								%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
+									%span.caret
+								%ul.dropdown-menu
+									%li 
+										= link_to os, :confirm => "Destroy course \n  #{os.name} ?", :method => :delete, :class=>"delete" do
+											%i.icon-trash
+											Delete

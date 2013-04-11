@@ -31,7 +31,7 @@
             %li{:class=> ("active" if params[:controller] == 'templates')}
               = link_to "Templates", templates_path
             %li{:class=> ("active" if params[:controller] == 'operating_systems')}
-              = link_to "Operating_systems", templates_path
+              = link_to "Operating systems", operating_systems_path
             %li{:class=> ("active" if params[:controller] == 'users')}
               = link_to "Users", users_path
 
@@ -68,6 +68,6 @@
         = link_to "Katello.org", "http://www.katello.org"
         and 
         = link_to "TheForeman.org", "http://theforeman.org"
-        = image_tag "redhat.png", :class => "pull-right"
+        = image_tag "redhat_footer.png", :class => "pull-right"
     / = yield :javascripts_block
     / = yield :extra

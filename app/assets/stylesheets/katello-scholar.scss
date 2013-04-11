@@ -166,7 +166,8 @@ table.seminars,
 table.templates,
 table.lessons,
 table.labs,
-table.system_hosts {
+table.system_hosts,
+table.operating_systems {
     table-layout: fixed;
     width: 100%;
     text-align:left;
@@ -192,6 +193,9 @@ table.system_hosts {
 	    }
 	    th.template {
 	    	width:120px;
+	    }
+	    th.path {
+	    	width:600px;
 	    }
 
     }
