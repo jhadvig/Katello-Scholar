@@ -5,6 +5,7 @@ class CreateOperatingSystems < ActiveRecord::Migration
       t.string :major
       t.string :minor
       t.string :path
+      t.string :os_family
 
       t.integer :architecture_id
 

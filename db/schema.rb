@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20130410230242) do
     t.string   "major"
     t.string   "minor"
     t.string   "path"
+    t.string   "os_family"
     t.integer  "architecture_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
