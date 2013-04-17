@@ -1,0 +1,31 @@
+%h2.section
+	= params[:action].capitalize
+	= params[:controller].singularize.gsub("_"," ")
+%ul.nav.nav-tabs
+
+=form_for @operating_system do |c|
+
+	.name.control-group
+		= c.label :name
+		= c.text_field :name
+	.major.control-group
+		= c.label :major
+		= c.text_field :major
+	.minor.control-group
+		= c.label :minor
+		= c.text_field :minor
+	.os-family.control-group
+		= c.label :os_family
+		= c.select :os_family, options_for_select(OperatingSystem::OS_FAMILY, :selected => nil), :include_blank => true
+
+	.architecture.control-group
+		= c.label :architecture
+		= c.select :architecture_id, options_from_collection_for_select(@architectures, 'id','name'), :include_blank => true
+	.path.control-group
+		= c.label :path
+		= c.text_field :path
+
+	%div.control-group
+	= c.submit :class=>"btn btn-info"
+
+= render :partial=>"shared/back"

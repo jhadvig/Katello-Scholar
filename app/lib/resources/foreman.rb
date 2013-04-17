@@ -12,7 +12,7 @@ module Resources
        #    	:logger             => Logging.logger['foreman_rest'] }
       	# end
 
-      	options = {:base_url => 'https://192.168.122.91/foreman',#'https://localhost/foreman',
+      	options = {:base_url => 'https://192.168.122.91/foreman',
                  :username => 'admin',
                  :password => 'changeme'}
 
@@ -23,8 +23,9 @@ module Resources
     #     :timeout      => Katello.config.rest_client_timeout }
     # end
 
+    Base            = ForemanApi::Base.new options
     Architecture    = ForemanApi::Resources::Architecture.new options 
-    Environment 	= ForemanApi::Resources::Environment.new options
+    Environment 	  = ForemanApi::Resources::Environment.new options
     Bookmark        = ForemanApi::Resources::Bookmark.new options
     Home            = ForemanApi::Resources::Home.new options 
     OperatingSystem = ForemanApi::Resources::OperatingSystem.new options 
@@ -35,8 +36,8 @@ module Resources
     ConfigTemplate  = ForemanApi::Resources::ConfigTemplate.new options
     ComputeResource = ForemanApi::Resources::ComputeResource.new options
     HardwareModel   = ForemanApi::Resources::Model.new options
-    Medium 			= ForemanApi::Resources::Medium.new options
-    Ptable 			= ForemanApi::Resources::Ptable.new options
+    Medium          = ForemanApi::Resources::Medium.new options
+    Ptable          = ForemanApi::Resources::Ptable.new options
 
 	end
 end

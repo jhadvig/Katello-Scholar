@@ -35,6 +35,9 @@ KatelloScholar::Application.routes.draw do
   resources :users do
   end
 
+  resources :operating_systems do
+  end
+
 
 
   #match 'course/de_active/:id' => 'courses#de_active', :via => :get
