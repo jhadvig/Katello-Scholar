@@ -1,0 +1,17 @@
+%h4.section
+	Operating System Info:
+%h4.section
+	#{@operating_system.name} #{@operating_system.major}.#{@operating_system.minor}
+	= image_tag "Redhat.png"
+
+-@operating_system.attributes.each do |k,v|
+	%div
+		%span 
+			%strong #{k.capitalize} :
+			#{v}
+%br
+%br
+
+=link_to "Edit Lesson", edit_operating_system_path(@operating_system), :class=>"btn btn-info lesson-edit-path"
+|
+=link_to "back", :back

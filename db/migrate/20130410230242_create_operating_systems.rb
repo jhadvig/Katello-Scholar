@@ -8,6 +8,8 @@ class CreateOperatingSystems < ActiveRecord::Migration
       t.string :os_family
 
       t.integer :architecture_id
+      t.integer :foreman_medium_id
+      t.integer :foreman_os_id
 
       t.timestamps
     end

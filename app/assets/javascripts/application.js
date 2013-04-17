@@ -70,7 +70,7 @@ function KS_Init() {
         $(this).css("font-weight","normal").css("color","black");
     });
 
-    $("table.templates tbody tr, table.courses tbody tr, table.seminars tbody tr, table.lessons tbody tr, table.labs tbody tr, table.system_hosts tbody tr").hover(function(){
+    $("table.templates tbody tr, table.courses tbody tr, table.seminars tbody tr, table.lessons tbody tr, table.labs tbody tr, table.system_hosts tbody tr, table.operating_systems tbody tr").hover(function(){
         $(this).find('td:last-child .btn-group > a,td:last-child .btn-group > button').addClass("btn-info");
     },function(){
         $(this).find('td:last-child .btn-group > a,td:last-child .btn-group > button').removeClass("btn-info");
@@ -115,10 +115,12 @@ function KS_Init() {
 	$('.basic_seach_query').focus(function() {
         var placeholder = $('.search-query').attr("data-query_type");
 	    $('.search-query').animate({width: '200px'}).attr("placeholder",placeholder);
+        $('.form-search button.btn').addClass('btn-info');
 	});
 	$('.search-query').blur(function() {
 	     $('.search-query').animate({width: '70px'}).attr("placeholder","Find...");
          $('.icon-search').show();
+         $('.form-search button.btn').removeClass('btn-info')
 	});
 
 

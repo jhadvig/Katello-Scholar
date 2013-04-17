@@ -23,9 +23,9 @@ module Resources
     #     :timeout      => Katello.config.rest_client_timeout }
     # end
 
-    Base 			= ForemanApi::Base.new options
+    Base            = ForemanApi::Base.new options
     Architecture    = ForemanApi::Resources::Architecture.new options 
-    Environment 	= ForemanApi::Resources::Environment.new options
+    Environment 	  = ForemanApi::Resources::Environment.new options
     Bookmark        = ForemanApi::Resources::Bookmark.new options
     Home            = ForemanApi::Resources::Home.new options 
     OperatingSystem = ForemanApi::Resources::OperatingSystem.new options 

@@ -5,7 +5,7 @@ class OperatingSystemsController < SecureController
 	end
 
 	def show
-		@operating_systems = OperatingSystem.find(params[:id])
+		@operating_system = OperatingSystem.find(params[:id])
 	end
 
 	def new
@@ -18,17 +18,25 @@ class OperatingSystemsController < SecureController
 		if @operating_system.save
 			flash[:success] = "Operating system #{@operating_system.name} was successfully created"
 		else
-		    flash[:error] = "Operating system can\'t be created"
+		    flash[:error] = "Operating system #{@operating_system.name} can\'t be created"
 		end
 		redirect_to operating_systems_path
 	end
 
 	def edit
 		@operating_system = OperatingSystem.find(params[:id])
+		@architecture = Architecture.find(@operating_system.architecture_id)
+		puts @architecture.name
 	end
 
 	def update
 		@operating_system = OperatingSystem.find(params[:id])
+		if @operating_system.update_attributes(params[:operating_system])
+			flash[:success] = "Operating system #{@operating_system.name} was successfully updated"
+		else
+		    flash[:error] = "Operating system #{@operating_system.name} can\'t be updated"
+		end
+		redirect_to operating_systems_path
 	end
 
 	def destroy

@@ -60,8 +60,10 @@ ActiveRecord::Schema.define(:version => 20130410230242) do
     t.string   "path"
     t.string   "os_family"
     t.integer  "architecture_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.integer  "foreman_medium_id"
+    t.integer  "foreman_os_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "roles", :force => true do |t|

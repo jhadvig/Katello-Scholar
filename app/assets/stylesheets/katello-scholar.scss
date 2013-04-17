@@ -325,8 +325,10 @@ form.edit_user {
 	
 }
 
-form.new_operating_system{
+form.new_operating_system,
+form.edit_operating_system{
 	#operating_system_path {
+		height: 25px;
 		width: 700px;
 	}
 }
