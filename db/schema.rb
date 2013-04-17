@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410165455) do
+ActiveRecord::Schema.define(:version => 20130410230242) do
 
   create_table "architectures", :force => true do |t|
     t.string   "name"
@@ -51,6 +51,19 @@ ActiveRecord::Schema.define(:version => 20130410165455) do
     t.datetime "updated_at",  :null => false
     t.integer  "day"
     t.integer  "lab_id"
+  end
+
+  create_table "operating_systems", :force => true do |t|
+    t.string   "name"
+    t.string   "major"
+    t.string   "minor"
+    t.string   "path"
+    t.string   "os_family"
+    t.integer  "architecture_id"
+    t.integer  "foreman_medium_id"
+    t.integer  "foreman_os_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "roles", :force => true do |t|
