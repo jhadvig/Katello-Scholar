@@ -20,7 +20,6 @@ class OperatingSystem < ActiveRecord::Base
   before_update :update_resources
 
   def create_resources
-    puts self.foreman_medium_id.inspect
 
   	self.foreman_medium_id = Resources::Foreman::Base.http_call('post', '/api/media/', :medium =>  {:name => "#{self.name} #{self.major}.#{self.minor}",
                                                                                                     :path => self.path,
@@ -37,16 +36,46 @@ class OperatingSystem < ActiveRecord::Base
                                                                                          :ptable_ids => [ptable_id],
                                                                                          :medium_ids => [self.foreman_medium_id], 
                                                                                          :architecture_ids=> [foreman_architecture_id]}).first["operatingsystem"]["id"]
+    create_templates_to_os(self.foreman_os_id)
+  rescue
+    false
+  end
+
+  def create_templates_to_os(foreman_os_id)
+    prov_template = Resources::Foreman::ConfigTemplate.index(:search => "name ~ Kickstart Default and kind = provision").first.first["config_template"]
+    pxe_template = Resources::Foreman::ConfigTemplate.index(:search => "name ~ Kickstart Default and kind = PXELinux").first.first["config_template"]
+    conf_templates=[prov_template,pxe_template]
+    add_templates_to_os(conf_templates,foreman_os_id)
 
   rescue
     false
   end
 
-  def destroy_resources
+  def add_templates_to_os(templates,os_id)
 
+    templates.each do |template|
+      Resources::Foreman::ConfigTemplate.client.options[:headers][:accept] = "application/json"
+      Resources::Foreman::ConfigTemplate.update("id" => template["id"], :config_template => { "operatingsystem_ids" => [os_id]})
+    end
+    os, _ = Resources::Foreman::OperatingSystem.show("id" => os_id)
+    os_default_templates = os["operatingsystem"]["os_default_templates"] || []
+    kind_to_id = os_default_templates.reduce({}) do |h, def_temp|
+      def_temp = def_temp["os_default_template"]
+      h.update(def_temp["template_kind_id"].to_i => def_temp["id"])
+    end
+
+    Resources::Foreman::OperatingSystem.update("id" => os_id, "operatingsystem" => {"os_default_templates_attributes" => templates.map {|x| {"config_template_id" => x["id"],
+                                 "template_kind_id" => x["template_kind"]["id"],
+               "id" => kind_to_id[x["template_kind"]["id"].to_i]}}} )
+  rescue 
+    false
+  end
+
+
+
+  def destroy_resources
     Resources::Foreman::Base.http_call('delete', "/api/media/#{self.foreman_medium_id}")
     Resources::Foreman::OperatingSystem.destroy("id" => self.foreman_os_id)
-
   rescue
     false
   end
