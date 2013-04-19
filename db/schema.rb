@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410230242) do
+ActiveRecord::Schema.define(:version => 20130419133648) do
 
   create_table "architectures", :force => true do |t|
     t.string   "name"
@@ -35,8 +35,11 @@ ActiveRecord::Schema.define(:version => 20130410230242) do
     t.text     "info"
     t.integer  "status"
     t.integer  "lesson_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "foreman_subnet_id"
+    t.string   "network"
+    t.string   "netmask"
   end
 
   create_table "lessons", :force => true do |t|

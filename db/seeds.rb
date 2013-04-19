@@ -32,7 +32,7 @@ rescue
 end
 
 def create_domain
-	Resources::Foreman::Domain.create(:domain => {:name => "katellolabs.org"})
+	Resources::Foreman::Domain.create(:domain => {:name => KatelloScholar::APP_CONFIG["app_config"]["domain"] })
 rescue 
 	false
 end

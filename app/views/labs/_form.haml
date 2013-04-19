@@ -2,6 +2,12 @@
 	.name.control-group
 		= c.label :name
 		= c.text_field :name, :placeholder => "Name of the lab", :title=>" 3 to 50 characters"
+	.name.control-group
+		= c.label :network
+		= c.text_field :network, :placeholder => "Lab IP address", :title=>" Example: 192.168.100.0"
+	.name.control-group
+		= c.label :netmask
+		= c.text_field :netmask, :placeholder => "Lab network mask", :title=>" Example: 255.255.255.0"
 	.status.control-group
 		= c.label :course_status
 		= c.select :status, options_for_select(Lab::STATUS)

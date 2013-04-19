@@ -42,8 +42,9 @@
 						%input{:type =>"checkbox", :value=>0}
 				%th.name Lab Name
 				%th.status	Status
+				%th.network Network
+				%th.netmask	Netmask
 				%th.host_count Hosts
-				%th.last_report Last Report
 				- if can? :manage, Lab
 					%th.action Action
 		%tbody
@@ -63,8 +64,9 @@
 					-else
 						%td.status 
 							%span.label.label-warning #{Lab::STATUS.key(lab.status)}
-					%td.host_count 
-					%td.last_report
+					%td.network #{lab.network}
+					%td.netmask #{lab.netmask}
+					%td.host_count
 					- if can? :manage, Lab
 						%td.action
 							.btn-group.table-action-button
@@ -74,6 +76,10 @@
 								%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
 									%span.caret
 								%ul.dropdown-menu
+									%li
+										= link_to lab_path(lab) do
+											%i.icon-tag
+											Lab Info
 									%li
 										= link_to new_lab_system_host_path(lab) do
 											%i.icon-plus

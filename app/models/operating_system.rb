@@ -21,7 +21,7 @@ class OperatingSystem < ActiveRecord::Base
 
   def create_resources
 
-  	self.foreman_medium_id = Resources::Foreman::Base.http_call('post', '/api/media/', :medium =>  {:name => "#{self.name} #{self.major}.#{self.minor}",
+  	self.foreman_medium_id = Resources::Foreman::Base.http_call('post', '/api/media/', :medium =>  {:name => "#{self.name} #{self.major}.#{self.minor} Mirror",
                                                                                                     :path => self.path,
                                                                                                     :os_family => self.os_family}).first["medium"]["id"].to_i
 

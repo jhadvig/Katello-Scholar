@@ -32,7 +32,7 @@ class LabsController < SecureController
 
 	def update
 		@lab = Lab.find(params[:id])
-		if @lab.update_attributes(params[:course])
+		if @lab.update_attributes(params[:lab])
 			flash[:success] = 'Lab was successfully updated'
 		else
 		    flash[:error] = 'Lab can\'t be updated'

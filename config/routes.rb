@@ -1,7 +1,6 @@
 KatelloScholar::Application.routes.draw do
-  devise_for :users do
+  devise_for :users
     # get 'user/edit' => 'devise/registrations#edit'
-  end
 
   root :to => 'dashboard#index'
   match 'dashboard' => 'dashboard#index', :as => :dashboard
