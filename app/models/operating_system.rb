@@ -5,6 +5,7 @@ class OperatingSystem < ActiveRecord::Base
   attr_accessible :major, :minor, :name, :path, :architecture_id, :os_family, :foreman_medium_id, :foreman_os_id
 
   belongs_to :architecture
+  has_one :template
 
   validates :name, :presence => true # unique in foreman Medium model
   validates :path, :presence => true, :uniqueness => true, :on => :save
@@ -15,9 +16,9 @@ class OperatingSystem < ActiveRecord::Base
   # Foreman resources created:-Medium
   #                           -Operating system
 
-  before_create :create_resources
+  before_create :create_resources, :os_full_name
   before_destroy :destroy_resources
-  before_update :update_resources
+  before_update :update_resources, :os_full_name
 
   def create_resources
 
@@ -84,6 +85,14 @@ class OperatingSystem < ActiveRecord::Base
     self.foreman_medium_id = Resources::Foreman::Base.http_call('put', "/api/media/#{self.foreman_medium_id}", :medium =>  {:path => self.path}).first["medium"]["id"].to_i
   rescue
     false
+  end
+
+  def os_full_name
+    unless self.major.nil?
+      self.full_name = self.minor.nil? ? "#{self.name} #{self.major}" : "#{self.name} #{self.major}.#{self.minor}"
+    else
+      self.full_name = self.name
+    end
   end
 
 end

@@ -30,6 +30,7 @@ class TemplatesController < SecureController
 
 	def new
 		@course = Course.find(params[:course_id])
+		@operating_systems = OperatingSystem.all
 		@template = @course.templates.new(params[:template])
 		respond_to do |format|
 			format.html  # index.html.erb

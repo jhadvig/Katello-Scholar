@@ -12,6 +12,7 @@
 		%thead
 			%tr
 				%th Template Name
+				%th Operating system
 				%th Info
 				%th Created
 				- if can? :manage, ::Template
@@ -21,6 +22,9 @@
 			- @course.templates.each do |template|
 				%tr
 					%td.template_name #{template.name}
+					%td.operating_system 
+						= image_tag "Redhat.png"
+						#{template.operating_system.name} #{template.operating_system.major}.#{template.operating_system.minor}
 					%td.info #{template.info}
 					%td.created_at #{template.created_at}
 					- if can? :manage, ::Template
