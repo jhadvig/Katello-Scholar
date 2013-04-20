@@ -1,0 +1,20 @@
+%h4.section
+	Seminar group Info:
+
+
+
+.span6
+	-@seminar.attributes.each do |k,v|
+		%div
+			%span 
+				%strong #{k.capitalize} :
+				#{v}
+
+.span6
+
+%br
+%br
+
+
+- if can? :manage, Seminar
+	=link_to "Edit Seminar", edit_seminar_path(@seminar), :class=>"btn btn-info seminar-edit-path"

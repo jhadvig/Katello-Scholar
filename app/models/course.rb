@@ -2,15 +2,13 @@ class Course < ActiveRecord::Base
 
   STATUS = {"Active"=>true,"Inactive"=>false}
 
-  attr_accessible :code, :name, :status, :seminars_count
+  attr_accessible :code, :name, :status, :foreman_id
 
   has_many :seminars, :dependent => :delete_all
   has_many :templates, :dependent => :delete_all
 
   validates :code, :presence => true, :length => { :minimum => 3, :maximum => 10} # :uniqueness => { :scope => :year, :message => "should happen once per year" }
   validates :name, :presence => true, :length => { :minimum => 3, :maximum => 50}
-
-  #validates :seminars_count, :numericality => { :only_integer => true}
 
   before_create :create_env
   before_destroy :destroy_env
@@ -25,7 +23,9 @@ class Course < ActiveRecord::Base
   end
 
   def create_env
-    self.foreman_id = Resources::Foreman::Environment.create(:environment => {:name => self.name.to_s}).first["environment"]["id"]    
+    puts "!!!!!!!!!!!"
+    self.foreman_id = Resources::Foreman::Environment.create(:environment => {:name => self.code.gsub(" ","_")}).first["environment"]["id"] 
+    puts "@@@@@@@@@@"   
   rescue
     false
   end
@@ -37,7 +37,7 @@ class Course < ActiveRecord::Base
   end
 
   def update_env
-    Resources::Foreman::Environment.update("id" => self.foreman_id, :environment => {:name => self.name.to_s})
+    Resources::Foreman::Environment.update("id" => self.foreman_id, :environment => {:name => self.code.gsub(" ","_")})
   rescue
     false
   end

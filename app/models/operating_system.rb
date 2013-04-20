@@ -7,7 +7,7 @@ class OperatingSystem < ActiveRecord::Base
   belongs_to :architecture
 
   validates :name, :presence => true # unique in foreman Medium model
-  validates :path, :presence => true, :uniqueness => true
+  validates :path, :presence => true, :uniqueness => true, :on => :save
   validates :major, :presence => true#, :numericality => { :only_integer => true}
   validates :minor, :presence => true#, :numericality => { :only_integer => true}
   validates :architecture_id, :presence => true
