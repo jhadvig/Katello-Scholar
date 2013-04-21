@@ -1,6 +1,6 @@
 %h2.section
 	= params[:action].capitalize
-	= params[:controller].singularize
+	= params[:controller].singularize.gsub("_"," ")
 %ul.nav.nav-tabs
 
 = form_for([@lab,@lab.system_hosts.build])  do |c|

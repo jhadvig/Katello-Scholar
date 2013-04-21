@@ -1,12 +1,14 @@
 
 
 = form_for(resource, :as => resource_name, :html => {:class => "form-inline"}, :url => session_path(resource_name)) do |f|
-  = devise_error_messages!
-  %div
-    = f.email_field :email, :autofocus => true, :placeholder => "Email address"
-  %div
-    = f.password_field :password, :placeholder => "Password"
-  = f.submit "Sign in", :class => "btn btn-info"
-  %div
-  
-  =# render "devise/shared/links"
+	= devise_error_messages!
+	%div
+		%i.icon-wrench
+		= f.email_field :email, :autofocus => true, :placeholder => "Email address"
+	%div
+		= f.password_field :password, :placeholder => "Password"
+		= button_tag :type=> "submit", :class=> "btn btn-info btn-log-in" do
+			
+			Log in
+			=image_tag "katello-scholar-icon-white.png"
+	%div

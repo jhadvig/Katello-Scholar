@@ -5,7 +5,7 @@ class OperatingSystem < ActiveRecord::Base
   attr_accessible :major, :minor, :name, :path, :architecture_id, :os_family, :foreman_medium_id, :foreman_os_id
 
   belongs_to :architecture
-  has_one :template
+  has_many :template, :dependent => :delete_all
 
   validates :name, :presence => true # unique in foreman Medium model
   validates :path, :presence => true, :uniqueness => true, :on => :save
