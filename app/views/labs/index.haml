@@ -21,13 +21,20 @@
 
 .btn-group.settings
 	%a.btn.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}
+		%icon.icon-cog
 		Action
 		%span.caret
-	%ul.dropdown-menu
+	%ul.dropdown-menu.action
 		%li
-			%a{:href=>root_path} Maintain All
+			%a
+				= button_tag :type=> "submit", :name => "maintain_action" , :class => "btn btn-info btn-action" do
+					%i.icon-wrench
+					Maintain Selected
 		%li
-			%a{:href=>root_path} Delete All
+			%a
+				= button_tag :type=> "submit", :name=> "delete_action", :class=> "btn btn-danger btn-action" do
+					%i.icon-trash
+					Delete Selected
 
 %br
 %br
@@ -66,7 +73,8 @@
 							%span.label.label-warning #{Lab::STATUS.key(lab.status)}
 					%td.network #{lab.network}
 					%td.netmask #{lab.netmask}
-					%td.host_count
+					%td.host_count 
+						= lab.system_hosts.count
 					- if can? :manage, Lab
 						%td.action
 							.btn-group.table-action-button

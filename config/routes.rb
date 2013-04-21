@@ -10,6 +10,7 @@ KatelloScholar::Application.routes.draw do
     get 'clone', :on => :member
     resources :seminars
     resources :templates
+    delete 'multiple_actions', :on => :collection
   end
 
   resources :seminars do

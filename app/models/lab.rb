@@ -6,13 +6,13 @@ class Lab < ActiveRecord::Base
 
 	attr_accessible :info, :name, :lesson_id, :status, :network, :netmask 
 
-	belongs_to :lesson
-	belongs_to :seminar
+	has_many :lesson
+	has_many :seminar
 	has_many :system_hosts, :dependent => :delete_all
 
 	validates :name, :presence => true, :uniqueness => true, :length => { :minimum => 3, :maximum => 10}
-	validates :network, :presence => true, :uniqueness => true, :on => :save#, :format => { :with => @ip_regex }
-	validates :netmask, :presence => true, :uniqueness => true, :on => :save#, :format => { :with => @ip_regex }  
+	validates :network, :presence => true, :uniqueness => true, :on => :save, :format => { :with => @ip_regex }
+	validates :netmask, :presence => true, :uniqueness => true, :on => :save, :format => { :with => @ip_regex }  
 
 	# Foreman resources created: -Subnet
   	#

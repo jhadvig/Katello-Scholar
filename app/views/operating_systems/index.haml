@@ -26,11 +26,12 @@
 			%icon.icon-cog
 			Action
 			%span.caret
-		%ul.dropdown-menu
+		%ul.dropdown-menu.action
 			%li
-				%a{:href=>"#"} Edit
-			%li
-				%a{:href=>root_path} Delete
+				%a
+					= button_tag :type=> "submit", :name=> "delete_action", :class=> "btn btn-danger btn-action" do
+						%i.icon-trash
+						Delete Selected
 
 %br
 %br

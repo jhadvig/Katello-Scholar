@@ -101,6 +101,30 @@ class CoursesController < SecureController
 		end
 	end
 
+	def multiple_actions
+		binding.pry
+		deleted_courses = []
+		@checked_courses_ids = params[:courses_ids].map(&:to_i)
+		@checked_courses_ids.each do |c|
+			course = Course.find(c)
+			if params.include?("delete_action")
+			 	if course.destroy
+			 		deleted_courses << course.course_code_name
+			 	end
+			elsif params.include?("activate_action")
+				course.activate_course
+				course.save
+			elsif params.include?("deactivate_action")
+				course.deactivate_course
+				course.save
+			end
+		end
+
+		flash[:success] = "Courses \n#{deleted_courses.join("\n")}\n was successfully deleted." unless deleted_courses.empty?
+
+		redirect_to courses_path
+	end
+
 	def clone 
 		@curr_course = Course.find(params[:id]).dup
 

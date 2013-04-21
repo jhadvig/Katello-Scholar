@@ -5,7 +5,7 @@ class Lesson < ActiveRecord::Base
 
 	belongs_to :seminar
 	belongs_to :template
-	has_one :lab
+	belongs_to :lab
 
 	validates :number, :presence => true
 	validates :day, :presence=>true

@@ -381,4 +381,20 @@ div {
 	}
 }
 
+.dropdown-menu.action {
+	padding: 0px 0px;
+	left: -163px;
+	top: -2px;
+	background-color: transparent;
+	li > a {
+		padding: 0px 20px;
+		.btn.btn-action {
+			margin-left: -20px;
+			width: 160px;
+			margin-right: -20px;
+		}
+	}
+
+}
+
 @import 'font-awesome';

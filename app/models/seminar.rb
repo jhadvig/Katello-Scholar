@@ -3,7 +3,7 @@ class Seminar < ActiveRecord::Base
 
 	belongs_to :course
 	has_many :lessons, :dependent => :delete_all
-	has_one :lab
+	belongs_to :lab
 	has_and_belongs_to_many :users
 
 	validates :seminar_number, :presence =>true, :numericality => { :only_integer => true }

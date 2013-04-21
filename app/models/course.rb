@@ -11,7 +11,7 @@ class Course < ActiveRecord::Base
   validates :name, :presence => true, :length => { :minimum => 3, :maximum => 50}
 
   before_create :create_env
-  before_destroy :destroy_env
+  before_destroy :can_destroy?, :destroy_env
   before_update :update_env
 
   def can_destroy?
@@ -19,13 +19,19 @@ class Course < ActiveRecord::Base
   end
 
   def course_code_name
-    "#{self.code} : #{self.name}"
+    "#{self.code}: #{self.name}"
+  end
+
+  def activate_course
+    self.status = true
+  end
+
+  def deactivate_course
+    self.status = false
   end
 
   def create_env
-    puts "!!!!!!!!!!!"
     self.foreman_id = Resources::Foreman::Environment.create(:environment => {:name => self.code.gsub(" ","_")}).first["environment"]["id"] 
-    puts "@@@@@@@@@@"   
   rescue
     false
   end

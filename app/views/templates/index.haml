@@ -30,7 +30,9 @@
 		%tbody
 			- @templates.each do |template|
 				%tr
-					%td.template_name #{template.name}
+					%td.template_name 
+						= image_tag "Redhat.png"
+						#{template.name}
 					%td.template.course #{template.course.code}:  #{template.course.name}
 					%td.info #{template.info}
 					%td.created_at #{template.created_at.strftime("%c")}
