@@ -38,6 +38,7 @@ module Resources
     HardwareModel   = ForemanApi::Resources::Model.new options
     Medium          = ForemanApi::Resources::Medium.new options
     Ptable          = ForemanApi::Resources::Ptable.new options
+    Hostgroup       = ForemanApi::Resources::Hostgroup.new options
 
 	end
 end

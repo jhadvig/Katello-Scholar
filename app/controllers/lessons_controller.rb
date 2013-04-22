@@ -49,8 +49,8 @@ class LessonsController < SecureController
 
 	def create
 		@seminar = Seminar.find(params[:seminar_id])
-		@lesson = @seminar.lessons.create(params[:lesson])
-
+		@lesson = @seminar.lessons.new(params[:lesson])
+		puts @lesson.inspect
 		@lesson.find_lesson_dates(@seminar.lessons.count-1)
 		if @lesson.save
 			flash[:success] = 'Lesson was successfully created'

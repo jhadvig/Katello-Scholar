@@ -13,6 +13,45 @@ class Lesson < ActiveRecord::Base
 	validates :ends_at, :presence=>true
 	validates :template_id, :presence=>true
 
+	before_create :create_hostgroup
+	before_destroy :destroy_hostgroup
+
+	def create_hostgroup
+		# Single domain use case 
+		domain_id = Resources::Foreman::Domain.index.first.first["domain"]["id"]
+		ptable_id = Resources::Foreman::Ptable.index(:search => "name ~ RedHat").first.first["ptable"]["id"]
+		########
+
+		os_instance = OperatingSystem.find(Template.find(self.template_id).operating_system_id)
+		puts "!!!!!!!"
+		puts domain_id.inspect
+		puts self.lab.foreman_subnet_id.inspect
+		puts self.seminar.course.foreman_id.inspect
+		puts os_instance.foreman_os_id
+		puts Architecture.find(os_instance.architecture_id).foreman_id
+		puts os_instance.foreman_medium_id
+		puts ptable_id.inspect
+		puts "!!!!!!!"
+		self.foreman_hostgroup_id = Resources::Foreman::Hostgroup.create(:hostgroup => {:name => "#{self.seminar.course.code}_#{self.seminar.seminar_number}_#{self.number}",
+																						:domain_id => domain_id,
+																						:subnet_id => self.lab.foreman_subnet_id,
+																						:environment_id => self.seminar.course.foreman_id,
+																						:operatingsystem_id => os_instance.foreman_os_id,
+																						:architecture_id => Architecture.find(os_instance.architecture_id).foreman_id,
+																						:medium_id => os_instance.foreman_medium_id,
+																						:ptable_id => ptable_id,
+																						:root_pass => "redhat"}).first["hostgroup"]["id"]
+	rescue
+		false
+	end
+
+	def destroy_hostgroup
+		Resources::Foreman::Hostgroup.destroy("id" => self.foreman_hostgroup_id)
+	rescue
+		false		
+	end
+
+
 	def find_lesson_dates(lesson_number) 
 		semester_start_date = DateTime.strptime(Semester::SEMESTER["start"] ,'%d.%m.%Y')
 	  	semester_end_date = DateTime.strptime(Semester::SEMESTER["end"] ,'%d.%m.%Y')
