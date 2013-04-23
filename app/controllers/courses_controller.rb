@@ -102,7 +102,6 @@ class CoursesController < SecureController
 	end
 
 	def multiple_actions
-		binding.pry
 		deleted_courses = []
 		@checked_courses_ids = params[:courses_ids].map(&:to_i)
 		@checked_courses_ids.each do |c|

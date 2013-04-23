@@ -16,10 +16,11 @@ class Lab < ActiveRecord::Base
 
 	# Foreman resources created: -Subnet
   	#
-
-	before_create :create_subnet
-	#before_destroy :destroy_subnet
-	before_update :update_subnet
+  	# Single domain use case !!! One Domain - One Subnet - One SmartProxy
+  	# 
+	# before_create :create_subnet
+	# before_destroy :destroy_subnet
+	# before_update :update_subnet
 
 	def create_subnet
 		foreman_domain_id = Resources::Foreman::Domain.index.first.first["domain"]["id"]

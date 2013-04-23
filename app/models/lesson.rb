@@ -15,17 +15,19 @@ class Lesson < ActiveRecord::Base
 
 	before_create :create_hostgroup
 	before_destroy :destroy_hostgroup
+	#before_update :update_hostgroup
 
 	def create_hostgroup
-		# Single domain use case 
+		# Single domain use case !!! One Domain - One Subnet - One SmartProxy
 		domain_id = Resources::Foreman::Domain.index.first.first["domain"]["id"]
+		subnet_id = Resources::Foreman::Subnet.index.first.first["subnet"]["id"]
 		ptable_id = Resources::Foreman::Ptable.index(:search => "name ~ RedHat").first.first["ptable"]["id"]
 		########
 
 		os_instance = OperatingSystem.find(Template.find(self.template_id).operating_system_id)
 		puts "!!!!!!!"
 		puts domain_id.inspect
-		puts self.lab.foreman_subnet_id.inspect
+		puts subnet_id.inspect
 		puts self.seminar.course.foreman_id.inspect
 		puts os_instance.foreman_os_id
 		puts Architecture.find(os_instance.architecture_id).foreman_id
@@ -34,7 +36,7 @@ class Lesson < ActiveRecord::Base
 		puts "!!!!!!!"
 		self.foreman_hostgroup_id = Resources::Foreman::Hostgroup.create(:hostgroup => {:name => "#{self.seminar.course.code}_#{self.seminar.seminar_number}_#{self.number}",
 																						:domain_id => domain_id,
-																						:subnet_id => self.lab.foreman_subnet_id,
+																						:subnet_id => subnet_id,
 																						:environment_id => self.seminar.course.foreman_id,
 																						:operatingsystem_id => os_instance.foreman_os_id,
 																						:architecture_id => Architecture.find(os_instance.architecture_id).foreman_id,
