@@ -42,7 +42,7 @@
 							Deactivate Selected
 				%li
 					%a
-						= button_tag :type=> "submit", :name=> "delete_action", :class=> "btn btn-danger btn-action" do
+						= button_tag :type=> "submit", :name=> "delete_action", :class=> "btn btn-danger btn-action", :data => {:confirm => "Delete checked courses ?"} do
 							%i.icon-trash
 							Delete Selected
 							

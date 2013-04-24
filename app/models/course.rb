@@ -11,7 +11,7 @@ class Course < ActiveRecord::Base
   validates :name, :presence => true, :length => { :minimum => 3, :maximum => 50}
 
   before_create :create_env
-  before_destroy :can_destroy?, :destroy_env
+  before_destroy :destroy_env#,:can_destroy? 
   before_update :update_env
 
   def can_destroy?
@@ -37,8 +37,10 @@ class Course < ActiveRecord::Base
   end
 
   def destroy_env
+    puts "before"
     Resources::Foreman::Environment.destroy("id"=> self.foreman_id)
   rescue
+    puts "false"
     false
   end
 
