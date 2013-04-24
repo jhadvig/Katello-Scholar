@@ -49,4 +49,18 @@ class OperatingSystemsController < SecureController
 		redirect_to operating_systems_path
 	end
 
+	def multiple_actions
+		if params.include?("host_ids")
+			deleted_os = []
+			@checked_os_ids = params[:os_ids].map(&:to_i)
+			@checked_os_ids.each do |o|
+				os = OperatingSystem.find(o)			
+				deleted_os << os.full_name if os.destroy
+			end
+			flash[:success] = "Operating systems  \n#{deleted_os.join("\n")}\n were successfully deleted."
+		end
+		flash[:error] = "No operating systems checked !" unless params.include?("host_ids")
+		redirect_to :back
+	end
+
 end

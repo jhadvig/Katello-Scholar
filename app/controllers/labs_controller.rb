@@ -50,4 +50,30 @@ class LabsController < SecureController
 		redirect_to labs_path
 	end
 
+	def multiple_actions
+		if params.include?("lab_ids")
+			deleted_labs = []
+			updated_labs = []
+			@checked_lab_ids = params[:lab_ids].map(&:to_i)
+			@checked_lab_ids.each do |l|
+				lab = Lab.find(l)
+				if params.include?("delete_action")			
+					deleted_labs << lab.name if lab.destroy
+				elsif params.include?("maintain_action")
+					updated_labs << lab.name if lab.update_attribute(:status, 0)
+				elsif params.include?("ready_action")
+					updated_labs << lab.name if lab.update_attribute(:status, 1)
+				end
+
+			end
+			unless deleted_labs.empty?
+				flash[:success] = "Template \n#{deleted_labs.join("\n")}\n were successfully deleted."
+			else
+				flash[:success] = "Template \n#{updated_labs.join("\n")}\n were successfully updated."
+			end
+		end
+		flash[:error] = "No labs checked !" unless params.include?("lab_ids")
+		redirect_to :back
+	end
+
 end

@@ -12,7 +12,8 @@
 		= c.text_field :ip, :placeholder => "Host IP Address" 
 	.domain.control-group
 		= c.label :domain
-		= c.text_field :domain, :placeholder => "Host Domain" 
+		= c.hidden_field :domain, :value => @domain
+		= c.text_field :domain, :value => @domain, :disabled=> true
 	.mac.control-group
 		= c.label :mac
 		= c.text_field :mac, :placeholder => "Host MAC Address" 

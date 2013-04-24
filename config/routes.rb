@@ -18,6 +18,7 @@ KatelloScholar::Application.routes.draw do
   end
 
   resources :templates do 
+    delete 'multiple_actions', :on => :collection
     resources :lessons
   end
 
@@ -26,10 +27,12 @@ KatelloScholar::Application.routes.draw do
   end
 
   resources :labs do
+    delete 'multiple_actions', :on => :collection
     resources :system_hosts
   end
 
   resources :system_hosts do
+    delete 'multiple_actions', :on => :collection
   end
 
   resources :users do

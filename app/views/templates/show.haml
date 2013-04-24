@@ -1,0 +1,28 @@
+%h4.section
+	Template Info:
+%h4.section
+	= image_tag "Redhat.png"
+	#{@template.name} 
+	
+
+-@template.attributes.each do |k,v|
+	%div
+		%span 
+			- if k == "operating_system_id"
+				%strong #{k.capitalize} :
+				%div.nested_show
+					- @os.attributes.each do |k,v|
+						%div
+							%span
+								%strong #{k.capitalize} :
+								#{v}
+
+			- else
+				%strong #{k.capitalize} :
+				#{v}
+%br
+%br
+
+=link_to "Edit Template", edit_course_template_path(@course,@template), :class=>"btn btn-info lesson-edit-path"
+|
+=link_to "back", :back

@@ -142,6 +142,7 @@ function KS_Init() {
         // $('form * ').show(); // Show forms
         $('.span6 *').show();
         $('.span4 *').show();
+        $('form div').show();
         }
     });
 

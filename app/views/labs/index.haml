@@ -19,80 +19,87 @@
 		%button.btn{:type => "text"} 
 			%i.icon-search
 
-.btn-group.settings
-	%a.btn.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}
-		%icon.icon-cog
-		Action
-		%span.caret
-	%ul.dropdown-menu.action
-		%li
-			%a
-				= button_tag :type=> "submit", :name => "maintain_action" , :class => "btn btn-info btn-action" do
-					%i.icon-wrench
-					Maintain Selected
-		%li
-			%a
-				= button_tag :type=> "submit", :name=> "delete_action", :class=> "btn btn-danger btn-action" do
-					%i.icon-trash
-					Delete Selected
+= form_tag multiple_actions_labs_path, :method => :delete do
 
-%br
-%br
-		
-.labs-table
+	.btn-group.settings
+		%a.btn.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}
+			%icon.icon-cog
+			Action
+			%span.caret
+		%ul.dropdown-menu.action
+			%li
+				%a
+					= button_tag :type=> "submit", :name => "ready_action" , :class => "btn btn-success btn-action" do
+						%i.icon-play-circle
+						Ready Selected
+			%li
+				%a
+					= button_tag :type=> "submit", :name => "maintain_action" , :class => "btn btn-warning btn-action" do
+						%i.icon-wrench
+						Maintain Selected
+			%li
+				%a
+					= button_tag :type=> "submit", :name=> "delete_action", :class=> "btn btn-danger btn-action" do
+						%i.icon-trash
+						Delete Selected
 
-	%table.table-striped.table-bordered.table-hover.labs
-		%thead
-			%tr
-				%th.checkbox.check_all
-					%label.checkbox
-						%input{:type =>"checkbox", :value=>0}
-				%th.name Lab Name
-				%th.status	Status
-				%th.network Network
-				%th.netmask	Netmask
-				%th.host_count Hosts
-				- if can? :manage, Lab
-					%th.action Action
-		%tbody
-			- @labs.each do |lab|
+	%br
+	%br
+			
+	.labs-table
+
+		%table.table-striped.table-bordered.table-hover.labs
+			%thead
 				%tr
-					%td.checkbox
+					%th.checkbox.check_all
 						%label.checkbox
 							%input{:type =>"checkbox", :value=>0}
-					%td.name 
-						= link_to "#{lab.name}", lab_system_hosts_path(lab)
-					-if Lab::STATUS.key(lab.status) == "Maintenance"
-						%td.status 
-							%span.label.label-important #{Lab::STATUS.key(lab.status)} 
-					-elsif Lab::STATUS.key(lab.status) == "Ready"
-						%td.status 
-							%span.label.label-success #{Lab::STATUS.key(lab.status)}
-					-else
-						%td.status 
-							%span.label.label-warning #{Lab::STATUS.key(lab.status)}
-					%td.network #{lab.network}
-					%td.netmask #{lab.netmask}
-					%td.host_count 
-						= lab.system_hosts.count
+					%th.name Lab Name
+					%th.status	Status
+					%th.network Network
+					%th.netmask	Netmask
+					%th.host_count Hosts
 					- if can? :manage, Lab
-						%td.action
-							.btn-group.table-action-button
-								=link_to edit_lab_path(lab), :class=>"btn btn-small edit" do
-									%i.icon-edit
-									Edit
-								%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
-									%span.caret
-								%ul.dropdown-menu
-									%li
-										= link_to lab_path(lab) do
-											%i.icon-tag
-											Lab Info
-									%li
-										= link_to new_lab_system_host_path(lab) do
-											%i.icon-plus
-											Add Host
-									%li 
-										= link_to lab, :confirm => "Destroy lab \n #{lab.name} ?", :method => :delete, :class=>"delete" do
-											%i.icon-trash
-											Delete
+						%th.action Action
+			%tbody
+				- @labs.each do |lab|
+					%tr
+						%td.checkbox
+							%label.checkbox
+								= check_box_tag "lab_ids[]", lab.id
+						%td.name 
+							= link_to "#{lab.name}", lab_system_hosts_path(lab)
+						-if Lab::STATUS.key(lab.status) == "Maintenance"
+							%td.status 
+								%span.label.label-warning #{Lab::STATUS.key(lab.status)} 
+						-elsif Lab::STATUS.key(lab.status) == "Ready"
+							%td.status 
+								%span.label.label-success #{Lab::STATUS.key(lab.status)}
+						-else
+							%td.status 
+								%span.label.label-important #{Lab::STATUS.key(lab.status)}
+						%td.network #{lab.network}
+						%td.netmask #{lab.netmask}
+						%td.host_count 
+							= lab.system_hosts.count
+						- if can? :manage, Lab
+							%td.action
+								.btn-group.table-action-button
+									=link_to edit_lab_path(lab), :class=>"btn btn-small edit" do
+										%i.icon-edit
+										Edit
+									%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
+										%span.caret
+									%ul.dropdown-menu
+										%li
+											= link_to lab_path(lab) do
+												%i.icon-tag
+												Lab Info
+										%li
+											= link_to new_lab_system_host_path(lab) do
+												%i.icon-plus
+												Add Host
+										%li 
+											= link_to lab, :confirm => "Destroy lab \n #{lab.name} ?", :method => :delete, :class=>"delete" do
+												%i.icon-trash
+												Delete

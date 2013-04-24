@@ -28,6 +28,12 @@ class TemplatesController < SecureController
 		end
 	end
 
+	def show
+		@template = Template.find(params[:id])
+		@course = @template.course
+		@os = @template.operating_system		
+	end
+
 	def new
 		@course = Course.find(params[:course_id])
 		@operating_systems = OperatingSystem.all
@@ -52,6 +58,7 @@ class TemplatesController < SecureController
 		@template = Template.find(params[:id])
 		#@template = Template.find(params[:course_id])
 		@course = @template.course
+		@operating_systems = OperatingSystem.all
 	end
 
 
@@ -76,6 +83,20 @@ class TemplatesController < SecureController
 		end
 
 		redirect_to course_path(@course)
+	end
+
+	def multiple_actions
+		if params.include?("template_ids")
+			deleted_temp = []
+			@checked_temp_ids = params[:template_ids].map(&:to_i)
+			@checked_temp_ids.each do |t|
+				temp = ::Template.find(t)			
+				deleted_temp << temp.name if temp.destroy
+			end
+			flash[:success] = "Template \n#{deleted_temp.join("\n")}\n were successfully deleted."
+		end
+		flash[:error] = "No templates checked !" unless params.include?("template_ids")
+		redirect_to :back
 	end
 
 end

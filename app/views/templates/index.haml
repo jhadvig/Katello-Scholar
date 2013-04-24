@@ -32,7 +32,7 @@
 				%tr
 					%td.template_name 
 						= image_tag "Redhat.png"
-						#{template.name}
+						= link_to "#{template.name}", template_path(template)
 					%td.template.course #{template.course.code}:  #{template.course.name}
 					%td.info #{template.info}
 					%td.created_at #{template.created_at.strftime("%c")}
