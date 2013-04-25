@@ -19,6 +19,7 @@ class DashboardController < SecureController
 		@os_count = OperatingSystem.all.count
 		@labs_count = Lab.all.count
 		@hosts_count = SystemHost.all.count
+		@users_count = User.all.count
 
 	end
 
