@@ -17,6 +17,8 @@
 //= require bootstrap-timepicker
 //= require jquery.tokeninput
 //= require pnotify
+//= require raphael
+//= require morris
 //= require_tree .
 
 
@@ -182,6 +184,36 @@ function KS_Init() {
         showMeridian: false,
         minuteStep: 10,
         defaultTime: ends_at
+    });
+
+    Morris.Donut({
+        element: 'days-graph',
+        data: [
+        {label: "Monday", value: 12},
+        {label: "Thuesday", value: 30},
+        {label: "Wednesday", value: 20},
+        {label: "Thursday", value: 50},
+        {label: "Friday", value: 60},
+        ],
+        colors: ['#2f96b4','#F20A21','#8a4b7e','#2f9887','#2f9000'],
+    });
+
+    Morris.Bar({
+      element: 'courses-graph',
+      data: [
+        { y: '2006', a: 100, b: 90 },
+        { y: '2007', a: 75,  b: 65 },
+        { y: '2008', a: 50,  b: 40 },
+        { y: '2009', a: 75,  b: 65 },
+        { y: '2010', a: 50,  b: 40 },
+        { y: '2011', a: 75,  b: 65 },
+        { y: '2012', a: 100, b: 90 },
+      ],
+      xkey: 'y',
+      ykeys: ['a', 'b'],
+      labels: ['Active courses', 'Inactive Courses'],
+      hideHover: 'auto',
+      barColors: ['#2f96b4','#F20A21'],
     });
 
 

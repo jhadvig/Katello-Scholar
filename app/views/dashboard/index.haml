@@ -2,11 +2,58 @@
 .page-header
 	%h2
 		= params[:controller].capitalize
+		= "-"
+		= current_user.roles.first.name.upcase
+.dashboard
+	.row
+		.span5
+			.hero-unit
+				.scholar-info
+					%h3 Stats:
+					%ul.info
+						%li
+							Courses #{@courses_count}
+						%li
+							Seminars #{@seminars_count}
+						%li
+							Lessons #{@lessons_count}
+						%li
+							Templates #{@template_count}
+						%li
+							Operating Systems #{@os_count}
+						%li
+							Labs #{@labs_count}
+						%li
+							Hosts #{@hosts_count}
+						%li
+							Guests #{@seminars_count}
 
-.row
-	.span5
-		.hero-unit
+		.span9
+			.hero-unit
+				%ul.nav.nav-tabs.pill-tabs-bar
+					%li
+						%a{"data-toggle" => "tab", :href => "#graph1"} 
+							%i.icon-signal
+							Graph1
+					%li
+						%a{"data-toggle" => "tab", :href => "#graph2"} 
+							%i.icon-sitemap
+							Graph2
+					%li
+						%a{"data-toggle" => "tab", :href => "#graph3"} 
+							%i.icon-tasks
+							Graph3
 
-	.span9
-		.hero-unit
+				.tab-content
+					.tab-pane#graph1
+						#courses-graph{ :style=>"height: 250px; width:550px;" }
+
+					.tab-pane#graph2
+						#days-graph{ :style=>"height: 260px; width: 260px;" }
+
+					.tab-pane#graph3
+						Graph3
+					
+
+				
 

@@ -98,6 +98,8 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.20.1)
+    morrisjs-rails (0.4.2)
+      railties (~> 3.1)
     multi_json (1.5.0)
     mysql2 (0.3.11)
     oauth (0.4.7)
@@ -132,6 +134,7 @@ GEM
       thor (>= 0.14.6, < 2.0)
     rake (10.0.3)
     rake-progressbar (0.0.5)
+    raphael-rails (2.1.1)
     rdoc (3.12.1)
       json (~> 1.4)
     ref (1.0.2)
@@ -186,11 +189,13 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   less-rails
+  morrisjs-rails
   mysql2
   pnotify-rails
   pry
   rails (= 3.2.9)
   rake-progressbar (~> 0.0.5)
+  raphael-rails
   sass-rails (~> 3.2.3)
   sassy-buttons
   simple-navigation (>= 3.3.4)

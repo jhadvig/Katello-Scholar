@@ -402,4 +402,19 @@ div {
 	color: #005580;
 }
 
+.dashboard{
+	.scholar-info{
+		ul.info{
+			margin-left: 0px;
+			font-size: 20px;
+		}
+	}
+	.pill-tabs-bar{
+		font-size: 15px;
+	}
+	#graph2 svg{
+		margin-left: 120px;
+	}
+}
+
 @import 'font-awesome';
