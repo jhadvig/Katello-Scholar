@@ -54,6 +54,8 @@ GEM
       compass (>= 0.8.7)
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
+    delayed_job (3.0.5)
+      activesupport (~> 3.0)
     devise (2.2.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -181,6 +183,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass-colors
   compass-rails (~> 1.0.0.rc.2)
+  delayed_job (~> 3.0.5)
   devise
   font-awesome-sass-rails
   foreman_api (>= 0.1.3)

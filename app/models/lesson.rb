@@ -6,6 +6,7 @@ class Lesson < ActiveRecord::Base
 	belongs_to :seminar
 	belongs_to :template
 	belongs_to :lab
+	has_many :system_guest,:dependent => :delete_all
 
 	validates :number, :presence => true
 	validates :day, :presence=>true

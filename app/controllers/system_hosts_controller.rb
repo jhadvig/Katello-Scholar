@@ -55,10 +55,8 @@ class SystemHostsController < SecureController
 			@checked_hosts_ids = params[:host_ids].map(&:to_i)
 			@checked_hosts_ids.each do |h|
 				host = SystemHost.find(h)
-				if params.include?("delete_action")
-					
+				if params.include?("delete_action")					
 					deleted_hosts << host.name if host.destroy
-
 				elsif params.include?("maintain_action")
 					updated_hosts << host.name if host.update_attribute(:status, 0)
 				elsif params.include?("ready_action")
@@ -66,9 +64,9 @@ class SystemHostsController < SecureController
 				end
 			end
 			unless deleted_hosts.empty?
-				flash[:success] = "Hosts \n#{deleted_hosts.join("\n")}\n were successfully deleted." 
+				flash[:success] = "Host: \n#{deleted_hosts.join("\n")}\n were successfully deleted." 
 			else
-				flash[:success] = "Hosts \n#{updated_hosts.join("\n")}\n were successfully updated."
+				flash[:success] = "Host: \n#{updated_hosts.join("\n")}\n were successfully updated."
 			end
 		end
 		flash[:error] = "No hosts checked !" unless params.include?("host_ids")

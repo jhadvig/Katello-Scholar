@@ -7,7 +7,6 @@ KatelloScholar::Application.routes.draw do
 
   resources :courses do 
     get 'de_active', :on => :member
-    get 'clone', :on => :member
     resources :seminars
     resources :templates
     delete 'multiple_actions', :on => :collection
@@ -24,6 +23,8 @@ KatelloScholar::Application.routes.draw do
 
   resources :lessons do
     get 'clone', :on => :member
+    get 'de_active', :on => :member
+    resources :system_guests
   end
 
   resources :labs do

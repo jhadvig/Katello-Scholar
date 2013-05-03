@@ -51,6 +51,8 @@ gem 'pry', :group => :development
 gem 'morrisjs-rails'
 gem 'raphael-rails'
 
+gem "delayed_job", "~> 3.0.5"
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

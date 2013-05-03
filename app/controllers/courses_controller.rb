@@ -119,20 +119,8 @@ class CoursesController < SecureController
 			end
 		end
 
-		flash[:success] = "Courses \n#{deleted_courses.join("\n")}\n was successfully deleted." unless deleted_courses.empty?
+		flash[:success] = "Course: \n#{deleted_courses.join("\n")}\n was successfully deleted." unless deleted_courses.empty?
 
-		redirect_to courses_path
-	end
-
-	def clone 
-		@curr_course = Course.find(params[:id]).dup
-
-
-		if @curr_course.save
-			flash[:success] = "Course was successfully cloned."
-		else
-		    flash[:error] = "Course can\'t be cloned."
-		end
 		redirect_to courses_path
 	end
 

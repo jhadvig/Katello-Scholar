@@ -6,8 +6,8 @@ class Lab < ActiveRecord::Base
 
 	attr_accessible :info, :name, :lesson_id, :status, :network, :netmask 
 
-	has_many :lesson
-	has_many :seminar
+	has_many :lessons
+	has_many :seminars
 	has_many :system_hosts, :dependent => :delete_all
 
 	validates :name, :presence => true, :uniqueness => true, :length => { :minimum => 3, :maximum => 10}

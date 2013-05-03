@@ -1,0 +1,58 @@
+%h2.section
+	= "Lab #{@lab.name} Guests"
+
+
+%ul.nav.nav-tabs
+
+%form.form-search.pull-right
+	.input-append
+		%input.span2.search-query.basic_seach_query{:type => "text", :placeholder=>"Find...", :data => {:query_type => "Host or Guest name"}} 
+		%button.btn{:type => "text"} 
+			%i.icon-search
+
+%br
+%br
+
+.system_guests-table
+	%table.table-striped.table-bordered.teble-hover.system_guests
+		%thead
+			%tr
+				- if can? :manage, Course
+					%th.checkbox.check_all
+						%label.checkbox
+							%input{:type =>"checkbox", :value=>0}
+				%th.number Number
+				%th.name Name
+				%th.status Status
+				%th.system_host Host
+				%th.os Operating System
+				%th.action Action
+
+		%tbody
+			- @hosts.each do |host|
+				%tr
+					- if can? :manage, Course
+						%td.checkbox
+							%label.checkbox
+								= check_box_tag "system_guests_ids[]", host.id
+					%td.number
+					%td.name
+					%td.status
+						- case host.status
+						- when 0
+							= image_tag "spinner.gif"
+						- when 1
+							= image_tag "check.png"
+						- when 2
+							= image_tag "delete.png"
+					%td.system_host
+						= host.name
+					%td.os
+					%td.action 
+						.btn-group.table-action-button
+							= link_to root_path, :class=>"btn btn-small edit" do
+								%i.icon-edit
+								Edit
+							%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
+								%span.caret
+							%ul.dropdown-menu

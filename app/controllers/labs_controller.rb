@@ -67,9 +67,9 @@ class LabsController < SecureController
 
 			end
 			unless deleted_labs.empty?
-				flash[:success] = "Template \n#{deleted_labs.join("\n")}\n were successfully deleted."
+				flash[:success] = "Lab: \n#{deleted_labs.join("\n")}\n were successfully deleted."
 			else
-				flash[:success] = "Template \n#{updated_labs.join("\n")}\n were successfully updated."
+				flash[:success] = "Lab: \n#{updated_labs.join("\n")}\n were successfully updated."
 			end
 		end
 		flash[:error] = "No labs checked !" unless params.include?("lab_ids")

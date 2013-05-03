@@ -57,7 +57,7 @@ class OperatingSystemsController < SecureController
 				os = OperatingSystem.find(o)			
 				deleted_os << os.full_name if os.destroy
 			end
-			flash[:success] = "Operating systems  \n#{deleted_os.join("\n")}\n were successfully deleted."
+			flash[:success] = "Operating systems: \n#{deleted_os.join("\n")}\n were successfully deleted."
 		end
 		flash[:error] = "No operating systems checked !" unless params.include?("host_ids")
 		redirect_to :back

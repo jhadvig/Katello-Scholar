@@ -37,8 +37,8 @@
 							Activate Selected
 				%li
 					%a
-						= button_tag :type=> "submit", :name => "deactivate_action" , :class => "btn btn-info btn-action" do
-							%i.icon-pause
+						= button_tag :type=> "submit", :name => "deactivate_action" , :class => "btn btn-warning btn-action" do
+							%i.icon-off
 							Deactivate Selected
 				%li
 					%a
@@ -111,7 +111,7 @@
 													Activate
 											- else
 												= link_to de_active_course_path(course) do
-													%i.icon-pause
+													%i.icon-off
 													Deactivate
 										%li 
 											= link_to course, :confirm => "Destroy course \n #{course.code}: #{course.name} ?", :method => :delete, :class=>"delete" do

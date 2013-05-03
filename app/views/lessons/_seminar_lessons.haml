@@ -14,6 +14,7 @@
 				%th.number Lesson
 				%th.status Status
 				%th.lab Lab
+				%th.hosts Hosts
 				%th.template Template
 				%th.start Starts at
 				%th.end Ends at
@@ -24,8 +25,11 @@
 			- @lessons.order("number ASC").each do |lesson|
 				%tr
 					%td.lesson
-						#{lesson.number}
-						-#= link_to "#{@course.code}/ #{seminar.seminar_number}", seminar_lessons_path(seminar)
+						- if lesson.status == true
+							= link_to "#{lesson.number}", lesson_system_guests_path(lesson.id)
+						- else
+							= "#{lesson.number}"
+	
 					-if Lesson::STATUS.key(lesson.status) == "Active"
 						%td.status 
 							%span.label.label-success #{Lesson::STATUS.key(lesson.status)}
@@ -33,6 +37,7 @@
 						%td.status 
 							%span.label.label-important #{Lesson::STATUS.key(lesson.status)}
 					%td.lab #{Lab.find(lesson.lab_id).name}
+					%td.hosts #{lesson.lab.system_hosts.count}
 					%td.template #{lesson.template.name}
 					%td.starts_at #{lesson.starts_at.strftime("%a %b %e %R")}
 					%td.ends_at #{lesson.ends_at.strftime("%a %b %e %R")}
@@ -54,6 +59,15 @@
 										= link_to clone_lesson_path(lesson), :class=>"lesson-clone-path" do
 											%i.icon-copy
 											Clone
+									%li
+										- if lesson.status == false
+											= link_to de_active_lesson_path(lesson), :class=>"lesson-clone-path" do
+												%i.icon-play
+												Activate
+										- else 
+											= link_to de_active_lesson_path(lesson), :class=>"lesson-clone-path" do
+												%i.icon-off
+												Deactivate
 									/ %li 
 									/ 	= link_to lesson, :confirm => "Destroy lesson \n #{lesson.number} ?", :method => :delete, :class=>"delete" do
 									/ 		%i.icon-trash

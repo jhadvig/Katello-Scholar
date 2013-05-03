@@ -97,7 +97,8 @@ class SeminarsController < SecureController
 	def destroy
 		@seminar = Seminar.find(params[:id])
 		@course = @seminar.course
-		current_user.seminars.delete(@seminar)
+		# not neccessery
+		#current_user.seminars.delete(@seminar)
 		if @seminar.destroy
 			flash[:success] = 'Seminar group was successfully deleted.'
 		else

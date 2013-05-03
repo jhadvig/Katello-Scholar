@@ -107,8 +107,15 @@ table.list{
 
 	.header {
 		margin-left: 45px !important;
+		font-size: 16px;
 		li.active > a {
 			background-image: -webkit-linear-gradient(top, #111111, #4b4b4b);
+			&:hover {
+
+			}
+		}
+		li > a:hover {
+			color: #0088cc;
 		}
 	}
 
@@ -167,7 +174,8 @@ table.templates,
 table.lessons,
 table.labs,
 table.system_hosts,
-table.operating_systems {
+table.operating_systems,
+table.system_guests {
     table-layout: fixed;
     width: 100%;
     text-align:left;
@@ -189,7 +197,7 @@ table.operating_systems {
 	    	width: 88px;
 	    }
 	    th.lab {
-	    	width:80px
+	    	width:60px
 	    }
 	    th.template {
 	    	width:120px;
@@ -197,7 +205,12 @@ table.operating_systems {
 	    th.path {
 	    	width:600px;
 	    }
-
+	    th.hosts {
+			width: 45px;
+		}
+		th.number {
+			width: 58px;
+		}
     }
     tbody{
 
@@ -392,6 +405,7 @@ div {
 			margin-left: -20px;
 			width: 160px;
 			margin-right: -20px;
+			font-size:12px;
 		}
 	}
 

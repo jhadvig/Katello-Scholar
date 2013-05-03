@@ -93,7 +93,7 @@ class TemplatesController < SecureController
 				temp = ::Template.find(t)			
 				deleted_temp << temp.name if temp.destroy
 			end
-			flash[:success] = "Template \n#{deleted_temp.join("\n")}\n were successfully deleted."
+			flash[:success] = "Template: \n#{deleted_temp.join("\n")}\n were successfully deleted."
 		end
 		flash[:error] = "No templates checked !" unless params.include?("template_ids")
 		redirect_to :back

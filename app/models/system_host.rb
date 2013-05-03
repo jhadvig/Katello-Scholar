@@ -6,11 +6,13 @@ class SystemHost < ActiveRecord::Base
 	@mac_regex = /^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$/
 	attr_accessible :domain, :ip, :mac, :name, :status
 	belongs_to :lab
+	has_many :system_guests,:dependent => :delete_all
 
 	validates :name, :presence => true, :uniqueness => true
 	validates :ip, :presence => true, :uniqueness => true, :on => :save, :format => { :with => @ip_regex }
 	validates :mac, :presence => true, :uniqueness => true#, :on => :save, :format => { :with => @mac_regex }
 	validates :domain, :presence => true
+
 
 	def status_is
 		SystemHost::STATUS.key(self.status)
