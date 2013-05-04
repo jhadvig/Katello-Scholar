@@ -50,7 +50,7 @@ class LessonsController < SecureController
 	def create
 		@seminar = Seminar.find(params[:seminar_id])
 		@lesson = @seminar.lessons.new(params[:lesson])
-		@lesson.find_lesson_dates(@seminar.lessons.count-1)
+		@lesson.find_lesson_dates(@seminar.lessons.count)
 		if @lesson.save
 			flash[:success] = 'Lesson was successfully created'
 		else

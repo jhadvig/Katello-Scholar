@@ -10,6 +10,30 @@
 		%button.btn{:type => "text"} 
 			%i.icon-search
 
+- if can? :manage, Course
+	.btn-group.settings
+		%a.btn.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}
+			%icon.icon-cog
+			Action
+			%span.caret
+		%ul.dropdown-menu.action
+			%li
+				%a
+					= button_tag :type=> "submit", :name => "activate_action" , :class => "btn btn-success btn-action" do
+						%i.icon-play-circle
+						Power On Selected
+			%li
+				%a
+					= button_tag :type=> "submit", :name => "deactivate_action" , :class => "btn btn-danger btn-action" do
+						%i.icon-off
+						Power Off Selected
+			%li
+				%a
+					= button_tag :type=> "submit", :name=> "delete_action", :class=> "btn btn-info btn-action", :data => {:confirm => "Delete checked courses ?"} do
+						%i.icon-refresh.icon-spin
+						Re-Provision Selected
+
+
 %br
 %br
 
@@ -21,7 +45,6 @@
 					%th.checkbox.check_all
 						%label.checkbox
 							%input{:type =>"checkbox", :value=>0}
-				%th.number Number
 				%th.name Name
 				%th.status Status
 				%th.system_host Host
@@ -29,25 +52,35 @@
 				%th.action Action
 
 		%tbody
-			- @hosts.each do |host|
+			- @guests.each do |guest|
 				%tr
 					- if can? :manage, Course
 						%td.checkbox
 							%label.checkbox
-								= check_box_tag "system_guests_ids[]", host.id
-					%td.number
+								= check_box_tag "system_guests_ids[]", guest.id
 					%td.name
+						= guest.name
 					%td.status
-						- case host.status
+						- case guest.status
 						- when 0
 							= image_tag "spinner.gif"
+							%span.label.label-info
+								= SystemGuest::STATUS.key(guest.status)
 						- when 1
 							= image_tag "check.png"
+							%span.label.label-success
 						- when 2
 							= image_tag "delete.png"
+							%span.label.label-important
+						- else 
+							= image_tag "delete.png"
+							%span.label.label-important
+						
 					%td.system_host
-						= host.name
-					%td.os
+						= SystemHost.find(guest.system_host_id).name
+					%td.os 
+						= image_tag "Redhat.png"
+						= @os.full_name
 					%td.action 
 						.btn-group.table-action-button
 							= link_to root_path, :class=>"btn btn-small edit" do
@@ -56,3 +89,7 @@
 							%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
 								%span.caret
 							%ul.dropdown-menu
+%br
+%br
+%ul.nav.nav-tabs.bottom
+= link_to 'Back', seminar_lessons_path(@lesson.seminar)

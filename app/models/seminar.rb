@@ -2,7 +2,7 @@ class Seminar < ActiveRecord::Base
 	attr_accessible :day, :ends_at, :info, :seminar_number, :starts_at, :lab_id, :users
 
 	belongs_to :course
-	has_many :lessons, :dependent => :delete_all
+	has_many :lessons, :dependent => :destroy
 	belongs_to :lab
 	has_and_belongs_to_many :users
 

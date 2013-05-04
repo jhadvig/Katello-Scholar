@@ -249,6 +249,12 @@ table.lessons {
 	}
 }
 
+table.system_guests {
+	th.status {
+		width: 105px !important;
+	}
+}
+
 .table-action-button {
 	a.btn-small.edit {
 		z-index: 1010;

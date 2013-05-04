@@ -6,7 +6,7 @@ class Lesson < ActiveRecord::Base
 	belongs_to :seminar
 	belongs_to :template
 	belongs_to :lab
-	has_many :system_guest,:dependent => :delete_all
+	has_many :system_guests, :dependent => :destroy
 
 	validates :number, :presence => true
 	validates :day, :presence=>true
@@ -15,8 +15,22 @@ class Lesson < ActiveRecord::Base
 	validates :template_id, :presence=>true
 
 	before_create :create_hostgroup
+	after_create :create_system_guests
 	before_destroy :destroy_hostgroup
 	#before_update :update_hostgroup
+
+	def create_system_guests
+		if self.status == true
+			self.lab.system_hosts.each do |host|
+				SystemGuest.create( :name => "guest1_#{host.name}",
+									:lesson_id => lesson_id, 
+									:system_host_id => host.id, 
+									:status => 0 )
+			end
+			SystemGuest.schedule_provisioning(self.id, self.lab.system_hosts)
+		end
+	end
+
 
 	def create_hostgroup
 		# Single domain use case !!! One Domain - One Subnet - One SmartProxy

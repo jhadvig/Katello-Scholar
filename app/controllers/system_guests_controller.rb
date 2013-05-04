@@ -5,6 +5,8 @@ class SystemGuestsController < SecureController
 		@lesson = Lesson.find(params[:lesson_id])
 		@lab = @lesson.lab
 		@hosts = @lesson.lab.system_hosts
+		@guests = @lesson.system_guests
+		@os = OperatingSystem.find(Template.find(@lesson.template_id).operating_system_id)
 
 	end
 
