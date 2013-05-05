@@ -33,7 +33,16 @@ function KS_Init() {
     //     $(this).find('td:last-child .btn-group').fadeToggle("fast", "linear")
     // });
 
+    if ( $('.system_guests-table').length > 0 ){
 
+
+        $('[rel=tooltip]').tooltip({
+            placement:'left'
+        });
+
+        
+    }
+    
 
     if ( $('.alert.alert-success').length > 0 ){
         $('.alert.alert-success').hide();

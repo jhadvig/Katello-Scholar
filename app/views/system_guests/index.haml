@@ -46,7 +46,6 @@
 						%label.checkbox
 							%input{:type =>"checkbox", :value=>0}
 				%th.name Name
-				%th.status Status
 				%th.system_host Host
 				%th.os Operating System
 				%th.action Action
@@ -59,25 +58,25 @@
 							%label.checkbox
 								= check_box_tag "system_guests_ids[]", guest.id
 					%td.name
-						= guest.name
-					%td.status
 						- case guest.status
 						- when 0
-							= image_tag "spinner.gif"
-							%span.label.label-info
-								= SystemGuest::STATUS.key(guest.status)
+							%a{:href => "", :rel => "tooltip", :title => "Provisioning"}
+								= image_tag "spinner.gif",:class => "provisioning"
 						- when 1
-							= image_tag "check.png"
-							%span.label.label-success
+							%a{:href => "#", :rel => "tooltip", :title => "Running"}
+								= image_tag "check.png",:class => "running"
+
 						- when 2
-							= image_tag "delete.png"
-							%span.label.label-important
+							%a{:href => "#", :rel => "tooltip", :title => "Down"}
+								= image_tag "delete.png",:class => "down"
+
 						- else 
-							= image_tag "delete.png"
-							%span.label.label-important
+							%a{:href => "#", :rel => "tooltip", :title => "Down"}
+								= image_tag "delete.png",:class => "down"
+						= guest.name
 						
 					%td.system_host
-						= SystemHost.find(guest.system_host_id).name
+						=# SystemHost.find(guest.system_host_id).name
 					%td.os 
 						= image_tag "Redhat.png"
 						= @os.full_name

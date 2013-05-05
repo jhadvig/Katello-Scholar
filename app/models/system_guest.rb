@@ -10,11 +10,15 @@ class SystemGuest < ActiveRecord::Base
 	#validates :name, :presence => true
 	#validates :url, :presence => true
 	#validates :foreman_host_id, :presence => true
+  #validates :system_host_id, :presence =>true
 
   after_create :create_guest
 
-  def self.schedule_provisioning(lesson_id, hosts)
-    
+  def self.schedule_provisioning(lesson_id)
+
+    SystemGuest.create( :name => "DJ_TEST",
+                        :lesson_id => lesson_id,
+                        :status => 0)
     # # dj = Delayed::Job.last
     # # obj = YAML.load(dj.handler)
     # hosts.each do |host|

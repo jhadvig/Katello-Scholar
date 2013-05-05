@@ -23,11 +23,15 @@ class Lesson < ActiveRecord::Base
 		if self.status == true
 			self.lab.system_hosts.each do |host|
 				SystemGuest.create( :name => "guest1_#{host.name}",
-									:lesson_id => lesson_id, 
+									:lesson_id => self.id, 
 									:system_host_id => host.id, 
-									:status => 0 )
+									:status => 2 )
+
+
 			end
-			SystemGuest.schedule_provisioning(self.id, self.lab.system_hosts)
+			SystemGuest.delay(:run_at => 5.seconds.from_now).schedule_provisioning(self.id)
+			#SystemGuest.schedule_provisioning(self.id, self.lab.system_hosts)
+
 		end
 	end
 
@@ -90,6 +94,11 @@ class Lesson < ActiveRecord::Base
 			self.status = !self.status 
 			self.save
 		end
+	end
+
+	def destroy_expired_lesson_hosts(lesson)
+		hosts = lesson.system_hosts
+		hosts.each {|host| host.destroy}		
 	end
 
 

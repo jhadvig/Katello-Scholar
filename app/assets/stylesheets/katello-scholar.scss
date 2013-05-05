@@ -249,12 +249,6 @@ table.lessons {
 	}
 }
 
-table.system_guests {
-	th.status {
-		width: 105px !important;
-	}
-}
-
 .table-action-button {
 	a.btn-small.edit {
 		z-index: 1010;
@@ -434,6 +428,17 @@ div {
 	}
 	#graph2 svg{
 		margin-left: 120px;
+	}
+}
+
+table.system_guests{
+	img {
+		cursor: default;
+	}
+	.tooltip-inner {
+		background-color:#2f96b4;
+		font-weight:bolder;
+		font-size:14px;
 	}
 }
 

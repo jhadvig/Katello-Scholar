@@ -90,3 +90,6 @@
 										= link_to host, :confirm => "Destroy lab \n #{host.name} ?", :method => :delete, :class=>"delete" do
 											%i.icon-trash
 											Delete
+											
+%ul.nav.nav-tabs.bottom
+= link_to 'Back', labs_path
