@@ -46,6 +46,7 @@
 						%label.checkbox
 							%input{:type =>"checkbox", :value=>0}
 				%th.name Name
+				%th.url URL
 				%th.system_host Host
 				%th.os Operating System
 				%th.action Action
@@ -63,20 +64,21 @@
 							%a{:href => "", :rel => "tooltip", :title => "Provisioning"}
 								= image_tag "spinner.gif",:class => "provisioning"
 						- when 1
-							%a{:href => "#", :rel => "tooltip", :title => "Running"}
+							%a{:href => "", :rel => "tooltip", :title => "Running"}
 								= image_tag "check.png",:class => "running"
 
 						- when 2
-							%a{:href => "#", :rel => "tooltip", :title => "Down"}
+							%a{:href => "", :rel => "tooltip", :title => "Down"}
 								= image_tag "delete.png",:class => "down"
 
 						- else 
-							%a{:href => "#", :rel => "tooltip", :title => "Down"}
+							%a{:href => "", :rel => "tooltip", :title => "Down"}
 								= image_tag "delete.png",:class => "down"
 						= guest.name
 						
+					%td.url
 					%td.system_host
-						=# SystemHost.find(guest.system_host_id).name
+						= SystemHost.find(guest.system_host_id).name if guest.system_host_id
 					%td.os 
 						= image_tag "Redhat.png"
 						= @os.full_name
@@ -88,6 +90,21 @@
 							%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
 								%span.caret
 							%ul.dropdown-menu
+								%li 
+									- if guest.status == 0 or guest.status == 1
+										= link_to "#", :confirm => "Power Off Guest: #{guest.name} ?", :class=>"power_off" do
+											%i.icon-off
+											Power Off
+									- else 
+										= link_to "#", :confirm => "Power On Guest\n #{guest.name} ?", :class=>"power_on" do
+											%i.icon-play-circle
+											Power On
+									= link_to "#", :confirm => "Re-Provision Guest\n #{guest.name} ?", :class=>"reprovision" do
+										%i.icon-refresh.icon-spin
+										Re-Provision
+									= link_to "#", :confirm => "Destroy Guest\n #{guest.name} ?", :method => :delete, :class=>"delete" do
+										%i.icon-trash
+										Delete
 %br
 %br
 %ul.nav.nav-tabs.bottom

@@ -37,7 +37,7 @@ function KS_Init() {
 
 
         $('[rel=tooltip]').tooltip({
-            placement:'left'
+            placement:'top'
         });
 
         

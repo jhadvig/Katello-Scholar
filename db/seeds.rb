@@ -1,4 +1,5 @@
 # def create_roles
+	# puts "creating roles"
 	# roles = {"admin"=>1, "lector"=>2, "student"=>3 }
 	# Role.delete_all
 	# roles.each do |k,v|
@@ -7,7 +8,8 @@
 # end
 
 # def create_admin
-# 	admin = User.create :name => "admin", :email => "admin@admin.com", :password => "admin"
+#   puts "creating admin"
+# 	admin = User.create :email => "admin@admin.com", :password => "admin"
 # 	admin_role = Role.find_by_name("admin")
 # 	admin.roles << admin_role
 # 	admin.save
@@ -87,6 +89,10 @@ create_architectures
 domain = create_domain#(proxy["id"])
 
 create_subnet(domain["id"])#,proxy["id"])
+
+
+create_roles
+create_admin
 
 
 

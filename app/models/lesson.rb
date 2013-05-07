@@ -21,15 +21,16 @@ class Lesson < ActiveRecord::Base
 
 	def create_system_guests
 		if self.status == true
+			guest_number = 1
 			self.lab.system_hosts.each do |host|
-				SystemGuest.create( :name => "guest1_#{host.name}",
+				SystemGuest.create( :name => "guest#{guest_number}_#{host.name}",
 									:lesson_id => self.id, 
 									:system_host_id => host.id, 
 									:status => 2 )
 
-
+				guest_number+=1
 			end
-			SystemGuest.delay(:run_at => 5.seconds.from_now).schedule_provisioning(self.id)
+			SystemGuest.delay(:run_at => 1.minutes.from_now).schedule_provisioning()
 			#SystemGuest.schedule_provisioning(self.id, self.lab.system_hosts)
 
 		end

@@ -243,6 +243,21 @@ table.system_hosts {
 	}
 }
 
+table.system_guests {
+	th.name{
+		width: 180px;
+	}
+	th.url{
+		width: 280px;
+	}
+	th.system_host{
+		width: 150px;
+	}
+	th.os{
+		width: 180px;
+	}
+}
+
 table.lessons {
 	th.number {
 		width:80px;

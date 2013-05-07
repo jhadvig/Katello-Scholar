@@ -8,7 +8,7 @@ class SystemHost < ActiveRecord::Base
 	belongs_to :lab
 	has_many :system_guests,:dependent => :destroy
 
-	validates :name, :presence => true, :uniqueness => true
+	validates :name, :presence => true, :uniqueness => { :scope => :lab_id }
 	validates :ip, :presence => true, :uniqueness => true, :on => :save, :format => { :with => @ip_regex }
 	validates :mac, :presence => true, :uniqueness => true#, :on => :save, :format => { :with => @mac_regex }
 	validates :domain, :presence => true

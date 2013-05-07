@@ -126,10 +126,8 @@ class CoursesController < SecureController
 
 	def de_active
 		@course = Course.find(params[:id])
-		
 		@course.status = !@course.status
 		@course.save
-
 		redirect_to :back
 	end
 

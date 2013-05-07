@@ -12,7 +12,7 @@ class Lab < ActiveRecord::Base
 
 	validates :name, :presence => true, :uniqueness => true, :length => { :minimum => 3, :maximum => 10}
 	validates :network, :presence => true, :uniqueness => true#, :on => :save, :format => { :with => @ip_regex }
-	validates :netmask, :presence => true, :uniqueness => true#, :on => :save, :format => { :with => @ip_regex }  
+	validates :netmask, :presence => true#, :on => :save, :format => { :with => @ip_regex }  
 
 	# Foreman resources created: -Subnet
   	#

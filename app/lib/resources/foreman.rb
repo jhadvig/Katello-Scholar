@@ -39,6 +39,7 @@ module Resources
     Medium          = ForemanApi::Resources::Medium.new options
     Ptable          = ForemanApi::Resources::Ptable.new options
     Hostgroup       = ForemanApi::Resources::Hostgroup.new options
+    Host            = ForemanApi::Resources::Host.new options
 
 	end
 end
