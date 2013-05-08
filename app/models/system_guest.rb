@@ -30,7 +30,7 @@ class SystemGuest < ActiveRecord::Base
 		(0...8).map{(65+rand(26)).chr}.join.downcase
 	end
 
-  def self.schedule_provisioning(name)
+  def self.schedule_provisioning()
     foreman_host_id = Resources::Foreman::Host.create( "host"=> { "puppetclass_ids"=>[""], 
                                                                   "managed"=>"true", 
                                                                   "domain_id"=>"1", 

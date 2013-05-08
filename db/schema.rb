@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130504150224) do
+ActiveRecord::Schema.define(:version => 20130508131954) do
 
   create_table "architectures", :force => true do |t|
     t.string   "name"
@@ -133,8 +133,9 @@ ActiveRecord::Schema.define(:version => 20130504150224) do
     t.string   "domain"
     t.integer  "status"
     t.integer  "lab_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.integer  "foreman_resource_id"
   end
 
   create_table "templates", :force => true do |t|
