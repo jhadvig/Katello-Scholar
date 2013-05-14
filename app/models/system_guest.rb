@@ -12,19 +12,16 @@ class SystemGuest < ActiveRecord::Base
 	#validates :foreman_host_id, :presence => true
   #validates :system_host_id, :presence =>true
 
-  #after_create :create_guest
-
-  def create_guest(lesson_id)
-    SystemGuest.create( :name => "DJ_TEST1",
-                        :lesson_id => lesson_id,
-                        :status => 0)
-  end
-
-	def generate_password
+	def self.generate_password
 		(0...8).map{(65+rand(26)).chr}.join.downcase
 	end
 
-  def self.foreman_guest_provisioning(name)
+  # def foreman_guest_provisioning(name,root_pass,environment_id,architecture_id, hostgroup_id,
+  #                                medium_id, puppet_proxy_id, ptable_id, domain_id, subnet_id,
+  #                                compute_resources_id,operating_system_id,puppetclass_ids)
+  # end
+
+  def self.foreman_guest_provisioning()
 
     foreman_host_attributes = Resources::Foreman::Host.create( "host"=> { "puppetclass_ids"=>[""], 
                                                                   "managed"=>"true", 

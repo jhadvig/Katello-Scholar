@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130510104448) do
+ActiveRecord::Schema.define(:version => 20130514131438) do
 
   create_table "architectures", :force => true do |t|
     t.string   "name"
@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(:version => 20130510104448) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "status"
+    t.string   "root_password"
   end
 
   create_table "system_hosts", :force => true do |t|

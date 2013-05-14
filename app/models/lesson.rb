@@ -26,6 +26,7 @@ class Lesson < ActiveRecord::Base
 				SystemGuest.create( :name => "guest#{guest_number}",
 									:lesson_id => self.id, 
 									:system_host_id => host.id, 
+									#:root_password => SystemGuest.generate_password TO_DO + migration
 									:status => 2 )
 
 				guest_number+=1
