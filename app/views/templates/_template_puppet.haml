@@ -1,0 +1,15 @@
+%h4
+	Puppet Classes :
+%br
+- @puppet_groups.each do |group|
+	.puppet_group
+		%label.checkbox
+			= check_box_tag "groups_ids[]", group.id#, :class => "check-all"
+			= group.name
+		.puppet_classes
+			- group.puppet_classes.each do |c|
+				%label.checkbox.inline
+					= check_box_tag "classes_ids[]", c.id
+					= c.name
+	%br
+	%br

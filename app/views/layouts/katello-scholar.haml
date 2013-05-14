@@ -18,22 +18,39 @@
         .container-fluid.header-container
           = link_to root_path,:class=>"brand" do
             = image_tag "katello-scholar-logo4.png", :class=>"navigation-logo"
-            = image_tag "katello-scholar-title.png", :class=>"navigation-title"
+            / = image_tag "katello-scholar-title.png", :class=>"navigation-title"
+            = image_tag "ks.png", :class=>"navigation-title"
 
           %ul.nav.header
 
             %li{:class=> ("active" if params[:controller] == 'dashboard')}
-              = link_to "Dashboard", dashboard_path
+              = link_to dashboard_path do
+                %i.icon-bar-chart
+                Dashboard
             %li{:class=> ("active" if  ['courses','seminars','lessons'].include?(params[:controller]))}
-              = link_to "Courses", courses_path
-            %li{:class=> ("active" if ['labs','system_hosts'].include?(params[:controller]))}
-              = link_to "Labs", labs_path
+              = link_to courses_path do
+                %i.icon-time
+                Courses
             %li{:class=> ("active" if params[:controller] == 'templates')}
-              = link_to "Templates", templates_path
+              = link_to templates_path do
+                %i.icon-tags
+                Templates
+            %li{:class=> ("active" if ['labs','system_hosts'].include?(params[:controller]))}
+              = link_to labs_path do
+                %i.icon-desktop
+                Labs
+            %li{:class=> ("active" if params[:controller] == 'repositories')}
+              = link_to templates_path do
+                %i.icon-folder-open-alt
+                Repositories
             %li{:class=> ("active" if params[:controller] == 'operating_systems')}
-              = link_to "Operating systems", operating_systems_path
+              = link_to operating_systems_path do
+                %i.icon-hdd
+                Operating systems
             %li{:class=> ("active" if params[:controller] == 'users')}
-              = link_to "Users", users_path
+              = link_to users_path do
+                %i.icon-group
+                Users
 
           .btn-group.pull-right.settings
             %a.btn.btn-info.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}

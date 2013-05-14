@@ -42,6 +42,10 @@ KatelloScholar::Application.routes.draw do
   resources :operating_systems do
   end
 
+  resources :puppet_classes do
+    get 'import', :on => :collection
+  end
+
 
 
   #match 'course/de_active/:id' => 'courses#de_active', :via => :get

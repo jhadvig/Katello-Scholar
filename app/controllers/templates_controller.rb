@@ -37,6 +37,9 @@ class TemplatesController < SecureController
 	def new
 		@course = Course.find(params[:course_id])
 		@operating_systems = OperatingSystem.all
+
+		@puppet_groups = PuppetClassGroup.all
+
 		@template = @course.templates.new(params[:template])
 		respond_to do |format|
 			format.html  # index.html.erb
@@ -46,7 +49,15 @@ class TemplatesController < SecureController
 
 	def create
 		@course = Course.find(params[:course_id])
-		if @template = @course.templates.create(params[:template])
+		if @template = @course.templates.new(params[:template])
+			unless params[:classes_ids].empty?	
+				puts params[:classes_ids]
+				params[:classes_ids].each do |id|
+					puppet_class = PuppetClass.find(id.to_i)
+					@template.puppet_classes << puppet_class
+				end
+				@template.save
+			end
 			flash[:success] = 'Template was successfully created'
 		else
 		    flash[:error] = 'Template can\'t be created'

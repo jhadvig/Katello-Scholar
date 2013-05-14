@@ -14,31 +14,26 @@ class SystemGuest < ActiveRecord::Base
 
   #after_create :create_guest
 
-  def (lesson_id)
+  def create_guest(lesson_id)
     SystemGuest.create( :name => "DJ_TEST1",
                         :lesson_id => lesson_id,
                         :status => 0)
   end
 
-	def self.foreman_guest_provision(lesson_id)#, name)#,host,hostgroup,subnet)
-		#self.foreman_host_id 
-    SystemGuest.create(:name => "guest1", :lesson_id => lesson_id)
-	end
-	# handle_asynchronously :foreman_guest_provision, :run_at => Proc.new {|lecture.starts_at|}
-
 	def generate_password
 		(0...8).map{(65+rand(26)).chr}.join.downcase
 	end
 
-  def self.schedule_provisioning()
-    foreman_host_id = Resources::Foreman::Host.create( "host"=> { "puppetclass_ids"=>[""], 
+  def self.foreman_guest_provisioning(name)
+
+    foreman_host_attributes = Resources::Foreman::Host.create( "host"=> { "puppetclass_ids"=>[""], 
                                                                   "managed"=>"true", 
                                                                   "domain_id"=>"1", 
                                                                   "disk"=>"", 
                                                                   "compute_resource_id"=>"1", 
                                                                   "environment_id"=>"1", 
                                                                   "architecture_id"=>"1", 
-                                                                  "name"=>"HOST_NAME", 
+                                                                  "name"=>"guest", 
                                                                   "compute_attributes" => { 
                                                                     "nics_attributes" => {
                                                                       "new_nics"=>{
@@ -94,8 +89,11 @@ class SystemGuest < ActiveRecord::Base
                                                                     "operatingsystem_id"=>"1", 
                                                                     "overwrite"=>"false"
                                                                     } 
-                                                                  )
-
+                                                                  ).first["host"]
+    #guest = SystemGuest.find(guest_id)
+    #guest.status = 0
+    #guest.url = foreman_host_attributes["ip"]
+    #guest.save
   end
 
 

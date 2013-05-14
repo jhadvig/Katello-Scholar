@@ -16,13 +16,27 @@
 							%span
 								%strong #{k.capitalize} :
 								#{v}
-
 			- else
 				%strong #{k.capitalize} :
 				#{v}
 %br
-%br
+%h4
+	Puppet Classes:
+%div.puppet
+	- @template.puppet_classes.each do |c|
+		.span4
+			- c.attributes.each do |k,v|
+				%div
+					%span
+						%strong #{k.capitalize} :
+						#{v}
+.span12
+	%br
+	%br
 
-=link_to "Edit Template", edit_course_template_path(@course,@template), :class=>"btn btn-info lesson-edit-path"
-|
-=link_to "back", :back
+	=link_to "Edit Template", edit_course_template_path(@course,@template), :class=>"btn btn-info lesson-edit-path"
+	|
+	=link_to "back", :back
+
+	%br
+	%br

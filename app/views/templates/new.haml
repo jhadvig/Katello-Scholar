@@ -5,12 +5,10 @@
 %br
 %br
 
-= form_for([@course,@course.templates.build]) do |c|
-	%ul.nav.nav-tabs
+= form_for([@course,@course.templates.build]) do |param|
+	%ul.nav.nav-tabs.pill-tabs-bar
 		%li
 			%a{"data-toggle" => "tab", :href => "#basic"} Informations
-		%li
-			%a{"data-toggle" => "tab", :href => "#kickstart"} KickStart
 		%li
 			%a{"data-toggle" => "tab", :href => "#puppet"} Puppet
 		%li
@@ -19,24 +17,14 @@
 	.tab-content
 	
 		.tab-pane#basic
-			.name.control-group
-				= c.label :name
-				= c.text_field :name, :placeholder => "Template Name" 
-			.operating_system.control-group
-				= c.label :operating_system_id
-				= c.select :operating_system_id, @operating_systems.map { |os| [ "#{os.name} #{os.major}.#{os.minor}", os.id ] }
-			.info.control-group
-				= c.label :info
-				= c.text_area :info, :size => "25x5", :placeholder => "Info about template ..."
-		.tab-pane#kickstart
-			KickStart
+			= render :partial => "template_info", :locals => { :c => param }
 		.tab-pane#puppet
-			Puppet
+			= render :partial => "template_puppet"
 		.tab-pane#repositories
-			Repos
+			= render :partial => "template_repositories"
 
 	.form-actions
 		%div.control-group
 			= link_to "Back", :back, :class=>"btn"
-			= c.submit :class=>"btn btn-info"
+			= param.submit :class=>"btn btn-info"
 

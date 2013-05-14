@@ -1,5 +1,6 @@
 app_config:
-  app_mode: katello-scholar
+  app_mode: development
+  app_name: katello-scholar
   #domain: katello-scholar.org
   domain: katellolabs.org  
   url_prefix: /katello-scholar
@@ -9,5 +10,7 @@ app_config:
 
   foreman:
     url: https://localhost/foreman
+    admin_name:
+    admin_password:
     oauth_key: katello-scholar
     oauth_secret: 

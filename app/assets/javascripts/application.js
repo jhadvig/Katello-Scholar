@@ -33,6 +33,26 @@ function KS_Init() {
     //     $(this).find('td:last-child .btn-group').fadeToggle("fast", "linear")
     // });
 
+    
+    
+    $('.brand').hover(function(){
+        $('.navigation-title').attr("src", "/assets/ks-blue.png");
+        },function(){
+        $('.navigation-title').attr("src", "/assets/ks.png");
+    })
+
+    $('.puppet_group > .checkbox > input:checkbox').click(function(e) {
+        $(this).closest('.puppet_group').find(':checkbox').prop('checked', this.checked);
+    });
+
+    function toggleChecked(status){
+        $(".puppet_classes input").each( function() {
+        $(this).attr("checked",status);
+        })
+    }
+
+
+
     if ( $('.system_guests-table').length > 0 ){
 
 
@@ -153,7 +173,8 @@ function KS_Init() {
         // $('form * ').show(); // Show forms
         $('.span6 *').show();
         $('.span4 *').show();
-        $('form div').show();
+        $('div .puppet_classes').show();
+        // $('form div').show();
         }
     });
 

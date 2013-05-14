@@ -457,4 +457,19 @@ table.system_guests{
 	}
 }
 
+.navbar-inverse .nav .active > a {
+	color: #0088cc;
+}
+
+.modal-footer {
+	z-index: 1000;
+}
+
+.github_link{
+	z-index: 1001;
+  	bottom:0px;
+  	position: absolute;
+}
+
+
 @import 'font-awesome';

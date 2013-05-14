@@ -1,4 +1,5 @@
 %h2.section
+	%i.icon-tags
 	= params[:controller].capitalize
 
 %ul.nav.nav-tabs
@@ -31,7 +32,7 @@
 			- @templates.each do |template|
 				%tr
 					%td.template_name 
-						= image_tag "Redhat.png"
+						= image_tag os_icon(template.operating_system.os_family)
 						= link_to "#{template.name}", template_path(template)
 					%td.template.course #{template.course.code}:  #{template.course.name}
 					%td.info #{template.info}

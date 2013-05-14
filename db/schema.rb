@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130508131954) do
+ActiveRecord::Schema.define(:version => 20130510104448) do
 
   create_table "architectures", :force => true do |t|
     t.string   "name"
@@ -84,6 +84,26 @@ ActiveRecord::Schema.define(:version => 20130508131954) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.string   "full_name"
+  end
+
+  create_table "puppet_class_groups", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "puppet_classes", :force => true do |t|
+    t.integer  "foreman_id"
+    t.integer  "template_id"
+    t.string   "name"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.integer  "puppet_class_group_id"
+  end
+
+  create_table "puppet_classes_templates", :id => false, :force => true do |t|
+    t.integer "puppet_class_id"
+    t.integer "template_id"
   end
 
   create_table "roles", :force => true do |t|

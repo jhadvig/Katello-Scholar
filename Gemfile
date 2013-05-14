@@ -45,6 +45,7 @@ gem "cancan"
 gem 'devise'
 
 gem 'foreman_api', '>= 0.1.3'
+#gem 'katello_api', '>= 0.0.3'
 gem 'pry', :group => :development
 
 #Graphs

@@ -21,3 +21,13 @@ body{
   margin-left:10px;
 }
 
+.modal-footer {
+  z-index: 1000;
+}
+
+.github_link{
+  z-index: 1001;
+  bottom:0px;
+  position: absolute;
+}
+

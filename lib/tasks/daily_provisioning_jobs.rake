@@ -15,10 +15,8 @@ namespace :daily_provisioning_jobs do
 
 			lesson.lab.system_hosts.each do |host|
 
-				puts host.ip
-				puts host.mac
-				puts host.domain
-				#SystemGuest.delay( :run_at => lesson.starts_at - 30.minutes )schedule_provisioning()
+
+				#SystemGuest.delay( :run_at => lesson.starts_at - 30.minutes )foreman_guest_provisioning()
 
 			end			
 		end

@@ -1,0 +1,12 @@
+%h4
+	Basic Inforamtions:
+%br
+.name.control-group
+	= c.label :name
+	= c.text_field :name, :placeholder => "Template Name" 
+.operating_system.control-group
+	= c.label :operating_system_id
+	= c.select :operating_system_id, @operating_systems.map { |os| [ "#{os.name} #{os.major}.#{os.minor}", os.id ] }
+.info.control-group
+	= c.label :info
+	= c.text_area :info, :size => "25x5", :placeholder => "Info about template ..."

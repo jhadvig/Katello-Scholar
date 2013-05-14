@@ -13,6 +13,15 @@ class SystemHost < ActiveRecord::Base
 	validates :mac, :presence => true, :uniqueness => true#, :on => :save, :format => { :with => @mac_regex }
 	validates :domain, :presence => true
 
+	#before_create :create_compute_resource
+
+	def create_compute_resource
+		self.foreman_resource_id = ComputeResource.create(:compute_resource => {:name => self.name,
+                                               :url => "qemu+tcp://#{self.ip}:16509/system",
+                                               :provider => "Libvirt"}).first["compute_resource"]["id"]
+	rescue
+		false		
+	end
 
 	def status_is
 		SystemHost::STATUS.key(self.status)

@@ -40,6 +40,7 @@ module Resources
     Ptable          = ForemanApi::Resources::Ptable.new options
     Hostgroup       = ForemanApi::Resources::Hostgroup.new options
     Host            = ForemanApi::Resources::Host.new options
+    PuppetClass     = ForemanApi::Resources::Puppetclass.new options
 
 	end
 end
