@@ -1,0 +1,20 @@
+%h4.section
+	Repository Info:
+%h4.section
+	#{@repository.name} 
+	- if @repository.status 
+		= image_tag 'check.png'
+	- else
+		= image_tag 'delete.png'
+
+-@repository.attributes.each do |k,v|
+	%div
+		%span 
+			%strong #{k.capitalize} :
+			#{v}
+%br
+%br
+
+=link_to "Edit Lesson", edit_repository_path(@repository), :class=>"btn btn-info lesson-edit-path"
+|
+=link_to "back", :back

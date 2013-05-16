@@ -69,6 +69,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    ffi (1.8.1)
     font-awesome-sass-rails (3.0.2.1)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
@@ -93,6 +94,10 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.7.6)
+    katello_api (0.0.3)
+      json
+      oauth
+      rest-client (>= 1.6.1)
     less (2.2.1)
       commonjs (~> 0.2.6)
     less-rails (2.2.3)
@@ -109,6 +114,8 @@ GEM
       railties (~> 3.1)
     multi_json (1.5.0)
     mysql2 (0.3.11)
+    net-ping (1.6.0)
+      ffi (>= 1.0.0)
     oauth (0.4.7)
     orm_adapter (0.4.0)
     pnotify-rails (1.2.0)
@@ -200,9 +207,11 @@ DEPENDENCIES
   haml (>= 3.1.2)
   haml-rails
   jquery-rails
+  katello_api (>= 0.0.3)
   less-rails
   morrisjs-rails
   mysql2
+  net-ping (>= 1.6.0)
   pnotify-rails
   pry
   rails (= 3.2.9)

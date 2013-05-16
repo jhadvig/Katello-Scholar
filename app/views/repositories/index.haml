@@ -1,0 +1,85 @@
+
+%h2.section
+	%i.icon-hdd
+	= params[:controller]
+%ul.nav.nav-tabs
+.table_info
+	%span.muted.count
+		= "Viewing #{@repositories.count} of Total #{@repositories.count} Repositories"
+		- if can? :manage, Repository
+			= link_to new_repository_path, :class=>"btn btn-info repository-new-path" do
+				%i.icon-plus-sign
+				Add Repository
+
+%br
+
+%ul.nav.nav-tabs
+
+%form.form-search.pull-right
+	.input-append
+		%input.span2.search-query.basic_seach_query{:type => "text", :placeholder=>"Find...", :data => {:query_type => "Repository name"}} 
+		%button.btn{:type => "text"} 
+			%i.icon-search
+
+- if can? :manage, Repository
+	.btn-group.settings
+		%a.btn.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}
+			%icon.icon-cog
+			Action
+			%span.caret
+		%ul.dropdown-menu.action
+			%li
+				%a
+					= button_tag :type=> "submit", :name=> "delete_action", :class=> "btn btn-danger btn-action", :data => {:confirm => "Delete checked repositories ?"} do
+						%i.icon-trash
+						Delete Selected
+
+%br
+%br
+
+.repositories-table
+
+	%table.table-striped.table-bordered.table-hover.repositories
+		%thead
+			%tr
+				- if can? :manage, Repository
+					%th.checkbox.check_all
+						%label.checkbox
+							%input{:type =>"checkbox", :value=>0}
+
+				%th.name Name
+				%th.status Status
+				%th.url URL
+
+				- if can? :manage, Repository
+					%th.action Action
+		%tbody
+			- @repositories.each do |repo|
+
+				%tr
+					- if can? :manage, Repository
+						%td.checkbox
+							%label.checkbox
+								= check_box_tag "os_ids[]", repo.id
+					%td.name 
+						=link_to repo.name, repository_path(repo.id)
+					%td.status 
+						%center
+							- if repo.status 
+								= image_tag 'check.png'
+							- else
+								= image_tag 'delete.png'
+					%td.url #{repo.url}
+					- if can? :manage, Repository
+						%td.action
+							.btn-group.table-action-button
+								=link_to edit_repository_path(repo), :class=>"btn btn-small edit" do
+									%i.icon-edit
+									Edit
+								%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
+									%span.caret
+								%ul.dropdown-menu
+									%li 
+										= link_to repository_path(repo), :confirm => "Destroy repository #{repo.name} ?", :method => :delete, :class=>"delete" do
+											%i.icon-trash
+											Delete

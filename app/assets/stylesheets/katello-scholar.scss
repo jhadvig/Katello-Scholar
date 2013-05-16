@@ -175,7 +175,8 @@ table.lessons,
 table.labs,
 table.system_hosts,
 table.operating_systems,
-table.system_guests {
+table.system_guests,
+table.repositories {
     table-layout: fixed;
     width: 100%;
     text-align:left;
@@ -226,6 +227,15 @@ table.system_guests {
 			padding-top: 4px;
 	    }
     }
+}
+
+table.repositories {
+	th.name{
+		width: 300px;
+	}
+	th.status {
+		width: 50px !important;
+	}
 }
 
 table.system_hosts {
@@ -355,7 +365,10 @@ form.edit_user {
 }
 
 form.new_operating_system,
-form.edit_operating_system{
+form.edit_operating_system,
+form.new_repository,
+form.edit_repository{
+	#repository_url,
 	#operating_system_path {
 		height: 25px;
 		width: 700px;

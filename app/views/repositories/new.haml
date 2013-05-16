@@ -1,0 +1,18 @@
+%h2.section
+	= params[:action].capitalize
+	= params[:controller].singularize
+%ul.nav.nav-tabs
+
+=form_for @repository do |c|
+
+	.name.control-group
+		= c.label :name
+		= c.text_field :name
+	.path.control-group
+		= c.label :url
+		= c.text_field :url
+
+	%div.control-group
+	= c.submit :class=>"btn btn-info"
+
+= render :partial=>"shared/back"

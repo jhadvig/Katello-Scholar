@@ -45,7 +45,7 @@ gem "cancan"
 gem 'devise'
 
 gem 'foreman_api', '>= 0.1.3'
-#gem 'katello_api', '>= 0.0.3'
+gem 'katello_api', '>= 0.0.3'
 gem 'pry', :group => :development
 
 #Graphs
@@ -56,6 +56,8 @@ gem 'raphael-rails'
 gem 'delayed_job_active_record'
 gem "daemons"
 gem 'whenever', :require => false
+
+gem "net-ping", ">= 1.6.0"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

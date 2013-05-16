@@ -46,6 +46,9 @@ KatelloScholar::Application.routes.draw do
     get 'import', :on => :collection
   end
 
+  resources :repositories do
+  end
+
 
 
   #match 'course/de_active/:id' => 'courses#de_active', :via => :get

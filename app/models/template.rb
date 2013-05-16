@@ -5,6 +5,7 @@ class Template < ActiveRecord::Base
   belongs_to :course
   has_many :lessons
   has_and_belongs_to_many :puppet_classes
+  has_and_belongs_to_many :repositories
   belongs_to :operating_system
 
   validates :name, :presence => true, :length => { :minimum => 5, :maximum => 50}

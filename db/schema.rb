@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514131438) do
+ActiveRecord::Schema.define(:version => 20130516200831) do
 
   create_table "architectures", :force => true do |t|
     t.string   "name"
@@ -104,6 +104,14 @@ ActiveRecord::Schema.define(:version => 20130514131438) do
   create_table "puppet_classes_templates", :id => false, :force => true do |t|
     t.integer "puppet_class_id"
     t.integer "template_id"
+  end
+
+  create_table "repositories", :force => true do |t|
+    t.string   "name"
+    t.text     "url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.boolean  "status"
   end
 
   create_table "roles", :force => true do |t|
