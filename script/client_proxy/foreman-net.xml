@@ -1,0 +1,9 @@
+<network>
+  <name>katello-scholar</name>
+  <uuid>464108d4-93fb-ba90-c132-785a24cfd882</uuid>
+  <forward mode='nat'/>
+  <bridge name='virbr1' stp='off' delay='0' />
+  <mac address='52:54:00:2B:D1:CD'/>
+  <ip address='192.168.100.1' netmask='255.255.255.0'>
+  </ip>
+</network>
