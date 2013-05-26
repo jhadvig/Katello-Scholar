@@ -31,8 +31,8 @@ class Lesson < ActiveRecord::Base
 
 				guest_number+=1
 			end
-			SystemGuest.delay(:run_at => 1.minutes.from_now).foreman_guest_provisioning()
-			#SystemGuest.foreman_guest_provisioning(self.id, self.lab.system_hosts)
+			SystemGuest.delay(:run_at => 1.minutes.from_now).foreman_host_provisioning()
+			#SystemGuest.foreman_host_provisioning(self.id, self.lab.system_hosts)
 
 		end
 	end

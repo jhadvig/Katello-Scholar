@@ -14,3 +14,25 @@ app_config:
     admin_password:
     oauth_key: katello-scholar
     oauth_secret: 
+
+  katello:
+    url:
+    admin_name:
+    admin_password:
+
+  scholar:
+    semester_dates:
+      spring:
+        start:
+        end:
+
+      winter:
+        start:
+        end:
+
+    provisioning_start:
+
+  proxy:
+    name:
+    url:
+    

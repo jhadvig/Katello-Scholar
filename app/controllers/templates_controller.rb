@@ -31,7 +31,11 @@ class TemplatesController < SecureController
 	def show
 		@template = Template.find(params[:id])
 		@course = @template.course
-		@os = @template.operating_system		
+		@os = @template.operating_system
+		respond_to do |format|
+			format.html
+			format.json {render :json => @template}
+		end		
 	end
 
 	def new
@@ -39,6 +43,7 @@ class TemplatesController < SecureController
 		@operating_systems = OperatingSystem.all
 
 		@puppet_groups = PuppetClassGroup.all
+		@repositories = Repository.all
 
 		@template = @course.templates.new(params[:template])
 		respond_to do |format|

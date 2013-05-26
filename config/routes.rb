@@ -24,7 +24,9 @@ KatelloScholar::Application.routes.draw do
   resources :lessons do
     get 'clone', :on => :member
     get 'de_active', :on => :member
-    resources :system_guests
+    resources :system_guests do
+      get 'reprovision', :on => :member
+    end
   end
 
   resources :labs do
@@ -40,6 +42,7 @@ KatelloScholar::Application.routes.draw do
   end
 
   resources :operating_systems do
+    delete 'multiple_actions', :on => :collection
   end
 
   resources :puppet_classes do

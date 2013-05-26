@@ -1,1 +1,17 @@
-repo
+%h4
+	Repositoriess :
+%br
+- @repositories.each do |repo|
+	.puppet_group
+		%label.checkbox
+			= check_box_tag "repository_ids[]", repo.id#, :class => "check-all"
+			= repo.name
+			- if repo.status 
+				= image_tag 'check.png', :title=>" Reachable", :rel => "tooltip"
+			- else
+				= image_tag 'delete.png', :title=>" Unreachable", :rel => "tooltip"
+			%br
+			= repo.url
+
+	%br
+	%br

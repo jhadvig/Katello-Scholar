@@ -16,12 +16,34 @@ class SystemGuest < ActiveRecord::Base
 		(0...8).map{(65+rand(26)).chr}.join.downcase
 	end
 
-  # def foreman_guest_provisioning(name,root_pass,environment_id,architecture_id, hostgroup_id,
-  #                                medium_id, puppet_proxy_id, ptable_id, domain_id, subnet_id,
-  #                                compute_resources_id,operating_system_id,puppetclass_ids)
-  # end
 
-  def self.foreman_guest_provisioning()
+  def foreman_host_reprovisioning()
+    if foreman_host_attributes = Resources::Foreman::Host.destroy("id"=>self.foreman_host_id).first["host"]
+      #SystemGuest.foreman_host_provisioning(guest_id,
+                                           # name,
+                                           # root_pass,
+                                           # foreman_host_attributes["environment_id"],
+                                           # foreman_host_attributes["architecture_id"],
+                                           # foreman_host_attributes["hostgroup_id"],
+                                           # foreman_host_attributes["medium_id"],
+                                           # foreman_host_attributes["puppet_proxy_id"],
+                                           # foreman_host_attributes["ptable_id"],
+                                           # foreman_host_attributes["domain_id"],
+                                           # foreman_host_attributes["subnet_id"],
+                                           # foreman_host_attributes["compute_resource_id"],
+                                           # foreman_host_attributes["operatingsystem_id"],
+                                           # foreman_host_attributes["puppetclass_ids"])
+    end
+  rescue 
+    false
+  end
+
+
+  # def self.foreman_host_provisioning(guest_id,name,root_pass,environment_id,architecture_id, hostgroup_id,
+  #                                medium_id, puppet_proxy_id, ptable_id, domain_id, subnet_id,
+  #                                compute_resource_id,operatingsystem_id,puppetclass_ids)
+  # end
+  def self.foreman_host_provisioning()
 
     foreman_host_attributes = Resources::Foreman::Host.create( "host"=> { "puppetclass_ids"=>[""], 
                                                                   "managed"=>"true", 
@@ -90,7 +112,10 @@ class SystemGuest < ActiveRecord::Base
     #guest = SystemGuest.find(guest_id)
     #guest.status = 0
     #guest.url = foreman_host_attributes["ip"]
+    #guest.foreman_host_id = foreman_host_attributes["id"]
     #guest.save
+    rescue 
+      false
   end
 
 

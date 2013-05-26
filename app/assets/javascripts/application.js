@@ -33,6 +33,22 @@ function KS_Init() {
     //     $(this).find('td:last-child .btn-group').fadeToggle("fast", "linear")
     // });
 
+    if ( $('#repositories').length > 0 ){
+        $('[rel=tooltip]').tooltip({
+            placement:'right'
+        });
+    }
+
+    $('#template_operating_system_id').change(function() {
+        var selectVal = $('#template_operating_system_id :selected').val();
+        $.getJSON('http://localhost:3000/operating_systems/' + selectVal, function(data) {
+            console.log(data);
+            $('#template_operating_system_id').popover({
+                content: data
+            });
+        });
+    });
+
     
     
     $('.brand').hover(function(){
@@ -54,13 +70,9 @@ function KS_Init() {
 
 
     if ( $('.system_guests-table').length > 0 ){
-
-
         $('[rel=tooltip]').tooltip({
             placement:'top'
         });
-
-        
     }
     
 
@@ -158,7 +170,7 @@ function KS_Init() {
     $(".nav-tabs li:first").addClass("active"); // Activate first tab
     $(".tab-content div:first").addClass("active"); // Show first tab content
     
-    $('.nav-tabs a').click(function(e) {
+    $('.nav-tabs.lesson a, .nav-tabs.course a').click(function(e) {
         e.preventDefault();
         if ($(this).closest("li").attr("class") == "active"){ //detection for current tab
         	return       
@@ -174,7 +186,26 @@ function KS_Init() {
         $('.span6 *').show();
         $('.span4 *').show();
         $('div .puppet_classes').show();
-        // $('form div').show();
+        $('form div').show();
+        }
+    });
+
+    $('.nav-tabs.template a').click(function(e) {
+        e.preventDefault();
+        if ($(this).closest("li").attr("class") == "active"){ //detection for current tab
+            return       
+        }
+        else{             
+        $(".tab-content div").hide(); //Hide all content
+        $(".nav-tabs li").attr("class",""); //Reset id's
+        $(this).parent().attr("class","active"); // Activate this
+        $($(this).attr('href')).fadeIn();
+        $($(this).attr('href')).children().fadeIn(); // Show content for current tab
+        $('.table-action-button').show(); // Show buttons in tables
+        // $('form * ').show(); // Show forms
+        $('.span6 *').show();
+        $('.span4 *').show();
+        $('div .puppet_classes').show();
         }
     });
 

@@ -10,15 +10,15 @@ class OperatingSystem < ActiveRecord::Base
   validates :name, :presence => true # unique in foreman Medium model
   validates :path, :presence => true, :uniqueness => true, :on => :save
   validates :major, :presence => true#, :numericality => { :only_integer => true}
-  validates :minor, :presence => true#, :numericality => { :only_integer => true}
+  #validates :minor, :presence => true#, :numericality => { :only_integer => true}
   validates :architecture_id, :presence => true
 
   # Foreman resources created:-Medium
   #                           -Operating system
 
-  before_create :create_resources, :os_full_name
-  before_destroy :destroy_resources
-  before_update :update_resources, :os_full_name
+  # before_create :create_resources, :os_full_name
+  # before_destroy :destroy_resources
+  # before_update :update_resources, :os_full_name
 
   def create_resources
 

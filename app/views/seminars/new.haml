@@ -10,7 +10,7 @@
 			= c.number_field :seminar_number, :value => @course_seminars_count+1 ,:placeholder => "Number" 
 		.lab.control-group
 			= c.label :lab_id
-			= c.select :lab_id, options_from_collection_for_select(@labs,"id","name")
+			= c.select :lab_id, options_from_collection_for_select(@labs,"id","name"), :include_blank => true
 		.info.control-group
 			= c.label :info
 			= c.text_field :info, :placeholder => "Seminar informations	"

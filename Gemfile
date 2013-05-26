@@ -58,6 +58,7 @@ gem "daemons"
 gem 'whenever', :require => false
 
 gem "net-ping", ">= 1.6.0"
+gem "oauth", "~> 0.4.4"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

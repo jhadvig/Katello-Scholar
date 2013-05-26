@@ -32,7 +32,7 @@
 			- @templates.each do |template|
 				%tr
 					%td.template_name 
-						= image_tag os_icon(template.operating_system.os_family)
+						= image_tag os_icon(template.operating_system.os_family, template.operating_system.name)
 						= link_to "#{template.name}", template_path(template)
 					%td.template.course #{template.course.code}:  #{template.course.name}
 					%td.info #{template.info}

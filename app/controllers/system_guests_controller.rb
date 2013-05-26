@@ -33,21 +33,27 @@ class SystemGuestsController < SecureController
 	end
 
 	def power_off
-		@guest = SystemGuest.find(params[:system_guest_id])
+		@guest = SystemGuest.find(params[:id])
 		@guest.status = 2
 		@guest.save
 	end
 
 	def power_on
-		@guest = SystemGuest.find(params[:system_guest_id])
+		@guest = SystemGuest.find(params[:id])
 		@guest.status = 1
 		@guest.save
 	end
 
 	def reprovision
-		@guest = SystemGuest.find(params[:system_guest_id])
+		@guest = SystemGuest.find(params[:id])
 		@guest.status = 0
-		@guest.save
+		if @guest.save
+			flash[:success] = "Guest #{@guest.name} is being reprovisioned."
+			#@guest.foreman_host_reprovisioning
+		else
+		    flash[:error] = 'Guest #{@guest.name} can\'t be reprovisioned.'
+		end
+		redirect_to lesson_system_guests_path(@guest.lesson.id)
 	end
 
 

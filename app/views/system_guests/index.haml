@@ -99,7 +99,7 @@
 										= link_to "#", :confirm => "Power On Guest\n #{guest.name} ?", :class=>"power_on" do
 											%i.icon-play-circle
 											Power On
-									= link_to "#", :confirm => "Re-Provision Guest\n #{guest.name} ?", :class=>"reprovision" do
+									= link_to reprovision_lesson_system_guest_path(guest.lesson.id,guest.id), :confirm => "Re-Provision Guest\n #{guest.name} ?", :class=>"reprovision" do
 										%i.icon-refresh.icon-spin
 										Re-Provision
 									= link_to "#", :confirm => "Destroy Guest\n #{guest.name} ?", :method => :delete, :class=>"delete" do

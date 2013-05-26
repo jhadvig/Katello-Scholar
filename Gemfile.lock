@@ -212,6 +212,7 @@ DEPENDENCIES
   morrisjs-rails
   mysql2
   net-ping (>= 1.6.0)
+  oauth (~> 0.4.4)
   pnotify-rails
   pry
   rails (= 3.2.9)

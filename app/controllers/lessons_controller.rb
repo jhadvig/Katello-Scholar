@@ -20,7 +20,7 @@ class LessonsController < SecureController
 	def index
 		@seminar = Seminar.find(params[:seminar_id])
 		@lessons = @seminar.lessons
-		@lessons.each {|lesson| lesson.lesson_expiration}
+		#@lessons.each {|lesson| lesson.lesson_expiration}
 
 		@lectors =  []
 		@students = []

@@ -12,9 +12,7 @@ module Resources
        #    	:logger             => Logging.logger['foreman_rest'] }
       	# end
 
-      	options = {:base_url => 'https://192.168.122.91/foreman',
-                 :username => 'admin',
-                 :password => 'changeme'}
+      	options = {:base_url => 'https://192.168.122.91/foreman', :username => 'admin', :password => 'changeme'}
 
     end
 

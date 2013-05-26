@@ -1,27 +1,31 @@
-# def create_roles
-	# puts "creating roles"
-	# roles = {"admin"=>1, "lector"=>2, "student"=>3 }
-	# Role.delete_all
-	# roles.each do |k,v|
-	# 	Role.create!(:name=>k, :value=>v)
-	# end
-# end
+def create_roles
+	puts "creating roles"
+	roles = {"admin"=>1, "lector"=>2, "student"=>3 }
+	Role.delete_all
+	roles.each do |k,v|
+		Role.create!(:name=>k, :value=>v)
+	end
+end
 
-# def create_admin
-#   puts "creating admin"
-# 	admin = User.create :email => "admin@admin.com", :password => "admin"
-# 	admin_role = Role.find_by_name("admin")
-# 	admin.roles << admin_role
-# 	admin.save
-# end
+def create_admin
+	puts "creating admin"
+	admin = User.create :email => "admin@admin.com", :password => "admin"
+	admin_role = Role.find_by_name("admin")
+	admin.roles << admin_role
+	admin.save
+end
 
+
+def delete_users_roles
+	User.all.each {|user| user.destroy} unless User.all.empty?
+	Role.all.each {|role| role.destroy} unless Role.all.empty?
+end
 
 
 def delete_domains_archs_subnets
 	puts "Deleting Foreman Architectures"
 	foreman_architectures = Resources::Foreman::Architecture.index.first
 	foreman_architectures.each { |a| Resources::Foreman::Architecture.destroy("id"=> a["architecture"]["id"])}
-
 	Architecture.all.each { |a| a.destroy}
 
 	puts "Deleting Foreman Domains"
@@ -72,13 +76,14 @@ end
 
 def create_proxy
 	puts "Creating SmartProxy" 
-  	Resources::Foreman::SmartProxy.create(:smart_proxy => {:name => "master",
+  	Resources::Foreman::SmartProxy.create(:smart_proxy => {:name => "master",#KatelloScholar::APP_CONFIG["app_config"]["proxy"]["name"]
                                      						:url => "http://master.katello-scholar.org:9090"}).first["smart_proxy"]
+  																	#KatelloScholar::APP_CONFIG["app_config"]["proxy"]["url"]
 rescue 
 	false
 end
 
-
+#delete_users_roles
 delete_domains_archs_subnets
 
 create_architectures
@@ -89,7 +94,6 @@ create_architectures
 domain = create_domain#(proxy["id"])
 
 create_subnet(domain["id"])#,proxy["id"])
-
 
 create_roles
 create_admin

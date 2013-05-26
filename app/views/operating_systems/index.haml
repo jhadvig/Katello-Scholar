@@ -21,7 +21,7 @@
 		%button.btn{:type => "text"} 
 			%i.icon-search
 
-= form_tag multiple_actions_system_hosts_path, :method => :delete do
+= form_tag multiple_actions_operating_systems_path, :method => :delete do
 
 	- if can? :manage, OperatingSystem
 		.btn-group.settings
@@ -66,7 +66,7 @@
 								%label.checkbox
 									= check_box_tag "os_ids[]", os.id
 						%td.name 
-							=image_tag "Redhat.png", :class => "os-logo"
+							=image_tag os_icon(os.os_family,os.name), :class => "os-logo"
 							=link_to "#{os.name} #{os.major}.#{os.minor}", operating_system_path(os)
 						%td.os-family #{os.os_family}
 						%td.architecture #{os.architecture.name}

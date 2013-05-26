@@ -6,6 +6,10 @@ class OperatingSystemsController < SecureController
 
 	def show
 		@operating_system = OperatingSystem.find(params[:id])
+		respond_to do |format|
+			format.html
+			format.json {render :json => @operating_system}
+		end
 	end
 
 	def new
@@ -26,7 +30,6 @@ class OperatingSystemsController < SecureController
 	def edit
 		@operating_system = OperatingSystem.find(params[:id])
 		@architecture = Architecture.find(@operating_system.architecture_id)
-		puts @architecture.name
 	end
 
 	def update
@@ -50,7 +53,7 @@ class OperatingSystemsController < SecureController
 	end
 
 	def multiple_actions
-		if params.include?("host_ids")
+		if params.include?("os_ids")
 			deleted_os = []
 			@checked_os_ids = params[:os_ids].map(&:to_i)
 			@checked_os_ids.each do |o|
@@ -59,7 +62,7 @@ class OperatingSystemsController < SecureController
 			end
 			flash[:success] = "Operating systems: \n#{deleted_os.join("\n")}\n were successfully deleted."
 		end
-		flash[:error] = "No operating systems checked !" unless params.include?("host_ids")
+		flash[:error] = "No operating systems checked !" unless params.include?("os_ids")
 		redirect_to :back
 	end
 
