@@ -43,7 +43,6 @@ class SeminarsController < SecureController
 
 
 	def create
-		puts params[:seminar][:users].class
 		@course = Course.find(params[:course_id])
 		params[:seminar][:users] = params[:seminar][:users].split(",").map {|i| User.find(i.to_i)}
 		if @seminar = @course.seminars.create(params[:seminar])
@@ -90,7 +89,7 @@ class SeminarsController < SecureController
 	end
 
 
-	def show 
+	def show
 		@seminar = Seminar.find(params[:id])
 	end
 

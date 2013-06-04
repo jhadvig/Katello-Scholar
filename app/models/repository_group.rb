@@ -7,5 +7,8 @@ class RepositoryGroup < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
 
 
+  def active_repositories
+
+  end
 
 end

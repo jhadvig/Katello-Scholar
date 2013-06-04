@@ -16,8 +16,8 @@
 
 %form.form-search.pull-right
 	.input-append
-		%input.span2.search-query.basic_seach_query{:type => "text", :placeholder=>"Find...", :data => {:query_type => "Repository name"}} 
-		%button.btn{:type => "text"} 
+		%input.span2.search-query.basic_seach_query{:type => "text", :placeholder=>"Find...", :data => {:query_type => "Repository group name"}}
+		%button.btn{:type => "text"}
 			%i.icon-search
 
 
@@ -39,7 +39,7 @@
 
 .repository_group-table
 
-	%table.table-striped.table-bordered.table-hover.repository_group
+	%table.table-striped.table-bordered.table-hover.repository_groups
 		%thead
 			%tr
 				%th.checkbox.check_all
@@ -47,8 +47,8 @@
 						%input{:type =>"checkbox", :value=>0}
 
 				%th.name Name
-				%th.status Status
-				%th.url URL
+				%th.repositories Repositories
+				%th.active_repos Available repositories
 				%th.action Action
 		%tbody
 			- @repo_groups.each do |repo_group|
@@ -56,21 +56,22 @@
 					%td.checkbox
 						%label.checkbox
 							= check_box_tag "repo_group_ids[]", repo_group.id
-					%td.name 
-						=link_to repo_group.name, repository_group_path(repo_group.id)
-					%td.status 
-					%td.url 
-						%td.action
-							.btn-group.table-action-button
-								=link_to edit_repository_group_path(repo_group), :class=>"btn btn-small edit" do
-									%i.icon-edit
-									Edit
-								%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
-									%span.caret
-								%ul.dropdown-menu
-									%li 
-										= link_to repository_group_path(repo_group), :confirm => "Destroy repository group #{repo_group.name} ?", :method => :delete, :class=>"delete" do
-											%i.icon-trash
-											Delete
+					%td.name
+						= link_to repo_group.name, repository_group_path(repo_group.id)
+					%td.repositories
+						= repo_group.repositories.count
+					%td.active_repos
+					%td.action
+						.btn-group.table-action-button
+							=link_to edit_repository_group_path(repo_group), :class=>"btn btn-small edit" do
+								%i.icon-edit
+								Edit
+							%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
+								%span.caret
+							%ul.dropdown-menu
+								%li
+									= link_to repository_group_path(repo_group), :confirm => "Destroy repository group #{repo_group.name} ?", :method => :delete, :class=>"delete" do
+										%i.icon-trash
+										Delete
 
 

@@ -3,14 +3,6 @@
 	= params[:controller].singularize.capitalize.gsub("_"," ")
 %ul.nav.nav-tabs
 
-/ = form_for @repo_group do |c|
-
-/ 	.name.control-group
-/ 		= c.label :name
-/ 		= c.text_field :name
-
-/ 	%div.control-group
-/ 	= c.submit :class=>"btn btn-info"
 
 = form_tag :repository_groups, :method => :post, :class => "new_repository_group" do
 

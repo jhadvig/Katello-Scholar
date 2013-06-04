@@ -7,7 +7,7 @@
 	.span4
 		.seminar_number.control-group
 			= c.label :seminar_number
-			= c.number_field :seminar_number, :value => @course_seminars_count+1 ,:placeholder => "Number" 
+			= c.number_field :seminar_number, :value => @course_seminars_count+1 ,:placeholder => "Number"
 		.lab.control-group
 			= c.label :lab_id
 			= c.select :lab_id, options_from_collection_for_select(@labs,"id","name"), :include_blank => true

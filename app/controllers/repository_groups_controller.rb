@@ -5,7 +5,9 @@ class RepositoryGroupsController < SecureController
 	end
 
 	def show
+		puts
 		@repo_group = RepositoryGroup.find(params[:id])
+		@repositories = @repo_group.repositories
 	end
 
 	def create
@@ -19,7 +21,6 @@ class RepositoryGroupsController < SecureController
 			repositories_attr = params.delete_if {|k,v| k !~ /\Arepository_.*/}.values
 			repository_hashes = Hash[*repositories_attr]
 			repository_hashes.each do  |k,v|
-				puts "PIPISE => #{k} => #{v}"
 				@repository_group.repositories << Repository.create(:name => k, :url => v)
 			end
 

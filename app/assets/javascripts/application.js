@@ -37,6 +37,7 @@ function KS_Init() {
         var fields = '';
 
         $('.add_repository_field').on('click', function(){
+            console.log(repoFields);
             fields += "<ul class='nav nav-tabs'></ul>";
             fields += "<div class='repository_name control-group'>";
             fields += '<label for="repository_name_' + repoFields + '">Repository name</label>';
@@ -47,6 +48,7 @@ function KS_Init() {
             fields += '<input id="repository_url_' + repoFields + '" name="repository_url_' + repoFields + '"  type="text"></div>';
             repoFields++;
             $(this).before(fields);
+            fields = '';
         });
     }
 

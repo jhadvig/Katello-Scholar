@@ -3,7 +3,7 @@
 	= params[:controller].singularize
 %ul.nav.nav-tabs
 
-=form_for @repository do |c|
+=form_for ([@repository_group,@repository_group.repositories.build]) do |c|
 
 	.name.control-group
 		= c.label :name
