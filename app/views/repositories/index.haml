@@ -60,7 +60,7 @@
 					- if can? :manage, Repository
 						%td.checkbox
 							%label.checkbox
-								= check_box_tag "os_ids[]", repo.id
+								= check_box_tag "repo_ids[]", repo.id
 					%td.name 
 						=link_to repo.name, repository_path(repo.id)
 					%td.status 

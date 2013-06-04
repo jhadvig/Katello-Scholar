@@ -52,6 +52,10 @@ KatelloScholar::Application.routes.draw do
   resources :repositories do
   end
 
+  resources :repository_groups do 
+    resources :repositories
+  end
+
 
 
   #match 'course/de_active/:id' => 'courses#de_active', :via => :get

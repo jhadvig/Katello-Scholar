@@ -1,0 +1,76 @@
+
+%h2.section
+	%i.icon-folder-open-alt
+	= params[:controller].capitalize.gsub("_"," ")
+%ul.nav.nav-tabs
+.table_info
+	%span.muted.count
+		= "Viewing #{@repo_groups.count} of Total #{@repo_groups.count} Repositories"
+		= link_to new_repository_group_path, :class=>"btn btn-info repository-new-path" do
+			%i.icon-plus-sign
+			Add Repository Group
+
+%br
+
+%ul.nav.nav-tabs
+
+%form.form-search.pull-right
+	.input-append
+		%input.span2.search-query.basic_seach_query{:type => "text", :placeholder=>"Find...", :data => {:query_type => "Repository name"}} 
+		%button.btn{:type => "text"} 
+			%i.icon-search
+
+
+
+.btn-group.settings
+	%a.btn.dropdown-toggle.user-button{"data-toggle"=>"dropdown", :href =>"#{}"}
+		%icon.icon-cog
+		Action
+		%span.caret
+	%ul.dropdown-menu.action
+		%li
+			%a
+				= button_tag :type=> "submit", :name=> "delete_action", :class=> "btn btn-danger btn-action", :data => {:confirm => "Delete checked repositories ?"} do
+					%i.icon-trash
+					Delete Selected
+
+%br
+%br
+
+.repository_group-table
+
+	%table.table-striped.table-bordered.table-hover.repository_group
+		%thead
+			%tr
+				%th.checkbox.check_all
+					%label.checkbox
+						%input{:type =>"checkbox", :value=>0}
+
+				%th.name Name
+				%th.status Status
+				%th.url URL
+				%th.action Action
+		%tbody
+			- @repo_groups.each do |repo_group|
+				%tr
+					%td.checkbox
+						%label.checkbox
+							= check_box_tag "repo_group_ids[]", repo_group.id
+					%td.name 
+						=link_to repo_group.name, repository_group_path(repo_group.id)
+					%td.status 
+					%td.url 
+						%td.action
+							.btn-group.table-action-button
+								=link_to edit_repository_group_path(repo_group), :class=>"btn btn-small edit" do
+									%i.icon-edit
+									Edit
+								%button.btn.btn-small.dropdown-toogle{"data-toggle"=>"dropdown", :href =>"#{}"}
+									%span.caret
+								%ul.dropdown-menu
+									%li 
+										= link_to repository_group_path(repo_group), :confirm => "Destroy repository group #{repo_group.name} ?", :method => :delete, :class=>"delete" do
+											%i.icon-trash
+											Delete
+
+

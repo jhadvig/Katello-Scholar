@@ -1,0 +1,42 @@
+%h2.section
+	= params[:action].capitalize
+	= params[:controller].singularize.capitalize.gsub("_"," ")
+%ul.nav.nav-tabs
+
+/ = form_for @repo_group do |c|
+
+/ 	.name.control-group
+/ 		= c.label :name
+/ 		= c.text_field :name
+
+/ 	%div.control-group
+/ 	= c.submit :class=>"btn btn-info"
+
+= form_tag :repository_groups, :method => :post, :class => "new_repository_group" do
+
+	.repository_group_name.control-group
+		= label_tag :repository_group_name
+		= text_field_tag :repository_group_name
+
+	%ul.nav.nav-tabs
+
+	.repository_name.control-group
+		= label_tag :repository_name
+		= text_field_tag :repository_name
+	.repository_url.control-group
+		= label_tag :repository_url
+		= text_field_tag :repository_url
+
+	= button_tag :type => "button", :class => "add_repository_field btn btn-success" do
+		%i.icon-plus
+		Add repository
+
+	%br
+	%br
+	%br
+
+	= submit_tag "Create Repository Group", :class => "submit_button btn btn-info"
+
+
+
+= render :partial=>"shared/back"

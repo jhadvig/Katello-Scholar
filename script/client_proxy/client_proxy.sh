@@ -18,9 +18,9 @@ fi
 
 if [ "$1" == "client" ]; then
 
-	# echo " 	Setting up /etc/hosts"
-	# hostname guest$2.katello-scholar.org
-	# echo 192.168.100.$2 guest$2 guest$2.katello-scholar.org >> /etc/hosts
+	echo  -e "\nSetting up /etc/hosts\n"
+	hostname guest$2.katello-scholar.org
+	echo 192.168.100.$2 guest$2 guest$2.katello-scholar.org >> /etc/hosts
 
 	echo  -e "\nInstalling packages\n"
 	yum install -y --nogpgcheck libvirt kvm
@@ -32,17 +32,18 @@ if [ "$1" == "client" ]; then
 	sed -i 's/192.168.100.$2/192.168.100.1/g' foreman-net.xml
 	sed -i 's/192.168.100.$2/192.168.100.1/g' virbr1.xml
 
-	# if ! grep '192.168.100.1' /etc/resolv.conf; then
-	#   sed -i 's/search.*$/\0\nnameserver 192.168.100.1/' /etc/resolv.conf
-	# fi
+	if ! grep '192.168.100.1' /etc/resolv.conf; then
+	  sed -i 's/search.*$/\0\nnameserver 192.168.100.1/' /etc/resolv.conf
+	fi
 	echo  -e "\nConfiguring firewall rules\n"
 	./set_firewall
 
 
 elif [ "$1" == "proxy" ];then
 
-	# hostname proxy.katello-scholar.org
-	# echo 192.168.100.1 proxy proxy.katello-scholar.org >> /etc/hosts
+	echo  -e "\nSetting up /etc/hosts\n"
+	hostname proxy.katello-scholar.org
+	echo 192.168.100.1 proxy proxy.katello-scholar.org >> /etc/hosts
 	echo  -e "\nInstalling packages\n"
 	yum install -y --nogpgcheck libvirt kvm foreman-proxy-installer foreman-libvirt
 	echo  -e "\nConfiguring up Libvirt\n"

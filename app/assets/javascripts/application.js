@@ -32,6 +32,25 @@ function KS_Init() {
     // $("table.students tbody tr").hover(function(){
     //     $(this).find('td:last-child .btn-group').fadeToggle("fast", "linear")
     // });
+    if ( $('form.new_repository_group').length > 0 ){
+        var repoFields = 1;
+        var fields = '';
+
+        $('.add_repository_field').on('click', function(){
+            fields += "<ul class='nav nav-tabs'></ul>";
+            fields += "<div class='repository_name control-group'>";
+            fields += '<label for="repository_name_' + repoFields + '">Repository name</label>';
+            fields += '<input id="repository_name_' + repoFields + '" name="repository_name_' + repoFields + '" type="text"></div>';
+
+            fields += "<div class='repository_url control-group'>";
+            fields += '<label for="repository_url_' + repoFields + '">Repository url</label>';
+            fields += '<input id="repository_url_' + repoFields + '" name="repository_url_' + repoFields + '"  type="text"></div>';
+            repoFields++;
+            $(this).before(fields);
+        });
+    }
+
+
 
     if ( $('#repositories').length > 0 ){
         $('[rel=tooltip]').tooltip({
@@ -49,8 +68,8 @@ function KS_Init() {
         });
     });
 
-    
-    
+
+
     $('.brand').hover(function(){
         $('.navigation-title').attr("src", "/assets/ks-blue.png");
         },function(){
@@ -74,12 +93,12 @@ function KS_Init() {
             placement:'top'
         });
     }
-    
+
 
     if ( $('.alert.alert-success').length > 0 ){
         $('.alert.alert-success').hide();
         var alert_text = $('.alert.alert-success').text();
-        
+
         $.pnotify({
         title: 'Success',
         text: alert_text,
@@ -120,7 +139,7 @@ function KS_Init() {
     });
 
     $("#admins_search,#lectors_search,#students_search").focus(function() {
-            var placeholder = $(this).attr("data-query_type");        
+            var placeholder = $(this).attr("data-query_type");
             $(this).animate({width: '200px'}).attr("placeholder",placeholder);
         })
         .on("keyup", function() {
@@ -169,13 +188,13 @@ function KS_Init() {
 
     $(".nav-tabs li:first").addClass("active"); // Activate first tab
     $(".tab-content div:first").addClass("active"); // Show first tab content
-    
+
     $('.nav-tabs.lesson a, .nav-tabs.course a').click(function(e) {
         e.preventDefault();
         if ($(this).closest("li").attr("class") == "active"){ //detection for current tab
-        	return       
+        	return
         }
-        else{             
+        else{
         $(".tab-content div").hide(); //Hide all content
         $(".nav-tabs li").attr("class",""); //Reset id's
         $(this).parent().attr("class","active"); // Activate this
@@ -193,9 +212,9 @@ function KS_Init() {
     $('.nav-tabs.template a').click(function(e) {
         e.preventDefault();
         if ($(this).closest("li").attr("class") == "active"){ //detection for current tab
-            return       
+            return
         }
-        else{             
+        else{
         $(".tab-content div").hide(); //Hide all content
         $(".nav-tabs li").attr("class",""); //Reset id's
         $(this).parent().attr("class","active"); // Activate this
