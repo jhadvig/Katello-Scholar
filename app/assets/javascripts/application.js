@@ -268,35 +268,43 @@ function KS_Init() {
         defaultTime: ends_at
     });
 
-    Morris.Donut({
-        element: 'days-graph',
-        data: [
-        {label: "Monday", value: 12},
-        {label: "Thuesday", value: 30},
-        {label: "Wednesday", value: 20},
-        {label: "Thursday", value: 50},
-        {label: "Friday", value: 60},
-        ],
-        colors: ['#2f96b4','#F20A21','#8a4b7e','#2f9887','#2f9000'],
-    });
+    if( $('.dashboard').length > 0 ){
 
-    Morris.Bar({
-      element: 'courses-graph',
-      data: [
-        { y: '2006', a: 100, b: 90 },
-        { y: '2007', a: 75,  b: 65 },
-        { y: '2008', a: 50,  b: 40 },
-        { y: '2009', a: 75,  b: 65 },
-        { y: '2010', a: 50,  b: 40 },
-        { y: '2011', a: 75,  b: 65 },
-        { y: '2012', a: 100, b: 90 },
-      ],
-      xkey: 'y',
-      ykeys: ['a', 'b'],
-      labels: ['Active courses', 'Inactive Courses'],
-      hideHover: 'auto',
-      barColors: ['#2f96b4','#F20A21'],
-    });
+        $.getJSON('http://localhost:3000/dashboard/', function(data) {
+            var day_lessons = data.day_lessons;
+            var os_family_count = data.os_family_count
+
+            Morris.Donut({
+                element: 'days-graph',
+                data: [
+                {label: "Monday", value: day_lessons[0]},
+                {label: "Thuesday", value: day_lessons[1]},
+                {label: "Wednesday", value: day_lessons[2]},
+                {label: "Thursday", value: day_lessons[3]},
+                {label: "Friday", value: day_lessons[4]},
+                {label: "Weekend", value: day_lessons[5]},
+                ],
+                colors: ['#2f96b4','#F20A21','#8a4b7e','#2f9887','#2f9000','#2f4fa0'],
+            });
+
+            Morris.Bar({
+              element: 'courses-graph',
+              data: [
+                { y: 'Archlinux', a: os_family_count[0] },
+                { y: 'Debian', a: os_family_count[1] },
+                { y: 'RedHat', a: os_family_count[2] },
+                { y: 'Solaris', a: os_family_count[3] },
+                { y: 'Suse', a: os_family_count[4] },
+              ],
+              xkey: 'y',
+              ykeys: ['a'],
+              labels: ['Lessons using'],
+              hideHover: 'auto',
+              barColors: ['#5bc0de'],
+              gridTextSize: '12',
+            });
+        });
+    }
 
 
 }

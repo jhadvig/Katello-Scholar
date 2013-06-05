@@ -42,7 +42,7 @@
 
 	.repositories-table
 
-		%table.table-striped.table-bordered.table-hover.repositories
+		%table.table-hover.repositories
 			%thead
 				%tr
 					- if can? :manage, Repository
@@ -55,7 +55,9 @@
 					%th.url URL
 
 					- if can? :manage, Repository
-						%th.action Action
+						%th.action
+							%center
+								Action
 			%tbody
 				- @repositories.each do |repo|
 

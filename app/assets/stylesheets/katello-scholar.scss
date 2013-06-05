@@ -237,6 +237,9 @@ table.repositories {
 	th.status {
 		width: 50px !important;
 	}
+	tr {
+		height: 40px;
+	}
 }
 
 table.system_hosts {

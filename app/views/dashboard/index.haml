@@ -10,7 +10,7 @@
 		.span5
 			.hero-unit
 				.scholar-info
-					%h3 Stats:
+					%h2 Stats:
 					%ul.info
 						%li
 							="Courses #{@courses_count}"
@@ -29,38 +29,46 @@
 						%li
 							="System Guests #{@seminars_count}"
 						%li
+							="Repository Groups #{@repository_group_count}"
+						%li
+							="Repositories #{@repositories_count}"
+						%li
 							="Users #{@users_count}"
 
 		.span9
 			.hero-unit
+				%h2
+					%center
+						Graphs
 				%ul.nav.nav-tabs.pill-tabs-bar
 					%li
-						%a{"data-toggle" => "tab", :href => "#graph1"} 
+						%a{"data-toggle" => "tab", :href => "#graph1"}
 							%i.icon-signal
-							Courses Graph
+							Operating System Families
 					%li
-						%a{"data-toggle" => "tab", :href => "#graph2"} 
+						%a{"data-toggle" => "tab", :href => "#graph2"}
 							%i.icon-sitemap
-							Daily Lessons Graph
+							Daily Lessons Count
 					%li
-						%a{"data-toggle" => "tab", :href => "#graph3"} 
+						%a{"data-toggle" => "tab", :href => "#graph3"}
 							%i.icon-tasks
 							Graph3
 
 				.tab-content
 					.tab-pane#graph1
 						%center
-							Courses info graph
+							Operating System Families
 						#courses-graph{ :style=>"height: 250px; width:550px;" }
 
 					.tab-pane#graph2
 						%center
-							Day lesson count
+							Daily Lessons Count
 						#days-graph{ :style=>"height: 260px; width: 260px;" }
 
 					.tab-pane#graph3
-						Graph3
-					
+						%center
+							Graph3
 
-				
+
+
 
