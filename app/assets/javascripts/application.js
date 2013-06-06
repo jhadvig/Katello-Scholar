@@ -34,11 +34,10 @@ function KS_Init() {
     // });
     if ( $('form.new_repository_group').length > 0 ){
         var repoFields = 1;
-        var fields = '';
 
         $('.add_repository_field').on('click', function(){
-            console.log(repoFields);
-            fields += "<ul class='nav nav-tabs'></ul>";
+            var fields = '';
+            fields += "<div class='added_field'>";
             fields += "<div class='repository_name control-group'>";
             fields += '<label for="repository_name_' + repoFields + '">Repository name</label>';
             fields += '<input id="repository_name_' + repoFields + '" name="repository_name_' + repoFields + '" type="text"></div>';
@@ -46,9 +45,21 @@ function KS_Init() {
             fields += "<div class='repository_url control-group'>";
             fields += '<label for="repository_url_' + repoFields + '">Repository url</label>';
             fields += '<input id="repository_url_' + repoFields + '" name="repository_url_' + repoFields + '"  type="text"></div>';
+            fields += "<ul class='nav nav-tabs'></ul></div>";
             repoFields++;
-            $(this).before(fields);
-            fields = '';
+            // $(this).before(fields);
+            if ( $('.added_field').length > 0 ){
+                $('.added_field:last').after(fields).hide().slideDown('slow');
+            }
+            else {
+                $('.initial_field').after(fields).hide().slideDown('slow');
+            }
+        });
+
+        $('.remove_repository_field').on('click',function(){
+            $('.added_field').last().slideUp('slow',function(){
+                $(this).remove();
+            });
         });
     }
 

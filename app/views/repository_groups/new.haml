@@ -12,16 +12,23 @@
 
 	%ul.nav.nav-tabs
 
-	.repository_name.control-group
-		= label_tag :repository_name
-		= text_field_tag :repository_name
-	.repository_url.control-group
-		= label_tag :repository_url
-		= text_field_tag :repository_url
+	.initial_field
+		.repository_name.control-group
+			= label_tag :repository_name
+			= text_field_tag :repository_name
+		.repository_url.control-group
+			= label_tag :repository_url
+			= text_field_tag :repository_url
+
+		%ul.nav.nav-tabs
 
 	= button_tag :type => "button", :class => "add_repository_field btn btn-success" do
 		%i.icon-plus
 		Add repository
+
+	= button_tag :type => "button", :class => "remove_repository_field btn btn-danger" do
+		%i.icon-minus
+		Remove repository
 
 	%br
 	%br
@@ -29,6 +36,8 @@
 
 	= submit_tag "Create Repository Group", :class => "submit_button btn btn-info"
 
+%ul.nav.nav-tabs
 
 
-= render :partial=>"shared/back"
+
+= link_to "Back", :back

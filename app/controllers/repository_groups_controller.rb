@@ -11,7 +11,6 @@ class RepositoryGroupsController < SecureController
 	end
 
 	def create
-		# binding.pry
 		group_name = params.delete(:repository_group_name)
 		@repository_group = RepositoryGroup.new(:name => group_name)
 		if @repository_group.save
