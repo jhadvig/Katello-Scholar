@@ -35,7 +35,7 @@ class TemplatesController < SecureController
 		respond_to do |format|
 			format.html
 			format.json {render :json => @template}
-		end		
+		end
 	end
 
 	def new
@@ -43,7 +43,7 @@ class TemplatesController < SecureController
 		@operating_systems = OperatingSystem.all
 
 		@puppet_groups = PuppetClassGroup.all
-		@repositories = Repository.all
+		@repository_groups = RepositoryGroup.all
 
 		@template = @course.templates.new(params[:template])
 		respond_to do |format|
@@ -55,7 +55,7 @@ class TemplatesController < SecureController
 	def create
 		@course = Course.find(params[:course_id])
 		if @template = @course.templates.new(params[:template])
-			unless params[:classes_ids].empty?	
+			unless params[:classes_ids].empty?
 				puts params[:classes_ids]
 				params[:classes_ids].each do |id|
 					puppet_class = PuppetClass.find(id.to_i)
@@ -106,7 +106,7 @@ class TemplatesController < SecureController
 			deleted_temp = []
 			@checked_temp_ids = params[:template_ids].map(&:to_i)
 			@checked_temp_ids.each do |t|
-				temp = ::Template.find(t)			
+				temp = ::Template.find(t)
 				deleted_temp << temp.name if temp.destroy
 			end
 			flash[:success] = "Template: \n#{deleted_temp.join("\n")}\n were successfully deleted."

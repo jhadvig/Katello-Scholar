@@ -32,6 +32,12 @@ function KS_Init() {
     // $("table.students tbody tr").hover(function(){
     //     $(this).find('td:last-child .btn-group').fadeToggle("fast", "linear")
     // });
+
+    $('.repository_group > .checkbox > input:checkbox').click(function(e) {
+        console.log('pipise')
+        $(this).closest('.repository_group').find(':checkbox').prop('checked', this.checked);
+    });
+
     if ( $('form.new_repository_group').length > 0 ){
         var repoFields = 1;
 
